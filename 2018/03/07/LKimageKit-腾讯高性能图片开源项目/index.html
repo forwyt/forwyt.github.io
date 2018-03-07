@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="jasonPHD">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="LKimageKit--腾讯高性能图片开源项目"/>
+  <meta property="og:description" content="Apple/易娱科技" />
+  <meta property="og:site_name" content="Developer JasonPhd"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Developer JasonPhd" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Developer JasonPhd</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">LKimageKit--腾讯高性能图片开源项目</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/forwyt">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:465379032@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By jasonPHD</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-03-07</span>
+            <span class="time">15:07:37</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/work/">#work</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>#</p>
+<h1 id="LKimageKit–腾讯高性能图片处理框架"><a href="#LKimageKit–腾讯高性能图片处理框架" class="headerlink" title="LKimageKit–腾讯高性能图片处理框架"></a>LKimageKit–腾讯高性能图片处理框架</h1><hr>
+<ul>
+<li><strong>分析demo</strong></li>
+</ul>
+<ul>
+<li>Demo由Appdelegate进入主程序mainviewController,在主控制器是一个collectionView,</li>
+<li>Demo一共三个控制器第一个是基本用法第二个主要是多照片的加载处理第三个是为了高度定制进行演示的demo</li>
+</ul>
+<ul>
+<li>customerProperty</li>
+<li>iamgeWall</li>
+<li>OpyimizedImageWall</li>
+<li>clear(清理缓存不存在控制器)</li>
+</ul>
+<hr>
+<h3 id="LKImageView"><a href="#LKImageView" class="headerlink" title="LKImageView"></a>LKImageView</h3><ul>
+<li><p><strong>源码分析</strong></p>
+</li>
+<li><p>LKImageView<br>lkimageview是一个自定义UI控件 包含多种属性,以及对象方法</p>
+</li>
+<li><p><strong>快速使用</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.imageView = [[LKImageView alloc] init];</div><div class="line">/<span class="regexp">/遵守代理方法</span></div><div class="line"><span class="regexp">self.imageView.delegate = self;</span></div><div class="line"><span class="regexp">LKImageURLRequest * request = [LKImageURLRequest requestWithURL:@"你的图片URL"];</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/将请求传递给imageview的属性</span></div><div class="line"><span class="regexp">self.imageView.request = request;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>属性说明</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/将加载的图片是否渐进加载出来</span></div><div class="line"><span class="regexp">request.supportProgressive = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/predrawEnabled默认是flase即直接使用原始图像。内部图像视图缩放图像移动和规模。(由ImageIO解码)</span></div><div class="line"><span class="regexp">self.imageView1.predrawEnabled = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/其他部分属性请见源码</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>整体分析</strong><br><img src="/assets/Snip20180305_24.png" alt=""></p>
+</li>
+<li>从上图看有LKiageView / Facede / Delegate /LKImageViewEffect根据对应的方法可以找出对应的用途例如可以将 图片加载成功/失败/加载进行时的图片进行添加</li>
+<li>遵守代理可以监听图片加载成功或者失败的方法</li>
+<li>可以添加后期特效 变灰/模糊处理等</li>
+</ul>
+<hr>
+<p><strong>Manager</strong><br><img src="/assets/Snip20180307_6.png" alt=""><br>LKimageManger类中有yi个总manager来控制下载,配合以下辅助类</p>
+<ul>
+<li>LKImageLogManager //打印日志 设置打印优先级</li>
+<li>LKImageDecoderManger</li>
+<li>lkimagedecoder 解码类中只有一个方法就是<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (UIImage * _Nullable )<span class="symbol">imageFromData:</span>(NSData * _Nullable)data <span class="symbol">request:</span>(LKImageRequest * _Nullable)request <span class="symbol">error:</span>(NSError ** _Nullable)error;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>该方法是首先判断传入的data是否存在,如果不存在即不用处理,直接return nil;<br>如果data存在即进行下一步的解析,将request进行解析.</p>
+<ul>
+<li>image/io的知识补充<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/测试imageio支持的图片格式</span></div><div class="line"><span class="regexp">CFArrayRef mysourceType = CGImageSourceCopyTypeIdentifiers();</span></div><div class="line"><span class="regexp">CFShow(mysourceType);</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/打印结果</span></div><div class="line"><span class="regexp">"public.jpeg",</span></div><div class="line"><span class="regexp">"public.png",</span></div><div class="line"><span class="regexp">"com.compuserve.gif",</span></div><div class="line"><span class="regexp">"com.canon.tif-raw-image",</span></div><div class="line"><span class="regexp">"com.adobe.raw-image",</span></div><div class="line"><span class="regexp">"com.dxo.raw-image",</span></div><div class="line"><span class="regexp">"com.canon.cr2-raw-image",</span></div><div class="line"><span class="regexp">"com.leafamerica.raw-image",</span></div><div class="line"><span class="regexp">"com.hasselblad.fff-raw-image",</span></div><div class="line"><span class="regexp">"com.hasselblad.3fr-raw-image",</span></div><div class="line"><span class="regexp">"com.nikon.raw-image",</span></div><div class="line"><span class="regexp">"com.nikon.nrw-raw-image",</span></div><div class="line"><span class="regexp">"com.pentax.raw-image",</span></div><div class="line"><span class="regexp">"com.samsung.raw-image",</span></div><div class="line"><span class="regexp">"com.sony.raw-image",</span></div><div class="line"><span class="regexp">"com.sony.sr2-raw-image",</span></div><div class="line"><span class="regexp">"com.sony.arw-raw-image",</span></div><div class="line"><span class="regexp">"com.epson.raw-image",</span></div><div class="line"><span class="regexp">"com.kodak.raw-image",</span></div><div class="line"><span class="regexp">"public.tiff",</span></div><div class="line"><span class="regexp">"public.jpeg-2000",</span></div><div class="line"><span class="regexp">"com.apple.atx",</span></div><div class="line"><span class="regexp">"org.khronos.astc",</span></div><div class="line"><span class="regexp">"org.khronos.ktx",</span></div><div class="line"><span class="regexp">"com.canon.crw-raw-image",</span></div><div class="line"><span class="regexp">"com.fuji.raw-image",</span></div><div class="line"><span class="regexp">"com.panasonic.raw-image",</span></div><div class="line"><span class="regexp">"com.panasonic.rw2-raw-image",</span></div><div class="line"><span class="regexp">"com.leica.raw-image",</span></div><div class="line"><span class="regexp">"com.leica.rwl-raw-image",</span></div><div class="line"><span class="regexp">"com.konicaminolta.raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.sr-raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.or-raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.raw-image",</span></div><div class="line"><span class="regexp">"com.phaseone.raw-image",</span></div><div class="line"><span class="regexp">"com.microsoft.ico",</span></div><div class="line"><span class="regexp">"com.microsoft.bmp",</span></div><div class="line"><span class="regexp">"com.apple.icns",</span></div><div class="line"><span class="regexp">"com.adobe.photoshop-image",</span></div><div class="line"><span class="regexp">"com.microsoft.cur",</span></div><div class="line"><span class="regexp">"com.truevision.tga-image",</span></div><div class="line"><span class="regexp">"com.ilm.openexr-image",</span></div><div class="line"><span class="regexp">"public.radiance",</span></div><div class="line"><span class="regexp">"public.pbm",</span></div><div class="line"><span class="regexp">"public.mpo-image",</span></div><div class="line"><span class="regexp">"public.pvr"</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/创建和使用imageSources</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/从Image Sources中创建一个图像</span></div><div class="line"><span class="regexp">当从Image Sources中创建图片时，可以提供一个index和dictionary（利用键值对）来创建一个缩略图或者是允许缓存。</span></div><div class="line"><span class="regexp">在创建图片的时候，也需提供一个index值来索引图片，因为Image Sources中可能是多张图片，如果参数时0，那么只有一个图片。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>创建一个方法 传入url返回cgimage<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="type">CGImageRef</span> myCreateCGimageFromFile(<span class="type">NSString</span> *path)&#123;</div><div class="line"><span class="type">NSURL</span> *url = [<span class="type">NSURL</span> <span class="type">URLWithString</span>:path];</div><div class="line"><span class="type">CGImageRef</span> image;</div><div class="line"><span class="type">CGImageSourceRef</span> imageSource;</div><div class="line"><span class="type">CFDictionaryRef</span> imageOptions;</div><div class="line"><span class="type">CFStringRef</span> imageKeys[<span class="number">2</span>];</div><div class="line"><span class="type">CFTypeRef</span> imageValues[<span class="number">2</span>];</div><div class="line"><span class="comment">//缓存键值对</span></div><div class="line">imageKeys[<span class="number">0</span>] = kCGImageSourceShouldCache;</div><div class="line">imageValues[<span class="number">0</span>] = (<span class="type">CFTypeRef</span>) kCFBooleanFalse;</div><div class="line"><span class="comment">//float-point键值对</span></div><div class="line">imageKeys[<span class="number">1</span>] = kCGImageSourceShouldAllowFloat;</div><div class="line">imageValues[<span class="number">1</span>] = (<span class="type">CFTypeRef</span>)kCFBooleanTrue;</div><div class="line"><span class="comment">//获取dictionary</span></div><div class="line">imageOptions = <span class="type">CFDictionaryCreate</span>(<span class="type">NULL</span>, (const void **)imageKeys, (const void **)imageValues, <span class="number">2</span>, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);</div><div class="line">imageSource = <span class="type">CGImageSourceCreateWithURL</span>((<span class="type">CFURLRef</span>)url, imageOptions);</div><div class="line"><span class="type">CFRelease</span>(imageOptions);</div><div class="line"><span class="keyword">if</span> (imageSource == <span class="type">NULL</span>) &#123;</div><div class="line"><span class="keyword">return</span> <span class="type">NULL</span>;</div><div class="line">&#125;</div><div class="line">image = <span class="type">CGImageSourceCreateImageAtIndex</span>(imageSource, <span class="number">0</span>, <span class="type">NULL</span>);</div><div class="line"><span class="keyword">return</span> image;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后接着处理,就是一些业务逻辑任务,例如需要遮罩图层与否,需要缓存,或者<br>一些demo业务逻辑不做更多说明</p>
+<hr>
+<p><strong>LoaderManager</strong><br>LKimageKit的核心业务就是在LoaderManager中因为在sdk的readme中是如下说明:</p>
+<ul>
+<li><p>支持取消</p>
+</li>
+<li><p>支持请求合并</p>
+</li>
+<li><p>支持渐进式加载</p>
+</li>
+<li><p>支持优先级</p>
+</li>
+<li><p>支持先加载小图再加载大图</p>
+</li>
+<li><p>支持预加载、预解码</p>
+</li>
+<li><p>线程安全</p>
+</li>
+<li><p>调度、解码、加载、处理使用独立线程、且有并发控制</p>
+</li>
+<li><p>高度模块化，可由开发者自定义各部分模块</p>
+</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSOperationQueue *queue;</div><div class="line">@property (nonatomic, strong) dispatch_semaphore_t semaphore;</div></pre></td></tr></table></figure>
+<p>可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题.</p>
+<p><strong>GCD</strong><br>dispatch_semaphore是GCD用来同步的一种方式，与他相关的共有三个函数，分别是</p>
+<p>dispatch_semaphore_create，dispatch_semaphore_signal，dispatch_semaphore_wait。</p>
+<p>下面我们逐一介绍三个函数：</p>
+<ul>
+<li>1.dispatch_semaphore_create的声明为：</li>
+</ul>
+<p>　　dispatch_semaphore_t dispatch_semaphore_create(long value);<br>　　<br>　　传入的参数为long，输出一个dispatch_semaphore_t类型且值为value的信号量。<br>　　<br>　　值得注意的是，这里的传入的参数value必须大于或等于0，否则dispatch_semaphore_create会返回NULL。<br>　　<br>　　（关于信号量，我就不在这里累述了，网上很多介绍这个的。我们这里主要讲一下dispatch_semaphore这三个函数的用法）。<br>　　<br>　　<br>　　- 2.dispatch_semaphore_signal的声明为：<br>　　<br>　　long dispatch_semaphore_signal(dispatch_semaphore_t dsema)<br>　　<br>　　这个函数会使传入的信号量dsema的值加1；（至于返回值，待会儿再讲）<br>　　<br>　　<br>　　- 3.dispatch_semaphore_wait的声明为：<br>　　<br>　　long dispatch_semaphore_wait(dispatch_semaphore_t dsema, dispatch_time_t timeout)；<br>　　<br>　　这个函数会使传入的信号量dsema的值减1；<br>　　<br>　　这个函数的作用是这样的，如果dsema信号量的值大于0，该函数所处线程就继续执行下面的语句，并且将信号量的值减1；<br>　　<br>　　如果desema的值为0，那么这个函数就阻塞当前线程等待timeout（注意timeout的类型为dispatch_time_t，<br>　　<br>　　不能直接传入整形或float型数），如果等待的期间desema的值被dispatch_semaphore_signal函数加1了，<br>　　<br>　　且该函数（即dispatch_semaphore_wait）所处线程获得了信号量，那么就继续向下执行并将信号量减1。<br>　　<br>　　如果等待期间没有获取到信号量或者信号量的值一直为0，那么等到timeout时，其所处线程自动执行其后语句。<br>　　<br>　　<br>　　<br>　　- 4.dispatch_semaphore_signal的返回值为long类型，当返回值为0时表示当前并没有线程等待其处理的信号量，其处理<br>　　<br>　　的信号量的值加1即可。当返回值不为0时，表示其当前有（一个或多个）线程等待其处理的信号量，并且该函数唤醒了一<br>　　<br>　　个等待的线程（当线程有优先级时，唤醒优先级最高的线程；否则随机唤醒）。<br>　　<br>　　dispatch_semaphore_wait的返回值也为long型。当其返回0时表示在timeout之前，该函数所处的线程被成功唤醒。<br>　　<br>　　当其返回不为0时，表示timeout发生。<br>　　<br>　　<br>　　- 5.在设置timeout时，比较有用的两个宏：DISPATCH_TIME_NOW 和 DISPATCH_TIME_FOREVER。<br>　　<br>　　DISPATCH_TIME_NOW　　表示当前；<br>　　<br>　　DISPATCH_TIME_FOREVER　　表示遥远的未来；<br>　　<br>　　一般可以直接设置timeout为这两个宏其中的一个，或者自己创建一个dispatch_time_t类型的变量。<br>　　<br>　　创建dispatch_time_t类型的变量有两种方法，dispatch_time和dispatch_walltime。<br>　　<br>　　利用创建dispatch_time创建dispatch_time_t类型变量的时候一般也会用到这两个变量。<br>　　<br>　　dispatch_time的声明如下：<br>　　<br>　　dispatch_time_t dispatch_time(dispatch_time_t when, int64_t delta)；<br>　　<br>　　其参数when需传入一个dispatch_time_t类型的变量，和一个delta值。表示when加delta时间就是timeout的时间。<br>　　<br>　　例如：dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 1<em>1000</em>1000<em>1000);<br>　　<br>　　　　　　　表示当前时间向后延时一秒为timeout的时间。<br>　　　　　　　<br>　　　　　　　<br>　　　　　　　- 6.关于信号量，一般可以用停车来比喻。<br>　　　　　　　<br>　　　　　　　　　停车场剩余4个车位，那么即使同时来了四辆车也能停的下。如果此时来了五辆车，那么就有一辆需要等待。<br>　　　　　　　　　<br>　　　　　　　　　　　信号量的值就相当于剩余车位的数目，dispatch_semaphore_wait函数就相当于来了一辆车，dispatch_semaphore_signal<br>　　　　　　　　　　　<br>　　　　　　　　　　　　　就相当于走了一辆车。停车位的剩余数目在初始化的时候就已经指明了（dispatch_semaphore_create（long value）），<br>　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　调用一次dispatch_semaphore_signal，剩余的车位就增加一个；调用一次dispatch_semaphore_wait剩余车位就减少一个；<br>　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　当剩余车位为0时，再来车（即调用dispatch_semaphore_wait）就只能等待。有可能同时有几辆车等待一个停车位。有些车主<br>　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　没有耐心，给自己设定了一段等待时间，这段时间内等不到停车位就走了，如果等到了就开进去停车。而有些车主就像把车停在这，<br>　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　所以就一直等下去。<br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　—<br>　　　　　　　　　　　　　　　　　　　　　<em>*瀑布流</em></em><br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　- 快速使用<br>　　　　　　　　　　　　　　　　　　　　　<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　　　　　　　　　　　　　　　　　　　　@property (nonatomic, strong) NSMutableArray&lt;ExampleImageURLRequest*&gt; *preloadRequests;</div><div class="line">　　　　　　　　　　　　　　　　　　　　　/<span class="regexp">/定义一个泛型数组 规定数组里存放着 request</span></div></pre></td></tr></table></figure></p>
+<p>　　　　　　　　　　　　　　　　　　　　　<img src="/assets/Snip20180307_3.png" alt=""><br>　　　　　　　　　　　　　　　　　　　　　在生命周期中<br>　　　　　　　　　　　　　　　　　　　　　<img src="/assets/Snip20180307_4.png" alt=""><br>　　　　　　　　　　　　　　　　　　　　　在视图控制器加载之前做一个预处理机制,将请求优先加载<br>　　　　　　　　　　　　　　　　　　　　　<img src="/assets/Snip20180307_5.png" alt=""><br>　　　　　　　　　　　　　　　　　　　　　当视图控制器加载出来之后就可以 取消掉这些请求
+　　　　　　　　　　　　　　　　　　　　　
+　　　　　　　　　　　　　　　　　　　　　
+　　　　　　　　　　　　　　　　　　　　　
+　　　　　　　　　　　　　　　　　　　　　
+　　　　　　　　　　　　　　　　　　　　　
+　　　　　　　　　　　　　　　　　　　　　
+　　　　　　　　　　　　　　　　　　　　　</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" style = "width:70%;margin:0 auto"  data-uid="MTAyMC8zMTEwNS83NjU0">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
