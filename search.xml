@@ -31,14 +31,14 @@
 <li><p><strong>属性说明</strong></p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/将加载的图片是否渐进加载出来</span></div><div class="line"><span class="regexp">request.supportProgressive = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/predrawEnabled默认是flase即直接使用原始图像。内部图像视图缩放图像移动和规模。(由ImageIO解码)</span></div><div class="line"><span class="regexp">self.imageView1.predrawEnabled = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/其他部分属性请见源码</span></div></pre></td></tr></table></figure>
 </li>
-<li><p><strong>整体分析</strong><br><img src="/assets/Snip20180305_24.png" alt=""></p>
+<li><p><strong>整体分析</strong><br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180305_24.png" alt="Snip20180305_24"></p>
 </li>
 <li>从上图看有LKiageView / Facede / Delegate /LKImageViewEffect根据对应的方法可以找出对应的用途例如可以将 图片加载成功/失败/加载进行时的图片进行添加</li>
 <li>遵守代理可以监听图片加载成功或者失败的方法</li>
 <li>可以添加后期特效 变灰/模糊处理等</li>
 </ul>
 <hr>
-<p><strong>Manager</strong><br><img src="/assets/Snip20180307_6.png" alt=""><br>LKimageManger类中有yi个总manager来控制下载,配合以下辅助类</p>
+<p><strong>Manager</strong><br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_6.png" alt="Snip20180307_6"><br>LKimageManger类中有yi个总manager来控制下载,配合以下辅助类</p>
 <ul>
 <li>LKImageLogManager //打印日志 设置打印优先级</li>
 <li>LKImageDecoderManger</li>
@@ -105,7 +105,7 @@
 <li>快速使用<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSMutableArray&lt;ExampleImageURLRequest*&gt; *preloadRequests;</div><div class="line">/<span class="regexp">/定义一个泛型数组 规定数组里存放着 request</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><img src="/assets/Snip20180307_3.png" alt=""><br>在生命周期中<br><img src="/assets/Snip20180307_4.png" alt=""><br>在视图控制器加载之前做一个预处理机制,将请求优先加载<br><img src="/assets/Snip20180307_5.png" alt=""><br>当视图控制器加载出来之后就可以 取消掉这些请求从而加快图片的展示.</p>
+<p><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_3.png" alt="Snip20180307_3"><br>在生命周期中<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_4.png" alt="Snip20180307_4"><br>在视图控制器加载之前做一个预处理机制,将请求优先加载<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_5.png" alt="Snip20180307_5"><br>当视图控制器加载出来之后就可以 取消掉这些请求从而加快图片的展示.</p>
 <p>🍺<br>以上就是LKImageKit的简单解析,大致上是基于imageIO封装,支持自定义模块比较多,是开发中除了SDWebImage之外的又一个不错的图片框架,上手很简单,祝您使用开心 🎉</p>
 <p>iOS developer – JasonPHD</p>
 <p>　　　　　　　　　　　　　　　　　　　　　
