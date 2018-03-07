@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-03-07</span>
-            <span class="time">15:07:37</span>
+            <span class="time">15:12:50</span>
           </span>
           
         </div>
@@ -117,20 +117,19 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>#</p>
-<h1 id="LKimageKit–腾讯高性能图片处理框架"><a href="#LKimageKit–腾讯高性能图片处理框架" class="headerlink" title="LKimageKit–腾讯高性能图片处理框架"></a>LKimageKit–腾讯高性能图片处理框架</h1><hr>
+          <h1 id="LKimageKit-gt-腾讯高性能图片处理框架"><a href="#LKimageKit-gt-腾讯高性能图片处理框架" class="headerlink" title="LKimageKit -&gt;腾讯高性能图片处理框架"></a>LKimageKit -&gt;腾讯高性能图片处理框架</h1><hr>
 <ul>
-<li><strong>分析demo</strong></li>
-</ul>
-<ul>
+<li><strong>分析demo</strong><ul>
 <li>Demo由Appdelegate进入主程序mainviewController,在主控制器是一个collectionView,</li>
-<li>Demo一共三个控制器第一个是基本用法第二个主要是多照片的加载处理第三个是为了高度定制进行演示的demo</li>
-</ul>
-<ul>
+<li>Demo一共三个控制器第一个是基本用法第二个主要是多照片的加载处理第三个是为了高度定制进行演示的demo<ul>
 <li>customerProperty</li>
 <li>iamgeWall</li>
 <li>OpyimizedImageWall</li>
 <li>clear(清理缓存不存在控制器)</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h3 id="LKImageView"><a href="#LKImageView" class="headerlink" title="LKImageView"></a>LKImageView</h3><ul>
@@ -188,14 +187,27 @@
 </li>
 </ul>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSOperationQueue *queue;</div><div class="line">@property (nonatomic, strong) dispatch_semaphore_t semaphore;</div></pre></td></tr></table></figure>
-<p>可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题.</p>
-<p><strong>GCD</strong><br>dispatch_semaphore是GCD用来同步的一种方式，与他相关的共有三个函数，分别是</p>
+<h2 id="可以看出NSOpreation处理多线程-GCD来控制更高一次层的多信号量并发问题"><a href="#可以看出NSOpreation处理多线程-GCD来控制更高一次层的多信号量并发问题" class="headerlink" title="可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题."></a>可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题.</h2><p><strong>GCD</strong><br>dispatch_semaphore是GCD用来同步的一种方式，与他相关的共有三个函数，分别是</p>
 <p>dispatch_semaphore_create，dispatch_semaphore_signal，dispatch_semaphore_wait。</p>
 <p>下面我们逐一介绍三个函数：</p>
 <ul>
 <li>1.dispatch_semaphore_create的声明为：</li>
 </ul>
-<p>　　dispatch_semaphore_t dispatch_semaphore_create(long value);<br>　　<br>　　传入的参数为long，输出一个dispatch_semaphore_t类型且值为value的信号量。<br>　　<br>　　值得注意的是，这里的传入的参数value必须大于或等于0，否则dispatch_semaphore_create会返回NULL。<br>　　<br>　　（关于信号量，我就不在这里累述了，网上很多介绍这个的。我们这里主要讲一下dispatch_semaphore这三个函数的用法）。<br>　　<br>　　<br>　　- 2.dispatch_semaphore_signal的声明为：<br>　　<br>　　long dispatch_semaphore_signal(dispatch_semaphore_t dsema)<br>　　<br>　　这个函数会使传入的信号量dsema的值加1；（至于返回值，待会儿再讲）<br>　　<br>　　<br>　　- 3.dispatch_semaphore_wait的声明为：<br>　　<br>　　long dispatch_semaphore_wait(dispatch_semaphore_t dsema, dispatch_time_t timeout)；<br>　　<br>　　这个函数会使传入的信号量dsema的值减1；<br>　　<br>　　这个函数的作用是这样的，如果dsema信号量的值大于0，该函数所处线程就继续执行下面的语句，并且将信号量的值减1；<br>　　<br>　　如果desema的值为0，那么这个函数就阻塞当前线程等待timeout（注意timeout的类型为dispatch_time_t，<br>　　<br>　　不能直接传入整形或float型数），如果等待的期间desema的值被dispatch_semaphore_signal函数加1了，<br>　　<br>　　且该函数（即dispatch_semaphore_wait）所处线程获得了信号量，那么就继续向下执行并将信号量减1。<br>　　<br>　　如果等待期间没有获取到信号量或者信号量的值一直为0，那么等到timeout时，其所处线程自动执行其后语句。<br>　　<br>　　<br>　　<br>　　- 4.dispatch_semaphore_signal的返回值为long类型，当返回值为0时表示当前并没有线程等待其处理的信号量，其处理<br>　　<br>　　的信号量的值加1即可。当返回值不为0时，表示其当前有（一个或多个）线程等待其处理的信号量，并且该函数唤醒了一<br>　　<br>　　个等待的线程（当线程有优先级时，唤醒优先级最高的线程；否则随机唤醒）。<br>　　<br>　　dispatch_semaphore_wait的返回值也为long型。当其返回0时表示在timeout之前，该函数所处的线程被成功唤醒。<br>　　<br>　　当其返回不为0时，表示timeout发生。<br>　　<br>　　<br>　　- 5.在设置timeout时，比较有用的两个宏：DISPATCH_TIME_NOW 和 DISPATCH_TIME_FOREVER。<br>　　<br>　　DISPATCH_TIME_NOW　　表示当前；<br>　　<br>　　DISPATCH_TIME_FOREVER　　表示遥远的未来；<br>　　<br>　　一般可以直接设置timeout为这两个宏其中的一个，或者自己创建一个dispatch_time_t类型的变量。<br>　　<br>　　创建dispatch_time_t类型的变量有两种方法，dispatch_time和dispatch_walltime。<br>　　<br>　　利用创建dispatch_time创建dispatch_time_t类型变量的时候一般也会用到这两个变量。<br>　　<br>　　dispatch_time的声明如下：<br>　　<br>　　dispatch_time_t dispatch_time(dispatch_time_t when, int64_t delta)；<br>　　<br>　　其参数when需传入一个dispatch_time_t类型的变量，和一个delta值。表示when加delta时间就是timeout的时间。<br>　　<br>　　例如：dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 1<em>1000</em>1000<em>1000);<br>　　<br>　　　　　　　表示当前时间向后延时一秒为timeout的时间。<br>　　　　　　　<br>　　　　　　　<br>　　　　　　　- 6.关于信号量，一般可以用停车来比喻。<br>　　　　　　　<br>　　　　　　　　　停车场剩余4个车位，那么即使同时来了四辆车也能停的下。如果此时来了五辆车，那么就有一辆需要等待。<br>　　　　　　　　　<br>　　　　　　　　　　　信号量的值就相当于剩余车位的数目，dispatch_semaphore_wait函数就相当于来了一辆车，dispatch_semaphore_signal<br>　　　　　　　　　　　<br>　　　　　　　　　　　　　就相当于走了一辆车。停车位的剩余数目在初始化的时候就已经指明了（dispatch_semaphore_create（long value）），<br>　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　调用一次dispatch_semaphore_signal，剩余的车位就增加一个；调用一次dispatch_semaphore_wait剩余车位就减少一个；<br>　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　当剩余车位为0时，再来车（即调用dispatch_semaphore_wait）就只能等待。有可能同时有几辆车等待一个停车位。有些车主<br>　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　没有耐心，给自己设定了一段等待时间，这段时间内等不到停车位就走了，如果等到了就开进去停车。而有些车主就像把车停在这，<br>　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　所以就一直等下去。<br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　—<br>　　　　　　　　　　　　　　　　　　　　　<em>*瀑布流</em></em><br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　- 快速使用<br>　　　　　　　　　　　　　　　　　　　　　<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　　　　　　　　　　　　　　　　　　　　@property (nonatomic, strong) NSMutableArray&lt;ExampleImageURLRequest*&gt; *preloadRequests;</div><div class="line">　　　　　　　　　　　　　　　　　　　　　/<span class="regexp">/定义一个泛型数组 规定数组里存放着 request</span></div></pre></td></tr></table></figure></p>
+<p>　　dispatch_semaphore_t dispatch_semaphore_create(long value);<br>　　<br>　　传入的参数为long，输出一个dispatch_semaphore_t类型且值为value的信号量。<br>　　<br>　　值得注意的是，这里的传入的参数value必须大于或等于0，否则dispatch_semaphore_create会返回NULL。<br>　　<br>　　（关于信号量，我就不在这里累述了，网上很多介绍这个的。我们这里主要讲一下dispatch_semaphore这三个函数的用法）。
+　　</p>
+<ul>
+<li>2.dispatch_semaphore_signal的声明为:long dispatch_semaphore_signal(dispatch_semaphore_t dsema)这个函数会使传入的信号量dsema的值加1；（至于返回值，待会儿再讲）
+　　
+　　</li>
+<li>3.dispatch_semaphore_wait的声明为：<br>　　<br>　　long dispatch_semaphore_wait(dispatch_semaphore_t dsema, dispatch_time_t timeout)；<br>　　<br>　　这个函数会使传入的信号量dsema的值减1；<br>　　<br>　　这个函数的作用是这样的，如果dsema信号量的值大于0，该函数所处线程就继续执行下面的语句，并且将信号量的值减1；<br>　　<br>　　如果desema的值为0，那么这个函数就阻塞当前线程等待timeout（注意timeout的类型为dispatch_time_t，<br>　　<br>　　不能直接传入整形或float型数），如果等待的期间desema的值被dispatch_semaphore_signal函数加1了，<br>　　<br>　　且该函数（即dispatch_semaphore_wait）所处线程获得了信号量，那么就继续向下执行并将信号量减1。<br>　　<br>　　如果等待期间没有获取到信号量或者信号量的值一直为0，那么等到timeout时，其所处线程自动执行其后语句。
+　　
+　　
+　　</li>
+<li>4.dispatch_semaphore_signal的返回值为long类型，当返回值为0时表示当前并没有线程等待其处理的信号量，其处理<br>　　<br>　　的信号量的值加1即可。当返回值不为0时，表示其当前有（一个或多个）线程等待其处理的信号量，并且该函数唤醒了一<br>　　<br>　　个等待的线程（当线程有优先级时，唤醒优先级最高的线程；否则随机唤醒）。<br>　　<br>　　dispatch_semaphore_wait的返回值也为long型。当其返回0时表示在timeout之前，该函数所处的线程被成功唤醒。<br>　　<br>　　当其返回不为0时，表示timeout发生。
+　　
+　　</li>
+<li>5.在设置timeout时，比较有用的两个宏：DISPATCH_TIME_NOW 和 DISPATCH_TIME_FOREVER。<br>　　<br>　　DISPATCH_TIME_NOW　　表示当前；<br>　　<br>　　DISPATCH_TIME_FOREVER　　表示遥远的未来；<br>　　<br>　　一般可以直接设置timeout为这两个宏其中的一个，或者自己创建一个dispatch_time_t类型的变量。<br>　　<br>　　创建dispatch_time_t类型的变量有两种方法，dispatch_time和dispatch_walltime。<br>　　<br>　　利用创建dispatch_time创建dispatch_time_t类型变量的时候一般也会用到这两个变量。<br>　　<br>　　dispatch_time的声明如下：<br>　　<br>　　dispatch_time_t dispatch_time(dispatch_time_t when, int64_t delta)；<br>　　<br>　　其参数when需传入一个dispatch_time_t类型的变量，和一个delta值。表示when加delta时间就是timeout的时间。<br>　　<br>　　例如：dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 1<em>1000</em>1000<em>1000);<br>　　<br>　　　　　　　表示当前时间向后延时一秒为timeout的时间。<br>　　　　　　　<br>　　　　　　　<br>　- 6.关于信号量，一般可以用停车来比喻。<br>　　　　　　　<br>　　　　　　　　　停车场剩余4个车位，那么即使同时来了四辆车也能停的下。如果此时来了五辆车，那么就有一辆需要等待。<br>　　　　　　　　　<br>　　　　　　　　　　　信号量的值就相当于剩余车位的数目，dispatch_semaphore_wait函数就相当于来了一辆车，dispatch_semaphore_signal<br>　　　　　　　　　　　<br>　　　　　　　　　　　　　就相当于走了一辆车。停车位的剩余数目在初始化的时候就已经指明了（dispatch_semaphore_create（long value）），<br>　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　调用一次dispatch_semaphore_signal，剩余的车位就增加一个；调用一次dispatch_semaphore_wait剩余车位就减少一个；<br>　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　当剩余车位为0时，再来车（即调用dispatch_semaphore_wait）就只能等待。有可能同时有几辆车等待一个停车位。有些车主<br>　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　没有耐心，给自己设定了一段等待时间，这段时间内等不到停车位就走了，如果等到了就开进去停车。而有些车主就像把车停在这，<br>　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　所以就一直等下去。<br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　—<br>　　　　　　　　　　　　　　　　　　　　　<em>*瀑布流</em></em><br>　　　　　　　　　　　　　　　　　　　　　<br>　　　　　　　　　　　　　　　　　　　　　- 快速使用<br>　　　　　　　　　　　　　　　　　　　　　<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　　　　　　　　　　　　　　　　　　　　@property (nonatomic, strong) NSMutableArray&lt;ExampleImageURLRequest*&gt; *preloadRequests;</div><div class="line">　　　　　　　　　　　　　　　　　　　　　/<span class="regexp">/定义一个泛型数组 规定数组里存放着 request</span></div></pre></td></tr></table></figure></li>
+</ul>
 <p>　　　　　　　　　　　　　　　　　　　　　<img src="/assets/Snip20180307_3.png" alt=""><br>　　　　　　　　　　　　　　　　　　　　　在生命周期中<br>　　　　　　　　　　　　　　　　　　　　　<img src="/assets/Snip20180307_4.png" alt=""><br>　　　　　　　　　　　　　　　　　　　　　在视图控制器加载之前做一个预处理机制,将请求优先加载<br>　　　　　　　　　　　　　　　　　　　　　<img src="/assets/Snip20180307_5.png" alt=""><br>　　　　　　　　　　　　　　　　　　　　　当视图控制器加载出来之后就可以 取消掉这些请求
 　　　　　　　　　　　　　　　　　　　　　
 　　　　　　　　　　　　　　　　　　　　　
