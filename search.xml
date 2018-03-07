@@ -1,123 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <!-- Html Head Tag-->
-  <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="jasonPHD">
-  <!-- Open Graph Data -->
-  <meta property="og:title" content="易娱GameSDK接入文档说明"/>
-  <meta property="og:description" content="Apple/易娱科技" />
-  <meta property="og:site_name" content="Developer JasonPhd"/>
-  <meta property="og:type" content="article" />
-  <meta property="og:image" content="http://yoursite.com"/>
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
   
-    <link rel="alternate" href="/atom.xml" title="Developer JasonPhd" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-
-  <!-- Site Title -->
-  <title>Developer JasonPhd</title>
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  
-  <link rel="stylesheet" href="/css/style.light.css">
-
-  <!-- Google Analytics -->
-  
-
-</head>
-
-  <body>
-    <!-- Page Header -->
-
-
-<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="page-title with-background-image">
-          <p class="title">易娱GameSDK接入文档说明</p>
-          <p class="subtitle"></p>
-        </div>
-        <div class="site-menu with-background-image">
-          <ul>
-            
-              <li>
-                <a href="/">
-                  
-                  Home
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="/archives">
-                  
-                  Archives
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="https://github.com/forwyt">
-                  
-                  Github
-                  
-                </a>
-              </li>
-            
-              <li>
-                <a href="mailto:465379032@qq.com">
-                  
-                  Email
-                  
-                </a>
-              </li>
-            
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-
-<article>
-  <div class="container typo">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-info text-muted">
-          
-            <!-- Author -->
-            <span class="author info">By jasonPHD</span>
-          
-          <!-- Date -->
-          <span class="date-time info">On
-            <span class="date">2017-09-29</span>
-            <span class="time">15:01:22</span>
-          </span>
-          
-        </div>
-        <!-- Tags -->
-        
-          <div class="post-tags text-muted">
-            Tags: 
-
-<a class="tag" href="/tags/work/">#work</a>
-
-
-          </div>
-        
-        <!-- Post Main Content -->
-        <div class="post-content">
-          <h2 id="EyuGameSDK-v-2-0-接入文档说明"><a href="#EyuGameSDK-v-2-0-接入文档说明" class="headerlink" title="#EyuGameSDK(v.2.0)接入文档说明"></a>#EyuGameSDK(v.2.0)接入文档说明</h2><h3 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h3><p><img src="/2017/09/29/易娱GameSDK接入文档说明/Snip20170918_4.png" alt="Snip20170918_4"></p>
+    
+    <entry>
+      <title><![CDATA[易娱GameSDK接入文档说明]]></title>
+      <url>/2017/09/29/%E6%98%93%E5%A8%B1GameSDK%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/</url>
+      <content type="html"><![CDATA[<h2 id="EyuGameSDK-v-2-0-接入文档说明"><a href="#EyuGameSDK-v-2-0-接入文档说明" class="headerlink" title="#EyuGameSDK(v.2.0)接入文档说明"></a>#EyuGameSDK(v.2.0)接入文档说明</h2><h3 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h3><p><img src="/2017/09/29/易娱GameSDK接入文档说明/Snip20170918_4.png" alt="Snip20170918_4"></p>
 <ul>
 <li>EyuGameSDK.a</li>
 <li>静态库 包含微信 QQ第三方授权登录sdk</li>
@@ -178,61 +66,33 @@
 <li><strong><em>游戏模块</em></strong>:<br><img src="/2017/09/29/易娱GameSDK接入文档说明/Snip20170919_13.png" alt="Snip20170919_13"><br>游戏模块中我们负责统计用户的角色账号统计,以及角色升级统计</li>
 <li><strong><em>充值模块</em></strong>:<br><img src="/2017/09/29/易娱GameSDK接入文档说明/Snip20170919_16.png" alt="Snip20170919_16"><br>在这个模块中使用注意点是:苹果内购的申请,对应的计费点需要明确.</li>
 </ul>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-<!-- 来必力City版安装代码 -->
-<div id="lv-container" data-id="city" style = "width:70%;margin:0 auto"  data-uid="MTAyMC8zMTEwNS83NjU0">
-  <script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
-  </script>
-<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-<!-- City版安装代码已完成 -->
-
-
-
-    <!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <p class="copyright text-muted">
-          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
-          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
-        <p class="copyright text-muted">
-          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
-    <!-- After Footer Scripts -->
-<script src="/js/highlight.pack.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
-    codeBlocks.forEach(function(block, index) {
-      hljs.highlightBlock(block);
-    });
-  });
-</script>
-
-  </body>
-</html>
-
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> work </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[welcom for fun]]></title>
+      <url>/2017/09/29/Fun/</url>
+      <content type="html"><![CDATA[<hr>
+<p><img src="/2017/09/29/Fun/NASA.jpg" alt="NASA"><br> take a record of coding life and technology.<br> wish you have fun in here ! 🚀</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> other </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>
