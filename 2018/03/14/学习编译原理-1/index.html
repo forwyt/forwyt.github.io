@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="jasonPHD">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="学习编译原理(1)"/>
+  <meta property="og:description" content="Apple/易娱科技" />
+  <meta property="og:site_name" content="Developer JasonPhd"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Developer JasonPhd" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Developer JasonPhd</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">学习编译原理(1)</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/forwyt">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:465379032@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By jasonPHD</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-03-14</span>
+            <span class="time">14:41:45</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/底层-编译-C/">#底层/编译/C</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>#编译原理</p>
+<hr>
+<p>##词法分析</p>
+<ul>
+<li><p><strong>编译器</strong></p>
+<ul>
+<li>将高级语言转换成机器代码</li>
+<li><p>源程序-&gt;翻译器-&gt;中间程序-&gt;虚拟机-&gt;输出</p>
+<p>问题:<br>1.编译器和解释器的区别</p>
+<ul>
+<li>编译器负责输入到机器码</li>
+<li>解释器包含输出的结果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>正则表达式</strong></p>
+<ul>
+<li>e(空串)空属于正则表达式</li>
+<li>对于任意一个c属于西格玛 c 是正则表达式</li>
+<li>如果M / N 是正则表达式 那么有三种子情况    <ul>
+<li>选择 M|N</li>
+<li>连接 MN</li>
+<li>闭包 M*</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>关键字与标识符</strong></p>
+<ul>
+<li>if/while这种 西格玛是ascii码 所以很好解释if属于正则表达式</li>
+<li>标识符定义是以字母或者下划线开头后面跟多个0或者字母,数字下划线<ul>
+<li>解释:(a-Az-Z_)是属于ascii码 第二个后面加上0-9十个数字 然后再依照0或者多个表示这就是一个keleen闭包 满足正则表达式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>有限状态自动机</strong><br>  <img src="/2018/03/14/学习编译原理-1/1.png" alt="1"></p>
+<ul>
+<li>单向箭头表示的是起始点,西格玛 是可接受字母表,S是状态的集合,q0是起始状态,F是有两个圆圈的一个终结状态集合,德尔塔 是转义函数他是一个集合</li>
+<li>NFA<ul>
+<li>非确定的有限状态自动机 </li>
+</ul>
+</li>
+<li>DFA<ul>
+<li>确定的有限状态自动机<br><img src="/2018/03/14/学习编译原理-1/2.png" alt="2"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>自动生成流程</strong><br><strong>从正则(Thompson算法)–&gt;NFA(子集结构算法)–&gt;DFA(Hopcroft算法)–&gt;词法分析器</strong></p>
+<ul>
+<li>汤姆逊/黑客/算法 唯一没有博士学位的人拿到的图灵计算机大奖<img src="/2018/03/14/学习编译原理-1/3.png" alt="3"><br><img src="/assets/WX20180313-164347.png" alt=""></li>
+<li>NFA转为DFA(子集结构算法)<ul>
+<li><a href="http://blog.csdn.net/qq_23100787/article/details/50402643" target="_blank" rel="external">这里有一篇详细的讲解</a>关于是如何将NFA转化为DFA而且在此基础之上 结构算法的解析也有说明!    </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Hopcroft算法</strong></p>
+<ul>
+<li>称为等价类思想  <ul>
+<li>第一步 将状态分为 普通和接受状态 A/N </li>
+<li>通过任意一个元素将这个 A或者 N 切割为不能再细分的子集 最后确定统一状态及是 专为一个DNA 的最小化<br><img src="/2018/03/14/学习编译原理-1/4.png" alt="4"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>DFA代码表示</strong></p>
+<ul>
+<li>概念上是一个有向图  <ul>
+<li><strong>转移表 有向图</strong><ul>
+<li>注释: 所谓转移表就是讲可输入的情况m为列数.状态为行数,在横竖交错的地方如果满足状态则可以为1  其他的为不可接受状态,令可以画出DFA</li>
+</ul>
+</li>
+<li><strong>最长匹配 尽可能的读取最长的字符串</strong><ul>
+<li>最长匹配是根据压栈来计算假定字符串ifif其中包含了关键字if     <ul>
+<li>栈首先存入初始状态0</li>
+<li>读取第一个i 栈有两层 0 1</li>
+<li>读取第二个f 栈会被清空 这个时候再读取i 栈一层 2(接受的状态)</li>
+<li>在读取i 那么就是 2 3</li>
+<li>再读取f 清空栈 23 存入4 这个时候是一个接受状态无论读取什么都会变成不可即收状态 这样就可以最长匹配</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>跳转表</strong><ul>
+<li>注释: 跳转表将每一个状态转为代码<br><img src="/2018/03/14/学习编译原理-1/5.png" alt="5"><br>表现效率很高 当读取uinicode的时候 可以分段执行 加载起来也减少内存消耗</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h2><ul>
+<li><strong>语法分析器的任务</strong><ul>
+<li>记号流–&gt;yu法分析器–&gt;语法树</li>
+<li>syntax : 语法</li>
+</ul>
+</li>
+<li><strong>上下文无关文法</strong><ul>
+<li>乔姆斯基MIT语言学教授 数学建模研究自然语言<ul>
+<li>3级文法 正则(词法)</li>
+<li>2级文法 上下文无关(语法)</li>
+<li>1级文法 上下文有关</li>
+<li>0级文法 任意   </li>
+</ul>
+</li>
+<li>形式化<ul>
+<li>非终结符</li>
+<li>终结符</li>
+<li>开始符号<img src="/2018/03/14/学习编译原理-1/6.png" alt="6"></li>
+</ul>
+</li>
+<li>推倒<ul>
+<li>最左/右推倒 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>分析树二义性</strong><ul>
+<li>分析树 passtree <img src="/2018/03/14/学习编译原理-1/7.png" alt="7"></li>
+<li>二义性文法 给定文法G将句子可以推出S有两颗不同的树</li>
+</ul>
+</li>
+<li><strong>自顶向下</strong><ul>
+<li>通过压栈回溯 导致时间是线性增长</li>
+<li>前看符号 避免回溯 </li>
+</ul>
+</li>
+<li><strong>递归下降分析算法</strong><ul>
+<li>预测分析<ul>
+<li>分析高效</li>
+<li>定位准确 诊断正确</li>
+<li>GCC LLVM</li>
+</ul>
+</li>
+<li>思路<ul>
+<li>每个非终结符构造一个分析函数\</li>
+<li>用前看符号来指导</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" style = "width:70%;margin:0 auto"  data-uid="MTAyMC8zMTEwNS83NjU0">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
