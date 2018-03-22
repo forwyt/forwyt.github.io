@@ -23,16 +23,59 @@
 <p><img src="/2018/03/19/Cocoapods制作framework全解析/WX20180319-162552.png" alt="WX20180319-162552"></p>
 <p>接下来就是详细描述一下podfile文件(这一个开发之中非常重要而且规则很多的地方</p>
 <p><img src="/2018/03/19/Cocoapods制作framework全解析/WX20180319-163133.png" alt="WX20180319-163133"></p>
-<p>把podspec文件打开成为一个ruby语言描述的,这样就可以语法高亮方便查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new do |s|</div><div class="line">#项目名称</div><div class="line">  s.name             = &apos;TestSDK&apos;</div><div class="line">#项目版本号</div><div class="line">  s.version          = &apos;0.1.0&apos;</div><div class="line">#项目摘要</div><div class="line">  s.summary          = &apos;A short description of TestSDK.&apos;</div><div class="line">#项目简短描述</div><div class="line">  s.description      = &apos;这里填写您的项目描述建议这个要比summary长,听说是有人出错在这里(⊙﹏⊙)b&apos;</div><div class="line">#项目的主页</div><div class="line">  s.homepage         = &apos;https://github.com/XXX/TestSDK&apos;</div><div class="line">#sdk的图片 为了美可以设置, </div><div class="line"># s.screenshots     = &apos;www.example.com/screenshots_1&apos;, &apos;www.example.com/screenshots_2&apos;</div><div class="line">#项目开源的许可证类型</div><div class="line">s.license          = &#123; :type =&gt; &apos;MIT&apos;, :file =&gt; &apos;LICENSE&apos; &#125;</div><div class="line">#项目的作者</div><div class="line">s.author           = &#123; &apos;XXX&apos; =&gt; &apos;XX@qq.com&apos; &#125;</div><div class="line">#源代码</div><div class="line">s.source           = &#123; :git =&gt; &apos;https://github.com/forwyt/TestSDK.git&apos;, :tag =&gt; s.version.to_s &#125;</div><div class="line">#设交媒体</div><div class="line"># s.social_media_url = &apos;https://twitter.com/&lt;TWITTER_USERNAME&gt;&apos;</div><div class="line">---------------------------------------------------------</div><div class="line">#下面比较重要</div><div class="line">#项目的最低支持版本</div><div class="line">  s.ios.deployment_target = &apos;8.0&apos;</div><div class="line">#项目的目录结构(总体上说我们将所有的文件都放在这里)</div><div class="line">  s.source_files = &apos;TestSDK/Classes/**/*&apos;</div><div class="line">#如果你需要用到 图片 或者很少人提到的 xib文件打包之后成为nib都是需要一个bundle指定路径</div><div class="line">  # s.resource_bundles = &#123;</div><div class="line">  #   &apos;TestSDK&apos; =&gt; [&apos;TestSDK/Assets/*.png&apos;]</div><div class="line">  # &#125;</div><div class="line">#公共头文件在这里</div><div class="line">s.public_header_files = &apos;Pod/Classes/**/*.h&apos;</div><div class="line">#如果你项目中自己使用到的系统库需要在这里添加</div><div class="line">  s.frameworks = &apos;UIKit&apos;, &apos;MapKit&apos;</div><div class="line">#依赖的第三方框架需要在这里添加</div><div class="line">  s.dependency &apos;AFNetworking&apos;, &apos;~&gt; 2.3&apos;</div><div class="line">-------------------------------------------------------------</div></pre></td></tr></table></figure></p>
-<h2 id="验证以及git相关知识"><a href="#验证以及git相关知识" class="headerlink" title="验证以及git相关知识"></a>验证以及git相关知识</h2><p>当你开发完成之后,你需要在git的服务器上(这里以github说明,建立起你的开源库地址)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add remote xxx</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd 项目层</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add .</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m&quot;xxx&quot;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git tag v0.1.0 (这里强烈建议大家一定按照步骤来 因为podspec里面如果是指定了0.1.0那么大家就0.1.0 一句话相互对应即可)</div><div class="line"></div><div class="line">git push </div><div class="line"></div><div class="line">git push tags 需要将tags也都上传到服务器上</div></pre></td></tr></table></figure>
-<p>假如一切顺利 这个时候你的 项目源码和tag应该都是子github里面的</p>
-<p>最后我们需要验证有没有错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod lib lint xxx.podspec --allow warings(允许有黄色警告)如果不需要刻意不带</div></pre></td></tr></table></figure></p>
-<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>一般来说如果你不打算开源项目 sdk开发程序员会将自己的库封装好,头文件暴露出来,并且FQA写好这样就算是一个大体合格的framewoke</p>
+<p>把podspec文件打开成为一个ruby语言描述的,这样就可以语法高亮方便查看</p>
+<pre><code>Pod::Spec.new do |s|
+#项目名称
+  s.name             = &#39;TestSDK&#39;
+#项目版本号
+  s.version          = &#39;0.1.0&#39;
+#项目摘要
+  s.summary          = &#39;A short description of TestSDK.&#39;
+#项目简短描述
+  s.description      = &#39;这里填写您的项目描述建议这个要比summary长,听说是有人出错在这里(⊙﹏⊙)b&#39;
+#项目的主页
+  s.homepage         = &#39;https://github.com/XXX/TestSDK&#39;
+#sdk的图片 为了美可以设置, 
+# s.screenshots     = &#39;www.example.com/screenshots_1&#39;, &#39;www.example.com/screenshots_2&#39;
+#项目开源的许可证类型
+s.license          = { :type =&gt; &#39;MIT&#39;, :file =&gt; &#39;LICENSE&#39; }
+#项目的作者
+s.author           = { &#39;XXX&#39; =&gt; &#39;XX@qq.com&#39; }
+#源代码
+s.source           = { :git =&gt; &#39;https://github.com/forwyt/TestSDK.git&#39;, :tag =&gt; s.version.to_s }
+#设交媒体
+# s.social_media_url = &#39;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#39;
+---------------------------------------------------------
+#下面比较重要
+#项目的最低支持版本
+  s.ios.deployment_target = &#39;8.0&#39;
+#项目的目录结构(总体上说我们将所有的文件都放在这里)
+  s.source_files = &#39;TestSDK/Classes/**/*&#39;
+#如果你需要用到 图片 或者很少人提到的 xib文件打包之后成为nib都是需要一个bundle指定路径
+  # s.resource_bundles = {
+  #   &#39;TestSDK&#39; =&gt; [&#39;TestSDK/Assets/*.png&#39;]
+  # }
+#公共头文件在这里
+s.public_header_files = &#39;Pod/Classes/**/*.h&#39;
+#如果你项目中自己使用到的系统库需要在这里添加
+  s.frameworks = &#39;UIKit&#39;, &#39;MapKit&#39;
+#依赖的第三方框架需要在这里添加
+  s.dependency &#39;AFNetworking&#39;, &#39;~&gt; 2.3&#39;
+-------------------------------------------------------------
+</code></pre><h2 id="验证以及git相关知识"><a href="#验证以及git相关知识" class="headerlink" title="验证以及git相关知识"></a>验证以及git相关知识</h2><p>当你开发完成之后,你需要在git的服务器上(这里以github说明,建立起你的开源库地址)</p>
+<pre><code>git add remote xxx
+</code></pre><pre><code>cd 项目层
+</code></pre><pre><code>git add .
+</code></pre><pre><code>git commit -m&quot;xxx&quot;
+</code></pre><pre><code>git tag v0.1.0 (这里强烈建议大家一定按照步骤来 因为podspec里面如果是指定了0.1.0那么大家就0.1.0 一句话相互对应即可)
+
+git push 
+
+git push tags 需要将tags也都上传到服务器上
+</code></pre><p>假如一切顺利 这个时候你的 项目源码和tag应该都是子github里面的</p>
+<p>最后我们需要验证有没有错误</p>
+<pre><code>pod lib lint xxx.podspec --allow warings(允许有黄色警告)如果不需要刻意不带
+</code></pre><h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>一般来说如果你不打算开源项目 sdk开发程序员会将自己的库封装好,头文件暴露出来,并且FQA写好这样就算是一个大体合格的framewoke</p>
 <ul>
 <li>手动打包<ul>
 <li>手动打包的过程是非常机械且繁琐的,不仅你需要给开发人员真机库,还要有模拟器库,所以网上有非常多的教程教你先打第一个真机再打一个模拟器最后合并.这种机械化操作此处不细说</li>
@@ -48,17 +91,115 @@
 <h2 id="Bug问题"><a href="#Bug问题" class="headerlink" title="Bug问题"></a>Bug问题</h2><p>然而对于我们开发者来说以上的这是一个基本配置 </p>
 <h4 id="1-如果我要设置header或者pch怎么办"><a href="#1-如果我要设置header或者pch怎么办" class="headerlink" title="==1.如果我要设置header或者pch怎么办?=="></a>==1.如果我要设置header或者pch怎么办?==</h4><p>CocoaPods里面,每一次进行打包,制作静态库的时候都会pod install命令<br>如果你写在系统自动生成的XXXX-prefix.pch</p>
 <p>pod install之后会消失掉之前你写入的所有文件!! </p>
-<p>那么我们假定我们sdk名字叫做WechatSDK,我们就创建一个header名为WechatSDK.h<br>之所以这么写是当别人导入你的framework的时候如果是按照以下格式<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">import</span>&lt;WechatSDK/WechatSDK.h&gt;</div></pre></td></tr></table></figure></p>
+<p>那么我们假定我们sdk名字叫做WechatSDK,我们就创建一个header名为WechatSDK.h<br>之所以这么写是当别人导入你的framework的时候如果是按照以下格式</p>
+<pre class=" language-swift"><code class="language-swift">#<span class="token keyword">import</span><span class="token operator">&lt;</span><span class="token builtin">WechatSDK</span><span class="token operator">/</span><span class="token builtin">WechatSDK</span><span class="token punctuation">.</span>h<span class="token operator">></span>
+</code></pre>
 <p>这样非常的符合初用者的心态而且很专业</p>
 <p><img src="/2018/03/19/Cocoapods制作framework全解析/WX20180319-171902.png" alt="WX20180319-171902"></p>
 <p>自己定义一个module将里面的umbrella header指向这个自定义的WechatSDK.h,并且在pods- target -buid setting中 packing里 nodulemap未你自定的这个module这样导出的freamework就是非常规范的</p>
 <h4 id="2-如果我想将-a-或者-framework-这种静态库直接打包进去那么我又该怎么做"><a href="#2-如果我想将-a-或者-framework-这种静态库直接打包进去那么我又该怎么做" class="headerlink" title="==2.如果我想将.a 或者,framework 这种静态库直接打包进去那么我又该怎么做?=="></a>==2.如果我想将.a 或者,framework 这种静态库直接打包进去那么我又该怎么做?==</h4><p>关于这个问题 可能是报错最多的在sdk开发中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#这两个是我在实际开发中打包微信的.a 和 QQ 的framework</div><div class="line">#首先就需要在podsepc里面指明路径</div><div class="line"> s.ios.vendored_libraries = &apos;Example/Pods/WechatSDK/libWeChatSDK.a&apos;</div><div class="line"> s.ios.vendored_frameworks =&apos;Example/Pods/TencentOpenAPI.framework&apos;</div><div class="line">#其次是需要把微信和QQ所需要的系统库全部写明上去不需要带后缀不然会报错</div><div class="line"> s.frameworks =  &apos;Security&apos;,&apos;SystemConfiguration&apos;,&apos;CoreTelephony&apos;</div><div class="line"> s.libraries  = &apos;z&apos;,&apos;sqlite3.0&apos;,&apos;c++&apos;</div></pre></td></tr></table></figure>
-<p>可能会涉及到无法导入头文件,那么你可以在public header 一栏指出即可</p>
+<pre><code>#这两个是我在实际开发中打包微信的.a 和 QQ 的framework
+#首先就需要在podsepc里面指明路径
+ s.ios.vendored_libraries = &#39;Example/Pods/WechatSDK/libWeChatSDK.a&#39;
+ s.ios.vendored_frameworks =&#39;Example/Pods/TencentOpenAPI.framework&#39;
+#其次是需要把微信和QQ所需要的系统库全部写明上去不需要带后缀不然会报错
+ s.frameworks =  &#39;Security&#39;,&#39;SystemConfiguration&#39;,&#39;CoreTelephony&#39;
+ s.libraries  = &#39;z&#39;,&#39;sqlite3.0&#39;,&#39;c++&#39;
+</code></pre><p>可能会涉及到无法导入头文件,那么你可以在public header 一栏指出即可</p>
 <h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>关于发布的详细步骤网上很多 一句最后命令</p>
 <p>pod trunk 便可以发布到cocoapods源</p>
 <p><img src="/2018/03/19/Cocoapods制作framework全解析/WechatIMG30327.png" alt="WechatIMG30327"></p>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>1.类似的目录图<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line">├── Example</div><div class="line">│   ├── Podfile</div><div class="line">│   ├── Podfile.lock</div><div class="line">│   ├── Pods</div><div class="line">│   │   ├── Headers</div><div class="line">│   │   ├── Local\ Podspecs</div><div class="line">│   │   │   └── Test.podspec.json</div><div class="line">│   │   ├── Manifest.lock</div><div class="line">│   │   ├── Pods.xcodeproj</div><div class="line">│   │   │   ├── project.pbxproj</div><div class="line">│   │   │   └── xcuserdata</div><div class="line">│   │   │       └── jasonphd.xcuserdatad</div><div class="line">│   │   │           └── xcschemes</div><div class="line">│   │   │               ├── Pods-Test_Example.xcscheme</div><div class="line">│   │   │               ├── Pods-Test_Tests.xcscheme</div><div class="line">│   │   │               ├── Test.xcscheme</div><div class="line">│   │   │               └── xcschememanagement.plist</div><div class="line">│   │   └── Target\ Support\ Files</div><div class="line">│   │       ├── Pods-Test_Example</div><div class="line">│   │       │   ├── Info.plist</div><div class="line">│   │       │   ├── Pods-Test_Example-acknowledgements.markdown</div><div class="line">│   │       │   ├── Pods-Test_Example-acknowledgements.plist</div><div class="line">│   │       │   ├── Pods-Test_Example-dummy.m</div><div class="line">│   │       │   ├── Pods-Test_Example-frameworks.sh</div><div class="line">│   │       │   ├── Pods-Test_Example-resources.sh</div><div class="line">│   │       │   ├── Pods-Test_Example-umbrella.h</div><div class="line">│   │       │   ├── Pods-Test_Example.debug.xcconfig</div><div class="line">│   │       │   ├── Pods-Test_Example.modulemap</div><div class="line">│   │       │   └── Pods-Test_Example.release.xcconfig</div><div class="line">│   │       ├── Pods-Test_Tests</div><div class="line">│   │       │   ├── Info.plist</div><div class="line">│   │       │   ├── Pods-Test_Tests-acknowledgements.markdown</div><div class="line">│   │       │   ├── Pods-Test_Tests-acknowledgements.plist</div><div class="line">│   │       │   ├── Pods-Test_Tests-dummy.m</div><div class="line">│   │       │   ├── Pods-Test_Tests-frameworks.sh</div><div class="line">│   │       │   ├── Pods-Test_Tests-resources.sh</div><div class="line">│   │       │   ├── Pods-Test_Tests-umbrella.h</div><div class="line">│   │       │   ├── Pods-Test_Tests.debug.xcconfig</div><div class="line">│   │       │   ├── Pods-Test_Tests.modulemap</div><div class="line">│   │       │   └── Pods-Test_Tests.release.xcconfig</div><div class="line">│   │       └── Test</div><div class="line">│   │           ├── Info.plist</div><div class="line">│   │           ├── Test-dummy.m</div><div class="line">│   │           ├── Test-prefix.pch</div><div class="line">│   │           ├── Test-umbrella.h</div><div class="line">│   │           ├── Test.modulemap</div><div class="line">│   │           └── Test.xcconfig</div><div class="line">│   ├── Test</div><div class="line">│   │   ├── Base.lproj</div><div class="line">│   │   │   ├── LaunchScreen.storyboard</div><div class="line">│   │   │   └── Main.storyboard</div><div class="line">│   │   ├── Images.xcassets</div><div class="line">│   │   │   └── AppIcon.appiconset</div><div class="line">│   │   │       └── Contents.json</div><div class="line">│   │   ├── Test-Info.plist</div><div class="line">│   │   ├── Test-Prefix.pch</div><div class="line">│   │   ├── en.lproj</div><div class="line">│   │   │   └── InfoPlist.strings</div><div class="line">│   │   ├── main.m</div><div class="line">│   │   ├── tAppDelegate.h</div><div class="line">│   │   ├── tAppDelegate.m</div><div class="line">│   │   ├── tViewController.h</div><div class="line">│   │   └── tViewController.m</div><div class="line">│   ├── Test.xcodeproj</div><div class="line">│   │   ├── project.pbxproj</div><div class="line">│   │   ├── project.xcworkspace</div><div class="line">│   │   │   └── contents.xcworkspacedata</div><div class="line">│   │   └── xcshareddata</div><div class="line">│   │       └── xcschemes</div><div class="line">│   │           └── Test-Example.xcscheme</div><div class="line">│   ├── Test.xcworkspace</div><div class="line">│   │   ├── contents.xcworkspacedata</div><div class="line">│   │   └── xcuserdata</div><div class="line">│   │       └── jasonphd.xcuserdatad</div><div class="line">│   │           └── UserInterfaceState.xcuserstate</div><div class="line">│   └── Tests</div><div class="line">│       ├── Tests-Info.plist</div><div class="line">│       ├── Tests-Prefix.pch</div><div class="line">│       ├── Tests.m</div><div class="line">│       └── en.lproj</div><div class="line">│           └── InfoPlist.strings</div><div class="line">├── LICENSE</div><div class="line">├── README.md</div><div class="line">├── Test</div><div class="line">│   ├── Assets</div><div class="line">│   └── Classes</div><div class="line">│       └── ReplaceMe.m</div><div class="line">├── Test.podspec</div><div class="line">└── _Pods.xcodeproj -&gt; Example/Pods/Pods.xcodeproj</div></pre></td></tr></table></figure></p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>1.类似的目录图</p>
+<pre class=" language-ruby"><code class="language-ruby">├── <span class="token constant">Example</span>
+│   ├── <span class="token constant">Podfile</span>
+│   ├── <span class="token constant">Podfile</span><span class="token punctuation">.</span>lock
+│   ├── <span class="token constant">Pods</span>
+│   │   ├── <span class="token constant">Headers</span>
+│   │   ├── <span class="token constant">Local</span>\ <span class="token constant">Podspecs</span>
+│   │   │   └── <span class="token constant">Test</span><span class="token punctuation">.</span>podspec<span class="token punctuation">.</span>json
+│   │   ├── <span class="token constant">Manifest</span><span class="token punctuation">.</span>lock
+│   │   ├── <span class="token constant">Pods</span><span class="token punctuation">.</span>xcodeproj
+│   │   │   ├── project<span class="token punctuation">.</span>pbxproj
+│   │   │   └── xcuserdata
+│   │   │       └── jasonphd<span class="token punctuation">.</span>xcuserdatad
+│   │   │           └── xcschemes
+│   │   │               ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token punctuation">.</span>xcscheme
+│   │   │               ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token punctuation">.</span>xcscheme
+│   │   │               ├── <span class="token constant">Test</span><span class="token punctuation">.</span>xcscheme
+│   │   │               └── xcschememanagement<span class="token punctuation">.</span>plist
+│   │   └── <span class="token constant">Target</span>\ <span class="token constant">Support</span>\ <span class="token constant">Files</span>
+│   │       ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span>
+│   │       │   ├── <span class="token constant">Info</span><span class="token punctuation">.</span>plist
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token operator">-</span>acknowledgements<span class="token punctuation">.</span>markdown
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token operator">-</span>acknowledgements<span class="token punctuation">.</span>plist
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token operator">-</span>dummy<span class="token punctuation">.</span>m
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token operator">-</span>frameworks<span class="token punctuation">.</span>sh
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token operator">-</span>resources<span class="token punctuation">.</span>sh
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token operator">-</span>umbrella<span class="token punctuation">.</span>h
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token punctuation">.</span>debug<span class="token punctuation">.</span>xcconfig
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token punctuation">.</span>modulemap
+│   │       │   └── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Example</span><span class="token punctuation">.</span>release<span class="token punctuation">.</span>xcconfig
+│   │       ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span>
+│   │       │   ├── <span class="token constant">Info</span><span class="token punctuation">.</span>plist
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token operator">-</span>acknowledgements<span class="token punctuation">.</span>markdown
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token operator">-</span>acknowledgements<span class="token punctuation">.</span>plist
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token operator">-</span>dummy<span class="token punctuation">.</span>m
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token operator">-</span>frameworks<span class="token punctuation">.</span>sh
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token operator">-</span>resources<span class="token punctuation">.</span>sh
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token operator">-</span>umbrella<span class="token punctuation">.</span>h
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token punctuation">.</span>debug<span class="token punctuation">.</span>xcconfig
+│   │       │   ├── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token punctuation">.</span>modulemap
+│   │       │   └── <span class="token constant">Pods</span><span class="token operator">-</span><span class="token constant">Test_Tests</span><span class="token punctuation">.</span>release<span class="token punctuation">.</span>xcconfig
+│   │       └── <span class="token constant">Test</span>
+│   │           ├── <span class="token constant">Info</span><span class="token punctuation">.</span>plist
+│   │           ├── <span class="token constant">Test</span><span class="token operator">-</span>dummy<span class="token punctuation">.</span>m
+│   │           ├── <span class="token constant">Test</span><span class="token operator">-</span>prefix<span class="token punctuation">.</span>pch
+│   │           ├── <span class="token constant">Test</span><span class="token operator">-</span>umbrella<span class="token punctuation">.</span>h
+│   │           ├── <span class="token constant">Test</span><span class="token punctuation">.</span>modulemap
+│   │           └── <span class="token constant">Test</span><span class="token punctuation">.</span>xcconfig
+│   ├── <span class="token constant">Test</span>
+│   │   ├── <span class="token constant">Base</span><span class="token punctuation">.</span>lproj
+│   │   │   ├── <span class="token constant">LaunchScreen</span><span class="token punctuation">.</span>storyboard
+│   │   │   └── <span class="token constant">Main</span><span class="token punctuation">.</span>storyboard
+│   │   ├── <span class="token constant">Images</span><span class="token punctuation">.</span>xcassets
+│   │   │   └── <span class="token constant">AppIcon</span><span class="token punctuation">.</span>appiconset
+│   │   │       └── <span class="token constant">Contents</span><span class="token punctuation">.</span>json
+│   │   ├── <span class="token constant">Test</span><span class="token operator">-</span><span class="token constant">Info</span><span class="token punctuation">.</span>plist
+│   │   ├── <span class="token constant">Test</span><span class="token operator">-</span><span class="token constant">Prefix</span><span class="token punctuation">.</span>pch
+│   │   ├── en<span class="token punctuation">.</span>lproj
+│   │   │   └── <span class="token constant">InfoPlist</span><span class="token punctuation">.</span>strings
+│   │   ├── main<span class="token punctuation">.</span>m
+│   │   ├── tAppDelegate<span class="token punctuation">.</span>h
+│   │   ├── tAppDelegate<span class="token punctuation">.</span>m
+│   │   ├── tViewController<span class="token punctuation">.</span>h
+│   │   └── tViewController<span class="token punctuation">.</span>m
+│   ├── <span class="token constant">Test</span><span class="token punctuation">.</span>xcodeproj
+│   │   ├── project<span class="token punctuation">.</span>pbxproj
+│   │   ├── project<span class="token punctuation">.</span>xcworkspace
+│   │   │   └── contents<span class="token punctuation">.</span>xcworkspacedata
+│   │   └── xcshareddata
+│   │       └── xcschemes
+│   │           └── <span class="token constant">Test</span><span class="token operator">-</span><span class="token constant">Example</span><span class="token punctuation">.</span>xcscheme
+│   ├── <span class="token constant">Test</span><span class="token punctuation">.</span>xcworkspace
+│   │   ├── contents<span class="token punctuation">.</span>xcworkspacedata
+│   │   └── xcuserdata
+│   │       └── jasonphd<span class="token punctuation">.</span>xcuserdatad
+│   │           └── <span class="token constant">UserInterfaceState</span><span class="token punctuation">.</span>xcuserstate
+│   └── <span class="token constant">Tests</span>
+│       ├── <span class="token constant">Tests</span><span class="token operator">-</span><span class="token constant">Info</span><span class="token punctuation">.</span>plist
+│       ├── <span class="token constant">Tests</span><span class="token operator">-</span><span class="token constant">Prefix</span><span class="token punctuation">.</span>pch
+│       ├── <span class="token constant">Tests</span><span class="token punctuation">.</span>m
+│       └── en<span class="token punctuation">.</span>lproj
+│           └── <span class="token constant">InfoPlist</span><span class="token punctuation">.</span>strings
+├── <span class="token constant">LICENSE</span>
+├── <span class="token constant">README</span><span class="token punctuation">.</span>md
+├── <span class="token constant">Test</span>
+│   ├── <span class="token constant">Assets</span>
+│   └── <span class="token constant">Classes</span>
+│       └── <span class="token constant">ReplaceMe</span><span class="token punctuation">.</span>m
+├── <span class="token constant">Test</span><span class="token punctuation">.</span>podspec
+└── _Pods<span class="token punctuation">.</span>xcodeproj <span class="token operator">-</span><span class="token operator">></span> <span class="token constant">Example</span><span class="token operator">/</span><span class="token constant">Pods</span><span class="token operator">/</span><span class="token constant">Pods</span><span class="token punctuation">.</span>xcodeproj
+</code></pre>
 <p>2.几个有用的连接</p>
 <p><a href="https://github.com/forwyt/EyuFacebook.git" target="_blank" rel="external">这是一个简单的封装Facebook的sdk演示demo sdk</a></p>
 <p><a href="https://www.jianshu.com/p/8a7b9232cbab" target="_blank" rel="external">方便大家看流程找了个详细点的流程教学</a></p>
@@ -85,28 +226,119 @@
 <p>这些包管理工具能够快速,高效的集成我们的第三方库. cocoapods是有Ruby来编写</p>
 <h2 id="组成结构-pod-init"><a href="#组成结构-pod-init" class="headerlink" title="组成结构(pod init)"></a><strong>组成结构(pod init)</strong></h2><p>基于网上非常多如何安装cocoapod教程,这里不再描述cocoapods如何安装以及如何切换镜像源.</p>
 <p> <strong>podfile</strong></p>
-<p><img src="/2018/03/19/CocoaPods工作原理/WX20180319-103100.png" alt="WX20180319-103100"><br>podfile是cocoapods的约束描述,这种文件就是ruby的简写,其代码在实际运作中是进行翻译的<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">source <span class="string">'http://source.git'</span></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'8.0'</span></div><div class="line">target <span class="string">'Demo'</span> <span class="keyword">do</span></div><div class="line">pod <span class="string">'AFNetworking'</span></div><div class="line">pod <span class="string">'SDWebImage'</span></div><div class="line">pod <span class="string">'Masonry'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p><strong>第一步</strong> 定义类似以下几个方法<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># eval_pod.rb</span></div><div class="line">$hash_value = &#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">source</span><span class="params">(url)</span></span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">target</span><span class="params">(target)</span></span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">platform</span><span class="params">(platform, version)</span></span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pod</span><span class="params">(pod)</span></span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2018/03/19/CocoaPods工作原理/WX20180319-103100.png" alt="WX20180319-103100"><br>podfile是cocoapods的约束描述,这种文件就是ruby的简写,其代码在实际运作中是进行翻译的</p>
+<pre class=" language-ruby"><code class="language-ruby">source <span class="token string">'http://source.git'</span>
+platform <span class="token symbol">:ios</span><span class="token punctuation">,</span> <span class="token string">'8.0'</span>
+target <span class="token string">'Demo'</span> <span class="token keyword">do</span>
+pod <span class="token string">'AFNetworking'</span>
+pod <span class="token string">'SDWebImage'</span>
+pod <span class="token string">'Masonry'</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p><strong>第一步</strong> 定义类似以下几个方法</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># eval_pod.rb</span>
+<span class="token variable">$hash_value</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">def</span> <span class="token function">source</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">target</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">platform</span><span class="token punctuation">(</span>platform<span class="token punctuation">,</span> version<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">pod</span><span class="token punctuation">(</span>pod<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
 <p>使用了全局变量hash_value存储podfile中那些指定的依赖库,</p>
-<p><strong>第二步</strong> 读取代码<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># eval_pod.rb</span></div><div class="line">content = File.read <span class="string">'./Podfile'</span></div><div class="line">eval content</div><div class="line">p $hash_value</div></pre></td></tr></table></figure></p>
-<p><strong>第三步</strong> 读取了Podfile文件中的内容，并把它的内容当做字符串执行，最后打印hash_value的值<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ruby eval_pod.rb</div><div class="line">&#123;<span class="string">"source"</span>=&gt;<span class="string">"http://source.git"</span>, <span class="string">"targets"</span>=&gt;[<span class="string">"Demo"</span>], <span class="string">"pods"</span>=&gt;[<span class="string">"AFNetworking"</span>, <span class="string">"SDWebImage"</span>, <span class="string">"Masonry"</span>]&#125;<span class="string">`这样我们就得到了基本上的podfile解析结果</span></div></pre></td></tr></table></figure></p>
+<p><strong>第二步</strong> 读取代码</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># eval_pod.rb</span>
+content <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span>read <span class="token string">'./Podfile'</span>
+eval content
+p <span class="token variable">$hash_value</span>
+</code></pre>
+<p><strong>第三步</strong> 读取了Podfile文件中的内容，并把它的内容当做字符串执行，最后打印hash_value的值</p>
+<pre class=" language-ruby"><code class="language-ruby">ruby eval_pod<span class="token punctuation">.</span>rb
+<span class="token punctuation">{</span><span class="token string">"source"</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">"http://source.git"</span><span class="token punctuation">,</span> <span class="token string">"targets"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"Demo"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"pods"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"AFNetworking"</span><span class="token punctuation">,</span> <span class="token string">"SDWebImage"</span><span class="token punctuation">,</span> <span class="token string">"Masonry"</span><span class="token punctuation">]</span><span class="token punctuation">}</span>`这样我们就得到了基本上的podfile解析结果
+</code></pre>
 <h2 id="cocoapods实现-pod-install"><a href="#cocoapods实现-pod-install" class="headerlink" title="cocoapods实现(pod install)"></a><strong>cocoapods实现(pod install)</strong></h2><blockquote>
 <p>podinstall 由command类派生出真正的父类 install</p>
 </blockquote>
 <p>install方法中有两个我们熟知:pod install/pod update</p>
 <p>后者会无视podfile.lock文件重新对podfile文件进行类似第一部分解析</p>
-<p>podfile中依赖是由cocoapod-core核心模块来完成<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">from_ruby</span><span class="params">(path, contents = <span class="literal">nil</span>)</span></span></div><div class="line">  contents <span class="params">||</span>= File.open(path, <span class="string">'r:utf-8'</span>, &amp;<span class="symbol">:read</span>)</div><div class="line"></div><div class="line">  podfile = Podfile.new(path) <span class="keyword">do</span></div><div class="line">	<span class="keyword">begin</span></div><div class="line">	  eval(contents, <span class="literal">nil</span>, path.to_s)</div><div class="line">	<span class="keyword">rescue</span> Exception =&gt; e</div><div class="line">	  message = <span class="string">"Invalid `<span class="subst">#&#123;path.basename&#125;</span>` file: <span class="subst">#&#123;e.message&#125;</span>"</span></div><div class="line">	  raise DSLError.new(message, path, e, contents)</div><div class="line">	<span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  podfile</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>导入DSL<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">Pod</span></span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Podfile</span></span></div><div class="line">	<span class="class"><span class="keyword">module</span> <span class="title">DSL</span></span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">pod</span><span class="params">(name = <span class="literal">nil</span>, *requirements)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">target</span><span class="params">(name, options = <span class="literal">nil</span>)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">platform</span><span class="params">(name, target = <span class="literal">nil</span>)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">inhibit_all_warnings!</span> <span class="title">end</span></span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">use_frameworks!</span><span class="params">(flag = <span class="literal">true</span>)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">source</span><span class="params">(source)</span></span> <span class="keyword">end</span></div><div class="line">	  ...</div><div class="line">	<span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>podfile中依赖是由cocoapod-core核心模块来完成</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">from_ruby</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> contents <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span>
+  contents <span class="token operator">||</span><span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token string">'r:utf-8'</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token symbol">:read</span><span class="token punctuation">)</span>
+
+  podfile <span class="token operator">=</span> <span class="token constant">Podfile</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span> <span class="token keyword">do</span>
+    <span class="token keyword">begin</span>
+      <span class="token function">eval</span><span class="token punctuation">(</span>contents<span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">,</span> path<span class="token punctuation">.</span>to_s<span class="token punctuation">)</span>
+    <span class="token keyword">rescue</span> <span class="token builtin">Exception</span> <span class="token operator">=</span><span class="token operator">></span> e
+      message <span class="token operator">=</span> <span class="token string">"Invalid `<span class="token interpolation"><span class="token delimiter tag">#{</span>path<span class="token punctuation">.</span>basename<span class="token delimiter tag">}</span></span>` file: <span class="token interpolation"><span class="token delimiter tag">#{</span>e<span class="token punctuation">.</span>message<span class="token delimiter tag">}</span></span>"</span>
+      <span class="token keyword">raise</span> <span class="token constant">DSLError</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> path<span class="token punctuation">,</span> e<span class="token punctuation">,</span> contents<span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+  podfile
+<span class="token keyword">end</span>
+</code></pre>
+<p>导入DSL</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">module</span> <span class="token constant">Pod</span>
+  <span class="token keyword">class</span> <span class="token class-name">Podfile</span>
+    <span class="token keyword">module</span> <span class="token constant">DSL</span>
+      <span class="token keyword">def</span> <span class="token function">pod</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">,</span> <span class="token operator">*</span>requirements<span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> <span class="token function">target</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> options <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> <span class="token function">platform</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> inhibit_all_warnings<span class="token operator">!</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> use_frameworks<span class="token operator">!</span><span class="token punctuation">(</span>flag <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> <span class="token function">source</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
 <blockquote>
 <p>总结一下，CocoaPods对Podfile的解析与我们在前面做的手动解析Podfile的原理差不多，构建一个包含一些方法的上下文，然后直接执行eval方法将文件的内容当做代码来执行，这样只要Podfile中的数据是符合规范的，那么解析Podfile就是非常简单容易的。</p>
 </blockquote>
-<p>在install方法里面会出现一个resolve_dependencies类创建Analyzer实例对象<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">resolve_dependencies</span></span></div><div class="line">  analyzer = create_analyzer</div><div class="line"></div><div class="line">  plugin_sources = run_source_provider_hooks</div><div class="line">  analyzer.sources.insert(<span class="number">0</span>, *plugin_sources)</div><div class="line"></div><div class="line">  UI.section <span class="string">'Updating local specs repositories'</span> <span class="keyword">do</span></div><div class="line">	analyzer.update_repositories</div><div class="line">  <span class="keyword">end</span> <span class="keyword">if</span> repo_update?</div><div class="line"></div><div class="line">  UI.section <span class="string">'Analyzing dependencies'</span> <span class="keyword">do</span></div><div class="line">	analyze(analyzer)</div><div class="line">	validate_build_configurations</div><div class="line">	clean_sandbox</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>在install方法里面会出现一个resolve_dependencies类创建Analyzer实例对象</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> resolve_dependencies
+  analyzer <span class="token operator">=</span> create_analyzer
+
+  plugin_sources <span class="token operator">=</span> run_source_provider_hooks
+  analyzer<span class="token punctuation">.</span>sources<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">*</span>plugin_sources<span class="token punctuation">)</span>
+
+  <span class="token constant">UI</span><span class="token punctuation">.</span>section <span class="token string">'Updating local specs repositories'</span> <span class="token keyword">do</span>
+    analyzer<span class="token punctuation">.</span>update_repositories
+  <span class="token keyword">end</span> <span class="token keyword">if</span> repo_update<span class="token operator">?</span>
+
+  <span class="token constant">UI</span><span class="token punctuation">.</span>section <span class="token string">'Analyzing dependencies'</span> <span class="token keyword">do</span>
+    <span class="token function">analyze</span><span class="token punctuation">(</span>analyzer<span class="token punctuation">)</span>
+    validate_build_configurations
+    clean_sandbox
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
 <p><strong>解决依赖</strong><br>我们开发中知道,如果你用xcode去简历一个framework最头疼的问题无异于,需要引入第三方库,一旦这个库封装的不好,可能导致在别人使用的时候导致冲突,但是cocoapods引入库处理的非常好</p>
 <blockquote>
 <p>CocoaPods为了解决Podfile中声明的依赖关系，使用了一个叫做Milinillo的依赖关系解决算法;但是，笔者在Google上并没有找到与这个算法相关的其他信息，推测是CocoaPods为了解决iOS中的依赖关系创造的算法。</p>
 </blockquote>
 <p>Milinillo算法的核心是回溯（Backtracking）以及向前检查（forward check），整个过程会追踪栈中的两个状态（依赖和可能性）。</p>
-<p><strong>下载依赖</strong><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">installer.install_source_of_pod</div><div class="line"><span class="params">|-- create_pod_installer</span></div><div class="line"><span class="params">|</span>	<span class="string">`-- PodSourceInstaller.new</span></div><div class="line"><span class="string">`</span>-- podSourceInstaller.install!</div><div class="line">	<span class="string">`-- download_source</span></div><div class="line"><span class="string">	   `</span>-- Downloader.download</div><div class="line">		   <span class="string">`-- Downloader.download_request</span></div><div class="line"><span class="string">			   `</span>-- Downloader.download_source</div><div class="line">				   <span class="params">|-- Downloader.for_target</span></div><div class="line"><span class="params">				   |</span>   <span class="params">|-- Downloader.class_for_options</span></div><div class="line"><span class="params">				   |</span>   <span class="string">`-- Git/HTTP/Mercurial/Subversion.new</span></div><div class="line"><span class="string">				   |-- Git/HTTP/Mercurial/Subversion.download</span></div><div class="line"><span class="string">				   `</span>-- Git/HTTP/Mercurial/Subversion.download!</div><div class="line">					   <span class="string">`-- Git.clone</span></div></pre></td></tr></table></figure></p>
+<p><strong>下载依赖</strong></p>
+<pre class=" language-ruby"><code class="language-ruby">installer<span class="token punctuation">.</span>install_source_of_pod
+<span class="token operator">|</span><span class="token operator">--</span> create_pod_installer
+<span class="token operator">|</span>    `<span class="token operator">--</span> <span class="token constant">PodSourceInstaller</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+`<span class="token operator">--</span> podSourceInstaller<span class="token punctuation">.</span>install<span class="token operator">!</span>
+    `<span class="token operator">--</span> download_source
+       `<span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>download
+           `<span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>download_request
+               `<span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>download_source
+                   <span class="token operator">|</span><span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>for_target
+                   <span class="token operator">|</span>   <span class="token operator">|</span><span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>class_for_options
+                   <span class="token operator">|</span>   `<span class="token operator">--</span> <span class="token constant">Git</span><span class="token operator">/</span><span class="token constant">HTTP</span><span class="token operator">/</span><span class="token constant">Mercurial</span><span class="token operator">/</span><span class="token constant">Subversion</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+                   <span class="token operator">|</span><span class="token operator">--</span> <span class="token constant">Git</span><span class="token operator">/</span><span class="token constant">HTTP</span><span class="token operator">/</span><span class="token constant">Mercurial</span><span class="token operator">/</span><span class="token constant">Subversion</span><span class="token punctuation">.</span>download
+                   `<span class="token operator">--</span> <span class="token constant">Git</span><span class="token operator">/</span><span class="token constant">HTTP</span><span class="token operator">/</span><span class="token constant">Mercurial</span><span class="token operator">/</span><span class="token constant">Subversion</span><span class="token punctuation">.</span>download<span class="token operator">!</span>
+                       `<span class="token operator">--</span> <span class="token constant">Git</span><span class="token punctuation">.</span>clone
+</code></pre>
 <h2 id="生成pods-xodeproj"><a href="#生成pods-xodeproj" class="headerlink" title="生成pods.xodeproj"></a>生成pods.xodeproj</h2><p>generate!方法<br>这个方法做了几件小事：<br>1.生成Pods.xcodeproj工程</p>
 <p>2.将依赖中的文件加入工程</p>
 <p>3.将依赖中的图书馆加入工程</p>
@@ -316,13 +548,22 @@
 <li><p>LKImageView<br>lkimageview是一个自定义UI控件 包含多种属性,以及对象方法</p>
 </li>
 <li><p><strong>快速使用</strong></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.imageView = [[LKImageView alloc] init];</div><div class="line">/<span class="regexp">/遵守代理方法</span></div><div class="line"><span class="regexp">self.imageView.delegate = self;</span></div><div class="line"><span class="regexp">LKImageURLRequest * request = [LKImageURLRequest requestWithURL:@"你的图片URL"];</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/将请求传递给imageview的属性</span></div><div class="line"><span class="regexp">self.imageView.request = request;</span></div></pre></td></tr></table></figure>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">self</span><span class="token punctuation">.</span>imageView <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">LKImageView</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>遵守代理方法
+<span class="token keyword">self</span><span class="token punctuation">.</span>imageView<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">;</span>
+<span class="token constant">LKImageURLRequest</span> <span class="token operator">*</span> request <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">LKImageURLRequest</span> requestWithURL<span class="token punctuation">:</span>@<span class="token string">"你的图片URL"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>将请求传递给imageview的属性
+<span class="token keyword">self</span><span class="token punctuation">.</span>imageView<span class="token punctuation">.</span>request <span class="token operator">=</span> request<span class="token punctuation">;</span>
+</code></pre>
 </li>
-<li><p><strong>属性说明</strong></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/将加载的图片是否渐进加载出来</span></div><div class="line"><span class="regexp">request.supportProgressive = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/predrawEnabled默认是flase即直接使用原始图像。内部图像视图缩放图像移动和规模。(由ImageIO解码)</span></div><div class="line"><span class="regexp">self.imageView1.predrawEnabled = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/其他部分属性请见源码</span></div></pre></td></tr></table></figure>
+<li><strong>属性说明</strong><pre class=" language-ruby"><code class="language-ruby"><span class="token operator">/</span><span class="token operator">/</span>将加载的图片是否渐进加载出来
+request<span class="token punctuation">.</span>supportProgressive <span class="token operator">=</span> <span class="token constant">YES</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>predrawEnabled默认是flase即直接使用原始图像。内部图像视图缩放图像移动和规模。<span class="token punctuation">(</span>由<span class="token constant">ImageIO</span>解码<span class="token punctuation">)</span>
+<span class="token keyword">self</span><span class="token punctuation">.</span>imageView1<span class="token punctuation">.</span>predrawEnabled <span class="token operator">=</span> <span class="token constant">YES</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>其他部分属性请见源码
+</code></pre>
 </li>
-<li><p><strong>整体分析</strong><br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180305_24.png" alt="Snip20180305_24"></p>
-</li>
+<li><strong>整体分析</strong><br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180305_24.png" alt="Snip20180305_24"></li>
 <li>从上图看有LKiageView / Facede / Delegate /LKImageViewEffect根据对应的方法可以找出对应的用途例如可以将 图片加载成功/失败/加载进行时的图片进行添加</li>
 <li>遵守代理可以监听图片加载成功或者失败的方法</li>
 <li>可以添加后期特效 变灰/模糊处理等</li>
@@ -332,15 +573,92 @@
 <ul>
 <li>LKImageLogManager //打印日志 设置打印优先级</li>
 <li>LKImageDecoderManger</li>
-<li>lkimagedecoder 解码类中只有一个方法就是<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (UIImage * _Nullable )<span class="symbol">imageFromData:</span>(NSData * _Nullable)data <span class="symbol">request:</span>(LKImageRequest * _Nullable)request <span class="symbol">error:</span>(NSError ** _Nullable)error;</div></pre></td></tr></table></figure>
-</li>
+<li>lkimagedecoder 解码类中只有一个方法就是<br>```ruby</li>
+<li>(UIImage <em> _Nullable )imageFromData:(NSData </em> _Nullable)data request:(LKImageRequest <em> _Nullable)request error:(NSError *</em> _Nullable)error;</li>
 </ul>
-<p>该方法是首先判断传入的data是否存在,如果不存在即不用处理,直接return nil;<br>如果data存在即进行下一步的解析,将request进行解析.</p>
-<ul>
-<li>image/io的知识补充<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/测试imageio支持的图片格式</span></div><div class="line"><span class="regexp">CFArrayRef mysourceType = CGImageSourceCopyTypeIdentifiers();</span></div><div class="line"><span class="regexp">CFShow(mysourceType);</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/打印结果</span></div><div class="line"><span class="regexp">"public.jpeg",</span></div><div class="line"><span class="regexp">"public.png",</span></div><div class="line"><span class="regexp">"com.compuserve.gif",</span></div><div class="line"><span class="regexp">"com.canon.tif-raw-image",</span></div><div class="line"><span class="regexp">"com.adobe.raw-image",</span></div><div class="line"><span class="regexp">"com.dxo.raw-image",</span></div><div class="line"><span class="regexp">"com.canon.cr2-raw-image",</span></div><div class="line"><span class="regexp">"com.leafamerica.raw-image",</span></div><div class="line"><span class="regexp">"com.hasselblad.fff-raw-image",</span></div><div class="line"><span class="regexp">"com.hasselblad.3fr-raw-image",</span></div><div class="line"><span class="regexp">"com.nikon.raw-image",</span></div><div class="line"><span class="regexp">"com.nikon.nrw-raw-image",</span></div><div class="line"><span class="regexp">"com.pentax.raw-image",</span></div><div class="line"><span class="regexp">"com.samsung.raw-image",</span></div><div class="line"><span class="regexp">"com.sony.raw-image",</span></div><div class="line"><span class="regexp">"com.sony.sr2-raw-image",</span></div><div class="line"><span class="regexp">"com.sony.arw-raw-image",</span></div><div class="line"><span class="regexp">"com.epson.raw-image",</span></div><div class="line"><span class="regexp">"com.kodak.raw-image",</span></div><div class="line"><span class="regexp">"public.tiff",</span></div><div class="line"><span class="regexp">"public.jpeg-2000",</span></div><div class="line"><span class="regexp">"com.apple.atx",</span></div><div class="line"><span class="regexp">"org.khronos.astc",</span></div><div class="line"><span class="regexp">"org.khronos.ktx",</span></div><div class="line"><span class="regexp">"com.canon.crw-raw-image",</span></div><div class="line"><span class="regexp">"com.fuji.raw-image",</span></div><div class="line"><span class="regexp">"com.panasonic.raw-image",</span></div><div class="line"><span class="regexp">"com.panasonic.rw2-raw-image",</span></div><div class="line"><span class="regexp">"com.leica.raw-image",</span></div><div class="line"><span class="regexp">"com.leica.rwl-raw-image",</span></div><div class="line"><span class="regexp">"com.konicaminolta.raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.sr-raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.or-raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.raw-image",</span></div><div class="line"><span class="regexp">"com.phaseone.raw-image",</span></div><div class="line"><span class="regexp">"com.microsoft.ico",</span></div><div class="line"><span class="regexp">"com.microsoft.bmp",</span></div><div class="line"><span class="regexp">"com.apple.icns",</span></div><div class="line"><span class="regexp">"com.adobe.photoshop-image",</span></div><div class="line"><span class="regexp">"com.microsoft.cur",</span></div><div class="line"><span class="regexp">"com.truevision.tga-image",</span></div><div class="line"><span class="regexp">"com.ilm.openexr-image",</span></div><div class="line"><span class="regexp">"public.radiance",</span></div><div class="line"><span class="regexp">"public.pbm",</span></div><div class="line"><span class="regexp">"public.mpo-image",</span></div><div class="line"><span class="regexp">"public.pvr"</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/创建和使用imageSources</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/从Image Sources中创建一个图像</span></div><div class="line"><span class="regexp">当从Image Sources中创建图片时，可以提供一个index和dictionary（利用键值对）来创建一个缩略图或者是允许缓存。</span></div><div class="line"><span class="regexp">在创建图片的时候，也需提供一个index值来索引图片，因为Image Sources中可能是多张图片，如果参数时0，那么只有一个图片。</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>创建一个方法 传入url返回cgimage<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="type">CGImageRef</span> myCreateCGimageFromFile(<span class="type">NSString</span> *path)&#123;</div><div class="line"><span class="type">NSURL</span> *url = [<span class="type">NSURL</span> <span class="type">URLWithString</span>:path];</div><div class="line"><span class="type">CGImageRef</span> image;</div><div class="line"><span class="type">CGImageSourceRef</span> imageSource;</div><div class="line"><span class="type">CFDictionaryRef</span> imageOptions;</div><div class="line"><span class="type">CFStringRef</span> imageKeys[<span class="number">2</span>];</div><div class="line"><span class="type">CFTypeRef</span> imageValues[<span class="number">2</span>];</div><div class="line"><span class="comment">//缓存键值对</span></div><div class="line">imageKeys[<span class="number">0</span>] = kCGImageSourceShouldCache;</div><div class="line">imageValues[<span class="number">0</span>] = (<span class="type">CFTypeRef</span>) kCFBooleanFalse;</div><div class="line"><span class="comment">//float-point键值对</span></div><div class="line">imageKeys[<span class="number">1</span>] = kCGImageSourceShouldAllowFloat;</div><div class="line">imageValues[<span class="number">1</span>] = (<span class="type">CFTypeRef</span>)kCFBooleanTrue;</div><div class="line"><span class="comment">//获取dictionary</span></div><div class="line">imageOptions = <span class="type">CFDictionaryCreate</span>(<span class="type">NULL</span>, (const void **)imageKeys, (const void **)imageValues, <span class="number">2</span>, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);</div><div class="line">imageSource = <span class="type">CGImageSourceCreateWithURL</span>((<span class="type">CFURLRef</span>)url, imageOptions);</div><div class="line"><span class="type">CFRelease</span>(imageOptions);</div><div class="line"><span class="keyword">if</span> (imageSource == <span class="type">NULL</span>) &#123;</div><div class="line"><span class="keyword">return</span> <span class="type">NULL</span>;</div><div class="line">&#125;</div><div class="line">image = <span class="type">CGImageSourceCreateImageAtIndex</span>(imageSource, <span class="number">0</span>, <span class="type">NULL</span>);</div><div class="line"><span class="keyword">return</span> image;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<pre><code>该方法是首先判断传入的data是否存在,如果不存在即不用处理,直接return nil;
+如果data存在即进行下一步的解析,将request进行解析.
+- image/io的知识补充
+```ruby
+//测试imageio支持的图片格式
+CFArrayRef mysourceType = CGImageSourceCopyTypeIdentifiers();
+CFShow(mysourceType);
+//打印结果
+&quot;public.jpeg&quot;,
+&quot;public.png&quot;,
+&quot;com.compuserve.gif&quot;,
+&quot;com.canon.tif-raw-image&quot;,
+&quot;com.adobe.raw-image&quot;,
+&quot;com.dxo.raw-image&quot;,
+&quot;com.canon.cr2-raw-image&quot;,
+&quot;com.leafamerica.raw-image&quot;,
+&quot;com.hasselblad.fff-raw-image&quot;,
+&quot;com.hasselblad.3fr-raw-image&quot;,
+&quot;com.nikon.raw-image&quot;,
+&quot;com.nikon.nrw-raw-image&quot;,
+&quot;com.pentax.raw-image&quot;,
+&quot;com.samsung.raw-image&quot;,
+&quot;com.sony.raw-image&quot;,
+&quot;com.sony.sr2-raw-image&quot;,
+&quot;com.sony.arw-raw-image&quot;,
+&quot;com.epson.raw-image&quot;,
+&quot;com.kodak.raw-image&quot;,
+&quot;public.tiff&quot;,
+&quot;public.jpeg-2000&quot;,
+&quot;com.apple.atx&quot;,
+&quot;org.khronos.astc&quot;,
+&quot;org.khronos.ktx&quot;,
+&quot;com.canon.crw-raw-image&quot;,
+&quot;com.fuji.raw-image&quot;,
+&quot;com.panasonic.raw-image&quot;,
+&quot;com.panasonic.rw2-raw-image&quot;,
+&quot;com.leica.raw-image&quot;,
+&quot;com.leica.rwl-raw-image&quot;,
+&quot;com.konicaminolta.raw-image&quot;,
+&quot;com.olympus.sr-raw-image&quot;,
+&quot;com.olympus.or-raw-image&quot;,
+&quot;com.olympus.raw-image&quot;,
+&quot;com.phaseone.raw-image&quot;,
+&quot;com.microsoft.ico&quot;,
+&quot;com.microsoft.bmp&quot;,
+&quot;com.apple.icns&quot;,
+&quot;com.adobe.photoshop-image&quot;,
+&quot;com.microsoft.cur&quot;,
+&quot;com.truevision.tga-image&quot;,
+&quot;com.ilm.openexr-image&quot;,
+&quot;public.radiance&quot;,
+&quot;public.pbm&quot;,
+&quot;public.mpo-image&quot;,
+&quot;public.pvr&quot;
+//创建和使用imageSources
+//从Image Sources中创建一个图像
+当从Image Sources中创建图片时，可以提供一个index和dictionary（利用键值对）来创建一个缩略图或者是允许缓存。
+在创建图片的时候，也需提供一个index值来索引图片，因为Image Sources中可能是多张图片，如果参数时0，那么只有一个图片。
+</code></pre><p>创建一个方法 传入url返回cgimage</p>
+<pre class=" language-swift"><code class="language-swift"><span class="token builtin">CGImageRef</span> <span class="token function">myCreateCGimageFromFile</span><span class="token punctuation">(</span><span class="token builtin">NSString</span> <span class="token operator">*</span>path<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token constant">NSURL</span> <span class="token operator">*</span>url <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">NSURL</span> <span class="token builtin">URLWithString</span><span class="token punctuation">:</span>path<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">CGImageRef</span> image<span class="token punctuation">;</span>
+<span class="token builtin">CGImageSourceRef</span> imageSource<span class="token punctuation">;</span>
+<span class="token builtin">CFDictionaryRef</span> imageOptions<span class="token punctuation">;</span>
+<span class="token builtin">CFStringRef</span> imageKeys<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">CFTypeRef</span> imageValues<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//缓存键值对</span>
+imageKeys<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">kCGImageSourceShouldCache</span><span class="token punctuation">;</span>
+imageValues<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">CFTypeRef</span><span class="token punctuation">)</span> <span class="token constant">kCFBooleanFalse</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//float-point键值对</span>
+imageKeys<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">kCGImageSourceShouldAllowFloat</span><span class="token punctuation">;</span>
+imageValues<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">CFTypeRef</span><span class="token punctuation">)</span><span class="token constant">kCFBooleanTrue</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//获取dictionary</span>
+imageOptions <span class="token operator">=</span> <span class="token function">CFDictionaryCreate</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>const void <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>imageKeys<span class="token punctuation">,</span> <span class="token punctuation">(</span>const void <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>imageValues<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token constant">kCFTypeDictionaryKeyCallBacks</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token constant">kCFTypeDictionaryValueCallBacks</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+imageSource <span class="token operator">=</span> <span class="token function">CGImageSourceCreateWithURL</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">CFURLRef</span><span class="token punctuation">)</span>url<span class="token punctuation">,</span> imageOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">CFRelease</span><span class="token punctuation">(</span>imageOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>imageSource <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+image <span class="token operator">=</span> <span class="token function">CGImageSourceCreateImageAtIndex</span><span class="token punctuation">(</span>imageSource<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> image<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>然后接着处理,就是一些业务逻辑任务,例如需要遮罩图层与否,需要缓存,或者<br>一些demo业务逻辑不做更多说明</p>
 <hr>
 <p><strong>LoaderManager</strong><br>LKimageKit的核心业务就是在LoaderManager中因为在sdk的readme中是如下说明:</p>
@@ -364,7 +682,9 @@
 <li><p>高度模块化，可由开发者自定义各部分模块</p>
 </li>
 </ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSOperationQueue *queue;</div><div class="line">@property (nonatomic, strong) dispatch_semaphore_t semaphore;</div></pre></td></tr></table></figure>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> strong<span class="token punctuation">)</span> <span class="token constant">NSOperationQueue</span> <span class="token operator">*</span>queue<span class="token punctuation">;</span>
+<span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> strong<span class="token punctuation">)</span> dispatch_semaphore_t semaphore<span class="token punctuation">;</span>
+</code></pre>
 <h2 id="可以看出NSOpreation处理多线程-GCD来控制更高一次层的多信号量并发问题"><a href="#可以看出NSOpreation处理多线程-GCD来控制更高一次层的多信号量并发问题" class="headerlink" title="可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题."></a>可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题.</h2><p><strong>GCD</strong><br>dispatch_semaphore是GCD用来同步的一种方式，与他相关的共有三个函数，分别是</p>
 <p>dispatch_semaphore_create，dispatch_semaphore_signal，dispatch_semaphore_wait。</p>
 <p>下面我们逐一介绍三个函数：</p>
@@ -392,10 +712,11 @@
 <hr>
 <p><strong>瀑布流</strong></p>
 <ul>
-<li>快速使用<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSMutableArray&lt;ExampleImageURLRequest*&gt; *preloadRequests;</div><div class="line">/<span class="regexp">/定义一个泛型数组 规定数组里存放着 request</span></div></pre></td></tr></table></figure>
-</li>
+<li>快速使用<pre class=" language-ruby"><code class="language-ruby"><span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> strong<span class="token punctuation">)</span> <span class="token constant">NSMutableArray</span><span class="token operator">&lt;</span><span class="token constant">ExampleImageURLRequest</span><span class="token operator">*</span><span class="token operator">></span> <span class="token operator">*</span>preloadRequests<span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>定义一个泛型数组 规定数组里存放着 request
+</code></pre>
+<img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_3.png" alt="Snip20180307_3"><br>在生命周期中<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_4.png" alt="Snip20180307_4"><br>在视图控制器加载之前做一个预处理机制,将请求优先加载<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_5.png" alt="Snip20180307_5"><br>当视图控制器加载出来之后就可以 取消掉这些请求从而加快图片的展示.</li>
 </ul>
-<p><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_3.png" alt="Snip20180307_3"><br>在生命周期中<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_4.png" alt="Snip20180307_4"><br>在视图控制器加载之前做一个预处理机制,将请求优先加载<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_5.png" alt="Snip20180307_5"><br>当视图控制器加载出来之后就可以 取消掉这些请求从而加快图片的展示.</p>
 <p>🍺<br>以上就是LKImageKit的简单解析,大致上是基于imageIO封装,支持自定义模块比较多,是开发中除了SDWebImage之外的又一个不错的图片框架,上手很简单,祝您使用开心 🎉</p>
 <p>iOS developer – JasonPHD</p>
 <p>　　　　　　　　　　　　　　　　　　　　　
@@ -438,24 +759,76 @@
 <li><p>配置白名单(由于国内的SDK需要支持 QQ 和 微信 第三方登录)打开info.plist文件添加对应的字段,可以右键点击info.plist文件open as sourcecode 将下列文字复制添加进去即可<br><img src="/2017/09/29/易娱GameSDK接入文档说明/Snip20170918_9.png" alt="Snip20170918_9"></p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;string&gt;wechat&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqq&lt;/string&gt;</div><div class="line">&lt;string&gt;weixin&lt;/string&gt;</div><div class="line">&lt;string&gt;mqq&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqOpensdkSSoLogin&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqconnect&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkdataline&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkgrouptribeshare&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkfriend&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV2&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdk&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzone&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzonev2&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneshare&lt;/string&gt;</div><div class="line">&lt;string&gt;wtloginqzone&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzonewx&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdkapiV2&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdkapi19&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdkapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdk&lt;/string&gt;</div><div class="line">&lt;string&gt;weixin&lt;/string&gt;</div><div class="line">&lt;string&gt;wtloginmqq2&lt;/string&gt;</div><div class="line">&lt;/array&gt;</div></pre></td></tr></table></figure>
-<h3 id="开始接入"><a href="#开始接入" class="headerlink" title="开始接入"></a>开始接入</h3><ul>
-<li><p>导入SDK的头文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &quot;EyuGameSDK/EyuGameSDKHeader.h&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在<strong>Appdelegate</strong>中程序最早启动的地方加入初始化sdk的方法</p>
-</li>
+<pre><code>&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
+&lt;array&gt;
+&lt;string&gt;wechat&lt;/string&gt;
+&lt;string&gt;mqqapi&lt;/string&gt;
+&lt;string&gt;mqq&lt;/string&gt;
+&lt;string&gt;weixin&lt;/string&gt;
+&lt;string&gt;mqq&lt;/string&gt;
+&lt;string&gt;mqqapi&lt;/string&gt;
+&lt;string&gt;mqqOpensdkSSoLogin&lt;/string&gt;
+&lt;string&gt;mqqconnect&lt;/string&gt;
+&lt;string&gt;mqqopensdkdataline&lt;/string&gt;
+&lt;string&gt;mqqopensdkgrouptribeshare&lt;/string&gt;
+&lt;string&gt;mqqopensdkfriend&lt;/string&gt;
+&lt;string&gt;mqqopensdkapi&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV2&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;
+&lt;string&gt;mqzoneopensdk&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;
+&lt;string&gt;mqzone&lt;/string&gt;
+&lt;string&gt;mqzonev2&lt;/string&gt;
+&lt;string&gt;mqzoneshare&lt;/string&gt;
+&lt;string&gt;wtloginqzone&lt;/string&gt;
+&lt;string&gt;mqzonewx&lt;/string&gt;
+&lt;string&gt;mqzoneopensdkapiV2&lt;/string&gt;
+&lt;string&gt;mqzoneopensdkapi19&lt;/string&gt;
+&lt;string&gt;mqzoneopensdkapi&lt;/string&gt;
+&lt;string&gt;mqzoneopensdk&lt;/string&gt;
+&lt;string&gt;weixin&lt;/string&gt;
+&lt;string&gt;wtloginmqq2&lt;/string&gt;
+&lt;/array&gt;
+</code></pre><h3 id="开始接入"><a href="#开始接入" class="headerlink" title="开始接入"></a>开始接入</h3><ul>
+<li>导入SDK的头文件<pre><code>#import &quot;EyuGameSDK/EyuGameSDKHeader.h&quot;
+</code></pre></li>
+<li>在<strong>Appdelegate</strong>中程序最早启动的地方加入初始化sdk的方法</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</div><div class="line">/*---------------初始化SDK--------------------------*/</div><div class="line">[EyuGameSDK sharedInstance].isDebugEnable = YES;</div><div class="line">[[EyuGameSDK sharedInstance] initializeEyuGameSDKWithAppID:@&quot;999&quot; andAppKey:@&quot;8ae9fb6ca6d439bbb00b8552472e5038&quot;];</div><div class="line">/*--------------向QQ注册--------------------------*/</div><div class="line">//QQ</div><div class="line">[EyuLogin_QQ regitserQQToTencent];</div><div class="line">/*--------------向微信注册---------------------*/</div><div class="line">//weixin</div><div class="line">[EyuLogin_WeChat WeChatRegister];</div><div class="line">return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>处理连接回调保证唤起第三方APP时候保证能接受到信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url</div><div class="line">&#123;</div><div class="line">NSLog(@&quot;--------url = %@-----&quot;,url);</div><div class="line">NSString * urlstring = url.absoluteString;</div><div class="line">NSLog(@&quot;urlstring = %@&quot;,urlstring);</div><div class="line">if ([urlstring containsString:@&quot;tencent&quot;]) &#123;</div><div class="line">//QQ</div><div class="line">return [TencentOAuth HandleOpenURL:url];</div><div class="line">&#125;</div><div class="line">else if ([urlstring containsString:@&quot;wx&quot;])&#123;</div><div class="line">[EyuLogin_WeChat WeChatHandleOpenURL:url];</div><div class="line">return YES;</div><div class="line">&#125;else&#123;</div><div class="line">return YES;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在需要登录窗的控制器 viewdidload 方法加入带登录视图的代码</p>
-</li>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+/*---------------初始化SDK--------------------------*/
+[EyuGameSDK sharedInstance].isDebugEnable = YES;
+[[EyuGameSDK sharedInstance] initializeEyuGameSDKWithAppID:@&quot;999&quot; andAppKey:@&quot;8ae9fb6ca6d439bbb00b8552472e5038&quot;];
+/*--------------向QQ注册--------------------------*/
+//QQ
+[EyuLogin_QQ regitserQQToTencent];
+/*--------------向微信注册---------------------*/
+//weixin
+[EyuLogin_WeChat WeChatRegister];
+return YES;
+}
+</code></pre><ul>
+<li>处理连接回调保证唤起第三方APP时候保证能接受到信息<pre><code>-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+NSLog(@&quot;--------url = %@-----&quot;,url);
+NSString * urlstring = url.absoluteString;
+NSLog(@&quot;urlstring = %@&quot;,urlstring);
+if ([urlstring containsString:@&quot;tencent&quot;]) {
+//QQ
+return [TencentOAuth HandleOpenURL:url];
+}
+else if ([urlstring containsString:@&quot;wx&quot;]){
+[EyuLogin_WeChat WeChatHandleOpenURL:url];
+return YES;
+}else{
+return YES;
+}
+}
+</code></pre></li>
+<li>在需要登录窗的控制器 viewdidload 方法加入带登录视图的代码</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[EyuGameSDK sharedInstance]LoginWithView];</div></pre></td></tr></table></figure>
-<p><strong>🚀 成功</strong></p>
+<pre><code>[[EyuGameSDK sharedInstance]LoginWithView];
+</code></pre><p><strong>🚀 成功</strong></p>
 <p>Copyright © 2017广州易娱游戏科技有限公司 Copyright Holder All Rights Reserved.</p>
 <hr>
 <ul>

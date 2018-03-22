@@ -32,7 +32,7 @@
   <!-- Google Analytics -->
   
 
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
   <body>
     <!-- Page Header -->
@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-03-07</span>
-            <span class="time">18:08:20</span>
+            <span class="time">11:33:03</span>
           </span>
           
         </div>
@@ -138,13 +138,22 @@
 <li><p>LKImageView<br>lkimageview是一个自定义UI控件 包含多种属性,以及对象方法</p>
 </li>
 <li><p><strong>快速使用</strong></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.imageView = [[LKImageView alloc] init];</div><div class="line">/<span class="regexp">/遵守代理方法</span></div><div class="line"><span class="regexp">self.imageView.delegate = self;</span></div><div class="line"><span class="regexp">LKImageURLRequest * request = [LKImageURLRequest requestWithURL:@"你的图片URL"];</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/将请求传递给imageview的属性</span></div><div class="line"><span class="regexp">self.imageView.request = request;</span></div></pre></td></tr></table></figure>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">self</span><span class="token punctuation">.</span>imageView <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">LKImageView</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>遵守代理方法
+<span class="token keyword">self</span><span class="token punctuation">.</span>imageView<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">;</span>
+<span class="token constant">LKImageURLRequest</span> <span class="token operator">*</span> request <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">LKImageURLRequest</span> requestWithURL<span class="token punctuation">:</span>@<span class="token string">"你的图片URL"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>将请求传递给imageview的属性
+<span class="token keyword">self</span><span class="token punctuation">.</span>imageView<span class="token punctuation">.</span>request <span class="token operator">=</span> request<span class="token punctuation">;</span>
+</code></pre>
 </li>
-<li><p><strong>属性说明</strong></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/将加载的图片是否渐进加载出来</span></div><div class="line"><span class="regexp">request.supportProgressive = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/predrawEnabled默认是flase即直接使用原始图像。内部图像视图缩放图像移动和规模。(由ImageIO解码)</span></div><div class="line"><span class="regexp">self.imageView1.predrawEnabled = YES;</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/其他部分属性请见源码</span></div></pre></td></tr></table></figure>
+<li><strong>属性说明</strong><pre class=" language-ruby"><code class="language-ruby"><span class="token operator">/</span><span class="token operator">/</span>将加载的图片是否渐进加载出来
+request<span class="token punctuation">.</span>supportProgressive <span class="token operator">=</span> <span class="token constant">YES</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>predrawEnabled默认是flase即直接使用原始图像。内部图像视图缩放图像移动和规模。<span class="token punctuation">(</span>由<span class="token constant">ImageIO</span>解码<span class="token punctuation">)</span>
+<span class="token keyword">self</span><span class="token punctuation">.</span>imageView1<span class="token punctuation">.</span>predrawEnabled <span class="token operator">=</span> <span class="token constant">YES</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>其他部分属性请见源码
+</code></pre>
 </li>
-<li><p><strong>整体分析</strong><br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180305_24.png" alt="Snip20180305_24"></p>
-</li>
+<li><strong>整体分析</strong><br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180305_24.png" alt="Snip20180305_24"></li>
 <li>从上图看有LKiageView / Facede / Delegate /LKImageViewEffect根据对应的方法可以找出对应的用途例如可以将 图片加载成功/失败/加载进行时的图片进行添加</li>
 <li>遵守代理可以监听图片加载成功或者失败的方法</li>
 <li>可以添加后期特效 变灰/模糊处理等</li>
@@ -154,15 +163,92 @@
 <ul>
 <li>LKImageLogManager //打印日志 设置打印优先级</li>
 <li>LKImageDecoderManger</li>
-<li>lkimagedecoder 解码类中只有一个方法就是<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (UIImage * _Nullable )<span class="symbol">imageFromData:</span>(NSData * _Nullable)data <span class="symbol">request:</span>(LKImageRequest * _Nullable)request <span class="symbol">error:</span>(NSError ** _Nullable)error;</div></pre></td></tr></table></figure>
-</li>
+<li>lkimagedecoder 解码类中只有一个方法就是<br>```ruby</li>
+<li>(UIImage <em> _Nullable )imageFromData:(NSData </em> _Nullable)data request:(LKImageRequest <em> _Nullable)request error:(NSError *</em> _Nullable)error;</li>
 </ul>
-<p>该方法是首先判断传入的data是否存在,如果不存在即不用处理,直接return nil;<br>如果data存在即进行下一步的解析,将request进行解析.</p>
-<ul>
-<li>image/io的知识补充<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/测试imageio支持的图片格式</span></div><div class="line"><span class="regexp">CFArrayRef mysourceType = CGImageSourceCopyTypeIdentifiers();</span></div><div class="line"><span class="regexp">CFShow(mysourceType);</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/打印结果</span></div><div class="line"><span class="regexp">"public.jpeg",</span></div><div class="line"><span class="regexp">"public.png",</span></div><div class="line"><span class="regexp">"com.compuserve.gif",</span></div><div class="line"><span class="regexp">"com.canon.tif-raw-image",</span></div><div class="line"><span class="regexp">"com.adobe.raw-image",</span></div><div class="line"><span class="regexp">"com.dxo.raw-image",</span></div><div class="line"><span class="regexp">"com.canon.cr2-raw-image",</span></div><div class="line"><span class="regexp">"com.leafamerica.raw-image",</span></div><div class="line"><span class="regexp">"com.hasselblad.fff-raw-image",</span></div><div class="line"><span class="regexp">"com.hasselblad.3fr-raw-image",</span></div><div class="line"><span class="regexp">"com.nikon.raw-image",</span></div><div class="line"><span class="regexp">"com.nikon.nrw-raw-image",</span></div><div class="line"><span class="regexp">"com.pentax.raw-image",</span></div><div class="line"><span class="regexp">"com.samsung.raw-image",</span></div><div class="line"><span class="regexp">"com.sony.raw-image",</span></div><div class="line"><span class="regexp">"com.sony.sr2-raw-image",</span></div><div class="line"><span class="regexp">"com.sony.arw-raw-image",</span></div><div class="line"><span class="regexp">"com.epson.raw-image",</span></div><div class="line"><span class="regexp">"com.kodak.raw-image",</span></div><div class="line"><span class="regexp">"public.tiff",</span></div><div class="line"><span class="regexp">"public.jpeg-2000",</span></div><div class="line"><span class="regexp">"com.apple.atx",</span></div><div class="line"><span class="regexp">"org.khronos.astc",</span></div><div class="line"><span class="regexp">"org.khronos.ktx",</span></div><div class="line"><span class="regexp">"com.canon.crw-raw-image",</span></div><div class="line"><span class="regexp">"com.fuji.raw-image",</span></div><div class="line"><span class="regexp">"com.panasonic.raw-image",</span></div><div class="line"><span class="regexp">"com.panasonic.rw2-raw-image",</span></div><div class="line"><span class="regexp">"com.leica.raw-image",</span></div><div class="line"><span class="regexp">"com.leica.rwl-raw-image",</span></div><div class="line"><span class="regexp">"com.konicaminolta.raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.sr-raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.or-raw-image",</span></div><div class="line"><span class="regexp">"com.olympus.raw-image",</span></div><div class="line"><span class="regexp">"com.phaseone.raw-image",</span></div><div class="line"><span class="regexp">"com.microsoft.ico",</span></div><div class="line"><span class="regexp">"com.microsoft.bmp",</span></div><div class="line"><span class="regexp">"com.apple.icns",</span></div><div class="line"><span class="regexp">"com.adobe.photoshop-image",</span></div><div class="line"><span class="regexp">"com.microsoft.cur",</span></div><div class="line"><span class="regexp">"com.truevision.tga-image",</span></div><div class="line"><span class="regexp">"com.ilm.openexr-image",</span></div><div class="line"><span class="regexp">"public.radiance",</span></div><div class="line"><span class="regexp">"public.pbm",</span></div><div class="line"><span class="regexp">"public.mpo-image",</span></div><div class="line"><span class="regexp">"public.pvr"</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/创建和使用imageSources</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/从Image Sources中创建一个图像</span></div><div class="line"><span class="regexp">当从Image Sources中创建图片时，可以提供一个index和dictionary（利用键值对）来创建一个缩略图或者是允许缓存。</span></div><div class="line"><span class="regexp">在创建图片的时候，也需提供一个index值来索引图片，因为Image Sources中可能是多张图片，如果参数时0，那么只有一个图片。</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>创建一个方法 传入url返回cgimage<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="type">CGImageRef</span> myCreateCGimageFromFile(<span class="type">NSString</span> *path)&#123;</div><div class="line"><span class="type">NSURL</span> *url = [<span class="type">NSURL</span> <span class="type">URLWithString</span>:path];</div><div class="line"><span class="type">CGImageRef</span> image;</div><div class="line"><span class="type">CGImageSourceRef</span> imageSource;</div><div class="line"><span class="type">CFDictionaryRef</span> imageOptions;</div><div class="line"><span class="type">CFStringRef</span> imageKeys[<span class="number">2</span>];</div><div class="line"><span class="type">CFTypeRef</span> imageValues[<span class="number">2</span>];</div><div class="line"><span class="comment">//缓存键值对</span></div><div class="line">imageKeys[<span class="number">0</span>] = kCGImageSourceShouldCache;</div><div class="line">imageValues[<span class="number">0</span>] = (<span class="type">CFTypeRef</span>) kCFBooleanFalse;</div><div class="line"><span class="comment">//float-point键值对</span></div><div class="line">imageKeys[<span class="number">1</span>] = kCGImageSourceShouldAllowFloat;</div><div class="line">imageValues[<span class="number">1</span>] = (<span class="type">CFTypeRef</span>)kCFBooleanTrue;</div><div class="line"><span class="comment">//获取dictionary</span></div><div class="line">imageOptions = <span class="type">CFDictionaryCreate</span>(<span class="type">NULL</span>, (const void **)imageKeys, (const void **)imageValues, <span class="number">2</span>, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);</div><div class="line">imageSource = <span class="type">CGImageSourceCreateWithURL</span>((<span class="type">CFURLRef</span>)url, imageOptions);</div><div class="line"><span class="type">CFRelease</span>(imageOptions);</div><div class="line"><span class="keyword">if</span> (imageSource == <span class="type">NULL</span>) &#123;</div><div class="line"><span class="keyword">return</span> <span class="type">NULL</span>;</div><div class="line">&#125;</div><div class="line">image = <span class="type">CGImageSourceCreateImageAtIndex</span>(imageSource, <span class="number">0</span>, <span class="type">NULL</span>);</div><div class="line"><span class="keyword">return</span> image;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<pre><code>该方法是首先判断传入的data是否存在,如果不存在即不用处理,直接return nil;
+如果data存在即进行下一步的解析,将request进行解析.
+- image/io的知识补充
+```ruby
+//测试imageio支持的图片格式
+CFArrayRef mysourceType = CGImageSourceCopyTypeIdentifiers();
+CFShow(mysourceType);
+//打印结果
+&quot;public.jpeg&quot;,
+&quot;public.png&quot;,
+&quot;com.compuserve.gif&quot;,
+&quot;com.canon.tif-raw-image&quot;,
+&quot;com.adobe.raw-image&quot;,
+&quot;com.dxo.raw-image&quot;,
+&quot;com.canon.cr2-raw-image&quot;,
+&quot;com.leafamerica.raw-image&quot;,
+&quot;com.hasselblad.fff-raw-image&quot;,
+&quot;com.hasselblad.3fr-raw-image&quot;,
+&quot;com.nikon.raw-image&quot;,
+&quot;com.nikon.nrw-raw-image&quot;,
+&quot;com.pentax.raw-image&quot;,
+&quot;com.samsung.raw-image&quot;,
+&quot;com.sony.raw-image&quot;,
+&quot;com.sony.sr2-raw-image&quot;,
+&quot;com.sony.arw-raw-image&quot;,
+&quot;com.epson.raw-image&quot;,
+&quot;com.kodak.raw-image&quot;,
+&quot;public.tiff&quot;,
+&quot;public.jpeg-2000&quot;,
+&quot;com.apple.atx&quot;,
+&quot;org.khronos.astc&quot;,
+&quot;org.khronos.ktx&quot;,
+&quot;com.canon.crw-raw-image&quot;,
+&quot;com.fuji.raw-image&quot;,
+&quot;com.panasonic.raw-image&quot;,
+&quot;com.panasonic.rw2-raw-image&quot;,
+&quot;com.leica.raw-image&quot;,
+&quot;com.leica.rwl-raw-image&quot;,
+&quot;com.konicaminolta.raw-image&quot;,
+&quot;com.olympus.sr-raw-image&quot;,
+&quot;com.olympus.or-raw-image&quot;,
+&quot;com.olympus.raw-image&quot;,
+&quot;com.phaseone.raw-image&quot;,
+&quot;com.microsoft.ico&quot;,
+&quot;com.microsoft.bmp&quot;,
+&quot;com.apple.icns&quot;,
+&quot;com.adobe.photoshop-image&quot;,
+&quot;com.microsoft.cur&quot;,
+&quot;com.truevision.tga-image&quot;,
+&quot;com.ilm.openexr-image&quot;,
+&quot;public.radiance&quot;,
+&quot;public.pbm&quot;,
+&quot;public.mpo-image&quot;,
+&quot;public.pvr&quot;
+//创建和使用imageSources
+//从Image Sources中创建一个图像
+当从Image Sources中创建图片时，可以提供一个index和dictionary（利用键值对）来创建一个缩略图或者是允许缓存。
+在创建图片的时候，也需提供一个index值来索引图片，因为Image Sources中可能是多张图片，如果参数时0，那么只有一个图片。
+</code></pre><p>创建一个方法 传入url返回cgimage</p>
+<pre class=" language-swift"><code class="language-swift"><span class="token builtin">CGImageRef</span> <span class="token function">myCreateCGimageFromFile</span><span class="token punctuation">(</span><span class="token builtin">NSString</span> <span class="token operator">*</span>path<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token constant">NSURL</span> <span class="token operator">*</span>url <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">NSURL</span> <span class="token builtin">URLWithString</span><span class="token punctuation">:</span>path<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">CGImageRef</span> image<span class="token punctuation">;</span>
+<span class="token builtin">CGImageSourceRef</span> imageSource<span class="token punctuation">;</span>
+<span class="token builtin">CFDictionaryRef</span> imageOptions<span class="token punctuation">;</span>
+<span class="token builtin">CFStringRef</span> imageKeys<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">CFTypeRef</span> imageValues<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//缓存键值对</span>
+imageKeys<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">kCGImageSourceShouldCache</span><span class="token punctuation">;</span>
+imageValues<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">CFTypeRef</span><span class="token punctuation">)</span> <span class="token constant">kCFBooleanFalse</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//float-point键值对</span>
+imageKeys<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">kCGImageSourceShouldAllowFloat</span><span class="token punctuation">;</span>
+imageValues<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">CFTypeRef</span><span class="token punctuation">)</span><span class="token constant">kCFBooleanTrue</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//获取dictionary</span>
+imageOptions <span class="token operator">=</span> <span class="token function">CFDictionaryCreate</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>const void <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>imageKeys<span class="token punctuation">,</span> <span class="token punctuation">(</span>const void <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>imageValues<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token constant">kCFTypeDictionaryKeyCallBacks</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token constant">kCFTypeDictionaryValueCallBacks</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+imageSource <span class="token operator">=</span> <span class="token function">CGImageSourceCreateWithURL</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">CFURLRef</span><span class="token punctuation">)</span>url<span class="token punctuation">,</span> imageOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">CFRelease</span><span class="token punctuation">(</span>imageOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>imageSource <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+image <span class="token operator">=</span> <span class="token function">CGImageSourceCreateImageAtIndex</span><span class="token punctuation">(</span>imageSource<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> image<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>然后接着处理,就是一些业务逻辑任务,例如需要遮罩图层与否,需要缓存,或者<br>一些demo业务逻辑不做更多说明</p>
 <hr>
 <p><strong>LoaderManager</strong><br>LKimageKit的核心业务就是在LoaderManager中因为在sdk的readme中是如下说明:</p>
@@ -186,7 +272,9 @@
 <li><p>高度模块化，可由开发者自定义各部分模块</p>
 </li>
 </ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSOperationQueue *queue;</div><div class="line">@property (nonatomic, strong) dispatch_semaphore_t semaphore;</div></pre></td></tr></table></figure>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> strong<span class="token punctuation">)</span> <span class="token constant">NSOperationQueue</span> <span class="token operator">*</span>queue<span class="token punctuation">;</span>
+<span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> strong<span class="token punctuation">)</span> dispatch_semaphore_t semaphore<span class="token punctuation">;</span>
+</code></pre>
 <h2 id="可以看出NSOpreation处理多线程-GCD来控制更高一次层的多信号量并发问题"><a href="#可以看出NSOpreation处理多线程-GCD来控制更高一次层的多信号量并发问题" class="headerlink" title="可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题."></a>可以看出NSOpreation处理多线程,GCD来控制更高一次层的多信号量并发问题.</h2><p><strong>GCD</strong><br>dispatch_semaphore是GCD用来同步的一种方式，与他相关的共有三个函数，分别是</p>
 <p>dispatch_semaphore_create，dispatch_semaphore_signal，dispatch_semaphore_wait。</p>
 <p>下面我们逐一介绍三个函数：</p>
@@ -214,10 +302,11 @@
 <hr>
 <p><strong>瀑布流</strong></p>
 <ul>
-<li>快速使用<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@property (nonatomic, strong) NSMutableArray&lt;ExampleImageURLRequest*&gt; *preloadRequests;</div><div class="line">/<span class="regexp">/定义一个泛型数组 规定数组里存放着 request</span></div></pre></td></tr></table></figure>
-</li>
+<li>快速使用<pre class=" language-ruby"><code class="language-ruby"><span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> strong<span class="token punctuation">)</span> <span class="token constant">NSMutableArray</span><span class="token operator">&lt;</span><span class="token constant">ExampleImageURLRequest</span><span class="token operator">*</span><span class="token operator">></span> <span class="token operator">*</span>preloadRequests<span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span>定义一个泛型数组 规定数组里存放着 request
+</code></pre>
+<img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_3.png" alt="Snip20180307_3"><br>在生命周期中<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_4.png" alt="Snip20180307_4"><br>在视图控制器加载之前做一个预处理机制,将请求优先加载<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_5.png" alt="Snip20180307_5"><br>当视图控制器加载出来之后就可以 取消掉这些请求从而加快图片的展示.</li>
 </ul>
-<p><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_3.png" alt="Snip20180307_3"><br>在生命周期中<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_4.png" alt="Snip20180307_4"><br>在视图控制器加载之前做一个预处理机制,将请求优先加载<br><img src="/2018/03/07/LKimageKit-腾讯高性能图片开源项目/Snip20180307_5.png" alt="Snip20180307_5"><br>当视图控制器加载出来之后就可以 取消掉这些请求从而加快图片的展示.</p>
 <p>🍺<br>以上就是LKImageKit的简单解析,大致上是基于imageIO封装,支持自定义模块比较多,是开发中除了SDWebImage之外的又一个不错的图片框架,上手很简单,祝您使用开心 🎉</p>
 <p>iOS developer – JasonPHD</p>
 <p>　　　　　　　　　　　　　　　　　　　　　

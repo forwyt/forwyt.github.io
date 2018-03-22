@@ -32,7 +32,7 @@
   <!-- Google Analytics -->
   
 
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
   <body>
     <!-- Page Header -->
@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-03-19</span>
-            <span class="time">18:08:19</span>
+            <span class="time">11:33:03</span>
           </span>
           
         </div>
@@ -130,28 +130,119 @@
 <p>这些包管理工具能够快速,高效的集成我们的第三方库. cocoapods是有Ruby来编写</p>
 <h2 id="组成结构-pod-init"><a href="#组成结构-pod-init" class="headerlink" title="组成结构(pod init)"></a><strong>组成结构(pod init)</strong></h2><p>基于网上非常多如何安装cocoapod教程,这里不再描述cocoapods如何安装以及如何切换镜像源.</p>
 <p> <strong>podfile</strong></p>
-<p><img src="/2018/03/19/CocoaPods工作原理/WX20180319-103100.png" alt="WX20180319-103100"><br>podfile是cocoapods的约束描述,这种文件就是ruby的简写,其代码在实际运作中是进行翻译的<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">source <span class="string">'http://source.git'</span></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'8.0'</span></div><div class="line">target <span class="string">'Demo'</span> <span class="keyword">do</span></div><div class="line">pod <span class="string">'AFNetworking'</span></div><div class="line">pod <span class="string">'SDWebImage'</span></div><div class="line">pod <span class="string">'Masonry'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p><strong>第一步</strong> 定义类似以下几个方法<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># eval_pod.rb</span></div><div class="line">$hash_value = &#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">source</span><span class="params">(url)</span></span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">target</span><span class="params">(target)</span></span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">platform</span><span class="params">(platform, version)</span></span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pod</span><span class="params">(pod)</span></span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p><img src="/2018/03/19/CocoaPods工作原理/WX20180319-103100.png" alt="WX20180319-103100"><br>podfile是cocoapods的约束描述,这种文件就是ruby的简写,其代码在实际运作中是进行翻译的</p>
+<pre class=" language-ruby"><code class="language-ruby">source <span class="token string">'http://source.git'</span>
+platform <span class="token symbol">:ios</span><span class="token punctuation">,</span> <span class="token string">'8.0'</span>
+target <span class="token string">'Demo'</span> <span class="token keyword">do</span>
+pod <span class="token string">'AFNetworking'</span>
+pod <span class="token string">'SDWebImage'</span>
+pod <span class="token string">'Masonry'</span>
+<span class="token keyword">end</span>
+</code></pre>
+<p><strong>第一步</strong> 定义类似以下几个方法</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># eval_pod.rb</span>
+<span class="token variable">$hash_value</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">def</span> <span class="token function">source</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">target</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">platform</span><span class="token punctuation">(</span>platform<span class="token punctuation">,</span> version<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token function">pod</span><span class="token punctuation">(</span>pod<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
 <p>使用了全局变量hash_value存储podfile中那些指定的依赖库,</p>
-<p><strong>第二步</strong> 读取代码<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># eval_pod.rb</span></div><div class="line">content = File.read <span class="string">'./Podfile'</span></div><div class="line">eval content</div><div class="line">p $hash_value</div></pre></td></tr></table></figure></p>
-<p><strong>第三步</strong> 读取了Podfile文件中的内容，并把它的内容当做字符串执行，最后打印hash_value的值<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ruby eval_pod.rb</div><div class="line">&#123;<span class="string">"source"</span>=&gt;<span class="string">"http://source.git"</span>, <span class="string">"targets"</span>=&gt;[<span class="string">"Demo"</span>], <span class="string">"pods"</span>=&gt;[<span class="string">"AFNetworking"</span>, <span class="string">"SDWebImage"</span>, <span class="string">"Masonry"</span>]&#125;<span class="string">`这样我们就得到了基本上的podfile解析结果</span></div></pre></td></tr></table></figure></p>
+<p><strong>第二步</strong> 读取代码</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># eval_pod.rb</span>
+content <span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span>read <span class="token string">'./Podfile'</span>
+eval content
+p <span class="token variable">$hash_value</span>
+</code></pre>
+<p><strong>第三步</strong> 读取了Podfile文件中的内容，并把它的内容当做字符串执行，最后打印hash_value的值</p>
+<pre class=" language-ruby"><code class="language-ruby">ruby eval_pod<span class="token punctuation">.</span>rb
+<span class="token punctuation">{</span><span class="token string">"source"</span><span class="token operator">=</span><span class="token operator">></span><span class="token string">"http://source.git"</span><span class="token punctuation">,</span> <span class="token string">"targets"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"Demo"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"pods"</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">[</span><span class="token string">"AFNetworking"</span><span class="token punctuation">,</span> <span class="token string">"SDWebImage"</span><span class="token punctuation">,</span> <span class="token string">"Masonry"</span><span class="token punctuation">]</span><span class="token punctuation">}</span>`这样我们就得到了基本上的podfile解析结果
+</code></pre>
 <h2 id="cocoapods实现-pod-install"><a href="#cocoapods实现-pod-install" class="headerlink" title="cocoapods实现(pod install)"></a><strong>cocoapods实现(pod install)</strong></h2><blockquote>
 <p>podinstall 由command类派生出真正的父类 install</p>
 </blockquote>
 <p>install方法中有两个我们熟知:pod install/pod update</p>
 <p>后者会无视podfile.lock文件重新对podfile文件进行类似第一部分解析</p>
-<p>podfile中依赖是由cocoapod-core核心模块来完成<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">from_ruby</span><span class="params">(path, contents = <span class="literal">nil</span>)</span></span></div><div class="line">  contents <span class="params">||</span>= File.open(path, <span class="string">'r:utf-8'</span>, &amp;<span class="symbol">:read</span>)</div><div class="line"></div><div class="line">  podfile = Podfile.new(path) <span class="keyword">do</span></div><div class="line">	<span class="keyword">begin</span></div><div class="line">	  eval(contents, <span class="literal">nil</span>, path.to_s)</div><div class="line">	<span class="keyword">rescue</span> Exception =&gt; e</div><div class="line">	  message = <span class="string">"Invalid `<span class="subst">#&#123;path.basename&#125;</span>` file: <span class="subst">#&#123;e.message&#125;</span>"</span></div><div class="line">	  raise DSLError.new(message, path, e, contents)</div><div class="line">	<span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  podfile</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>导入DSL<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">Pod</span></span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Podfile</span></span></div><div class="line">	<span class="class"><span class="keyword">module</span> <span class="title">DSL</span></span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">pod</span><span class="params">(name = <span class="literal">nil</span>, *requirements)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">target</span><span class="params">(name, options = <span class="literal">nil</span>)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">platform</span><span class="params">(name, target = <span class="literal">nil</span>)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">inhibit_all_warnings!</span> <span class="title">end</span></span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">use_frameworks!</span><span class="params">(flag = <span class="literal">true</span>)</span></span> <span class="keyword">end</span></div><div class="line">	  <span class="function"><span class="keyword">def</span> <span class="title">source</span><span class="params">(source)</span></span> <span class="keyword">end</span></div><div class="line">	  ...</div><div class="line">	<span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>podfile中依赖是由cocoapod-core核心模块来完成</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> <span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">from_ruby</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> contents <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span>
+  contents <span class="token operator">||</span><span class="token operator">=</span> <span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token string">'r:utf-8'</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token symbol">:read</span><span class="token punctuation">)</span>
+
+  podfile <span class="token operator">=</span> <span class="token constant">Podfile</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span> <span class="token keyword">do</span>
+    <span class="token keyword">begin</span>
+      <span class="token function">eval</span><span class="token punctuation">(</span>contents<span class="token punctuation">,</span> <span class="token keyword">nil</span><span class="token punctuation">,</span> path<span class="token punctuation">.</span>to_s<span class="token punctuation">)</span>
+    <span class="token keyword">rescue</span> <span class="token builtin">Exception</span> <span class="token operator">=</span><span class="token operator">></span> e
+      message <span class="token operator">=</span> <span class="token string">"Invalid `<span class="token interpolation"><span class="token delimiter tag">#{</span>path<span class="token punctuation">.</span>basename<span class="token delimiter tag">}</span></span>` file: <span class="token interpolation"><span class="token delimiter tag">#{</span>e<span class="token punctuation">.</span>message<span class="token delimiter tag">}</span></span>"</span>
+      <span class="token keyword">raise</span> <span class="token constant">DSLError</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> path<span class="token punctuation">,</span> e<span class="token punctuation">,</span> contents<span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+  podfile
+<span class="token keyword">end</span>
+</code></pre>
+<p>导入DSL</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">module</span> <span class="token constant">Pod</span>
+  <span class="token keyword">class</span> <span class="token class-name">Podfile</span>
+    <span class="token keyword">module</span> <span class="token constant">DSL</span>
+      <span class="token keyword">def</span> <span class="token function">pod</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">,</span> <span class="token operator">*</span>requirements<span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> <span class="token function">target</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> options <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> <span class="token function">platform</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> inhibit_all_warnings<span class="token operator">!</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> use_frameworks<span class="token operator">!</span><span class="token punctuation">(</span>flag <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token keyword">def</span> <span class="token function">source</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span> <span class="token keyword">end</span>
+      <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">end</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
 <blockquote>
 <p>总结一下，CocoaPods对Podfile的解析与我们在前面做的手动解析Podfile的原理差不多，构建一个包含一些方法的上下文，然后直接执行eval方法将文件的内容当做代码来执行，这样只要Podfile中的数据是符合规范的，那么解析Podfile就是非常简单容易的。</p>
 </blockquote>
-<p>在install方法里面会出现一个resolve_dependencies类创建Analyzer实例对象<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">resolve_dependencies</span></span></div><div class="line">  analyzer = create_analyzer</div><div class="line"></div><div class="line">  plugin_sources = run_source_provider_hooks</div><div class="line">  analyzer.sources.insert(<span class="number">0</span>, *plugin_sources)</div><div class="line"></div><div class="line">  UI.section <span class="string">'Updating local specs repositories'</span> <span class="keyword">do</span></div><div class="line">	analyzer.update_repositories</div><div class="line">  <span class="keyword">end</span> <span class="keyword">if</span> repo_update?</div><div class="line"></div><div class="line">  UI.section <span class="string">'Analyzing dependencies'</span> <span class="keyword">do</span></div><div class="line">	analyze(analyzer)</div><div class="line">	validate_build_configurations</div><div class="line">	clean_sandbox</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>在install方法里面会出现一个resolve_dependencies类创建Analyzer实例对象</p>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token keyword">def</span> resolve_dependencies
+  analyzer <span class="token operator">=</span> create_analyzer
+
+  plugin_sources <span class="token operator">=</span> run_source_provider_hooks
+  analyzer<span class="token punctuation">.</span>sources<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">*</span>plugin_sources<span class="token punctuation">)</span>
+
+  <span class="token constant">UI</span><span class="token punctuation">.</span>section <span class="token string">'Updating local specs repositories'</span> <span class="token keyword">do</span>
+    analyzer<span class="token punctuation">.</span>update_repositories
+  <span class="token keyword">end</span> <span class="token keyword">if</span> repo_update<span class="token operator">?</span>
+
+  <span class="token constant">UI</span><span class="token punctuation">.</span>section <span class="token string">'Analyzing dependencies'</span> <span class="token keyword">do</span>
+    <span class="token function">analyze</span><span class="token punctuation">(</span>analyzer<span class="token punctuation">)</span>
+    validate_build_configurations
+    clean_sandbox
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre>
 <p><strong>解决依赖</strong><br>我们开发中知道,如果你用xcode去简历一个framework最头疼的问题无异于,需要引入第三方库,一旦这个库封装的不好,可能导致在别人使用的时候导致冲突,但是cocoapods引入库处理的非常好</p>
 <blockquote>
 <p>CocoaPods为了解决Podfile中声明的依赖关系，使用了一个叫做Milinillo的依赖关系解决算法;但是，笔者在Google上并没有找到与这个算法相关的其他信息，推测是CocoaPods为了解决iOS中的依赖关系创造的算法。</p>
 </blockquote>
 <p>Milinillo算法的核心是回溯（Backtracking）以及向前检查（forward check），整个过程会追踪栈中的两个状态（依赖和可能性）。</p>
-<p><strong>下载依赖</strong><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">installer.install_source_of_pod</div><div class="line"><span class="params">|-- create_pod_installer</span></div><div class="line"><span class="params">|</span>	<span class="string">`-- PodSourceInstaller.new</span></div><div class="line"><span class="string">`</span>-- podSourceInstaller.install!</div><div class="line">	<span class="string">`-- download_source</span></div><div class="line"><span class="string">	   `</span>-- Downloader.download</div><div class="line">		   <span class="string">`-- Downloader.download_request</span></div><div class="line"><span class="string">			   `</span>-- Downloader.download_source</div><div class="line">				   <span class="params">|-- Downloader.for_target</span></div><div class="line"><span class="params">				   |</span>   <span class="params">|-- Downloader.class_for_options</span></div><div class="line"><span class="params">				   |</span>   <span class="string">`-- Git/HTTP/Mercurial/Subversion.new</span></div><div class="line"><span class="string">				   |-- Git/HTTP/Mercurial/Subversion.download</span></div><div class="line"><span class="string">				   `</span>-- Git/HTTP/Mercurial/Subversion.download!</div><div class="line">					   <span class="string">`-- Git.clone</span></div></pre></td></tr></table></figure></p>
+<p><strong>下载依赖</strong></p>
+<pre class=" language-ruby"><code class="language-ruby">installer<span class="token punctuation">.</span>install_source_of_pod
+<span class="token operator">|</span><span class="token operator">--</span> create_pod_installer
+<span class="token operator">|</span>    `<span class="token operator">--</span> <span class="token constant">PodSourceInstaller</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+`<span class="token operator">--</span> podSourceInstaller<span class="token punctuation">.</span>install<span class="token operator">!</span>
+    `<span class="token operator">--</span> download_source
+       `<span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>download
+           `<span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>download_request
+               `<span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>download_source
+                   <span class="token operator">|</span><span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>for_target
+                   <span class="token operator">|</span>   <span class="token operator">|</span><span class="token operator">--</span> <span class="token constant">Downloader</span><span class="token punctuation">.</span>class_for_options
+                   <span class="token operator">|</span>   `<span class="token operator">--</span> <span class="token constant">Git</span><span class="token operator">/</span><span class="token constant">HTTP</span><span class="token operator">/</span><span class="token constant">Mercurial</span><span class="token operator">/</span><span class="token constant">Subversion</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+                   <span class="token operator">|</span><span class="token operator">--</span> <span class="token constant">Git</span><span class="token operator">/</span><span class="token constant">HTTP</span><span class="token operator">/</span><span class="token constant">Mercurial</span><span class="token operator">/</span><span class="token constant">Subversion</span><span class="token punctuation">.</span>download
+                   `<span class="token operator">--</span> <span class="token constant">Git</span><span class="token operator">/</span><span class="token constant">HTTP</span><span class="token operator">/</span><span class="token constant">Mercurial</span><span class="token operator">/</span><span class="token constant">Subversion</span><span class="token punctuation">.</span>download<span class="token operator">!</span>
+                       `<span class="token operator">--</span> <span class="token constant">Git</span><span class="token punctuation">.</span>clone
+</code></pre>
 <h2 id="生成pods-xodeproj"><a href="#生成pods-xodeproj" class="headerlink" title="生成pods.xodeproj"></a>生成pods.xodeproj</h2><p>generate!方法<br>这个方法做了几件小事：<br>1.生成Pods.xcodeproj工程</p>
 <p>2.将依赖中的文件加入工程</p>
 <p>3.将依赖中的图书馆加入工程</p>

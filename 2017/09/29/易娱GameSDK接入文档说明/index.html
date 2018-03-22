@@ -32,7 +32,7 @@
   <!-- Google Analytics -->
   
 
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
 
   <body>
     <!-- Page Header -->
@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-09-29</span>
-            <span class="time">18:08:20</span>
+            <span class="time">11:33:03</span>
           </span>
           
         </div>
@@ -136,24 +136,76 @@
 <li><p>配置白名单(由于国内的SDK需要支持 QQ 和 微信 第三方登录)打开info.plist文件添加对应的字段,可以右键点击info.plist文件open as sourcecode 将下列文字复制添加进去即可<br><img src="/2017/09/29/易娱GameSDK接入文档说明/Snip20170918_9.png" alt="Snip20170918_9"></p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;</div><div class="line">&lt;array&gt;</div><div class="line">&lt;string&gt;wechat&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqq&lt;/string&gt;</div><div class="line">&lt;string&gt;weixin&lt;/string&gt;</div><div class="line">&lt;string&gt;mqq&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqOpensdkSSoLogin&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqconnect&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkdataline&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkgrouptribeshare&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkfriend&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV2&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdk&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;</div><div class="line">&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzone&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzonev2&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneshare&lt;/string&gt;</div><div class="line">&lt;string&gt;wtloginqzone&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzonewx&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdkapiV2&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdkapi19&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdkapi&lt;/string&gt;</div><div class="line">&lt;string&gt;mqzoneopensdk&lt;/string&gt;</div><div class="line">&lt;string&gt;weixin&lt;/string&gt;</div><div class="line">&lt;string&gt;wtloginmqq2&lt;/string&gt;</div><div class="line">&lt;/array&gt;</div></pre></td></tr></table></figure>
-<h3 id="开始接入"><a href="#开始接入" class="headerlink" title="开始接入"></a>开始接入</h3><ul>
-<li><p>导入SDK的头文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &quot;EyuGameSDK/EyuGameSDKHeader.h&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在<strong>Appdelegate</strong>中程序最早启动的地方加入初始化sdk的方法</p>
-</li>
+<pre><code>&lt;key&gt;LSApplicationQueriesSchemes&lt;/key&gt;
+&lt;array&gt;
+&lt;string&gt;wechat&lt;/string&gt;
+&lt;string&gt;mqqapi&lt;/string&gt;
+&lt;string&gt;mqq&lt;/string&gt;
+&lt;string&gt;weixin&lt;/string&gt;
+&lt;string&gt;mqq&lt;/string&gt;
+&lt;string&gt;mqqapi&lt;/string&gt;
+&lt;string&gt;mqqOpensdkSSoLogin&lt;/string&gt;
+&lt;string&gt;mqqconnect&lt;/string&gt;
+&lt;string&gt;mqqopensdkdataline&lt;/string&gt;
+&lt;string&gt;mqqopensdkgrouptribeshare&lt;/string&gt;
+&lt;string&gt;mqqopensdkfriend&lt;/string&gt;
+&lt;string&gt;mqqopensdkapi&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV2&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;
+&lt;string&gt;mqzoneopensdk&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;
+&lt;string&gt;mqqopensdkapiV3&lt;/string&gt;
+&lt;string&gt;mqzone&lt;/string&gt;
+&lt;string&gt;mqzonev2&lt;/string&gt;
+&lt;string&gt;mqzoneshare&lt;/string&gt;
+&lt;string&gt;wtloginqzone&lt;/string&gt;
+&lt;string&gt;mqzonewx&lt;/string&gt;
+&lt;string&gt;mqzoneopensdkapiV2&lt;/string&gt;
+&lt;string&gt;mqzoneopensdkapi19&lt;/string&gt;
+&lt;string&gt;mqzoneopensdkapi&lt;/string&gt;
+&lt;string&gt;mqzoneopensdk&lt;/string&gt;
+&lt;string&gt;weixin&lt;/string&gt;
+&lt;string&gt;wtloginmqq2&lt;/string&gt;
+&lt;/array&gt;
+</code></pre><h3 id="开始接入"><a href="#开始接入" class="headerlink" title="开始接入"></a>开始接入</h3><ul>
+<li>导入SDK的头文件<pre><code>#import &quot;EyuGameSDK/EyuGameSDKHeader.h&quot;
+</code></pre></li>
+<li>在<strong>Appdelegate</strong>中程序最早启动的地方加入初始化sdk的方法</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</div><div class="line">/*---------------初始化SDK--------------------------*/</div><div class="line">[EyuGameSDK sharedInstance].isDebugEnable = YES;</div><div class="line">[[EyuGameSDK sharedInstance] initializeEyuGameSDKWithAppID:@&quot;999&quot; andAppKey:@&quot;8ae9fb6ca6d439bbb00b8552472e5038&quot;];</div><div class="line">/*--------------向QQ注册--------------------------*/</div><div class="line">//QQ</div><div class="line">[EyuLogin_QQ regitserQQToTencent];</div><div class="line">/*--------------向微信注册---------------------*/</div><div class="line">//weixin</div><div class="line">[EyuLogin_WeChat WeChatRegister];</div><div class="line">return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>处理连接回调保证唤起第三方APP时候保证能接受到信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url</div><div class="line">&#123;</div><div class="line">NSLog(@&quot;--------url = %@-----&quot;,url);</div><div class="line">NSString * urlstring = url.absoluteString;</div><div class="line">NSLog(@&quot;urlstring = %@&quot;,urlstring);</div><div class="line">if ([urlstring containsString:@&quot;tencent&quot;]) &#123;</div><div class="line">//QQ</div><div class="line">return [TencentOAuth HandleOpenURL:url];</div><div class="line">&#125;</div><div class="line">else if ([urlstring containsString:@&quot;wx&quot;])&#123;</div><div class="line">[EyuLogin_WeChat WeChatHandleOpenURL:url];</div><div class="line">return YES;</div><div class="line">&#125;else&#123;</div><div class="line">return YES;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>在需要登录窗的控制器 viewdidload 方法加入带登录视图的代码</p>
-</li>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+/*---------------初始化SDK--------------------------*/
+[EyuGameSDK sharedInstance].isDebugEnable = YES;
+[[EyuGameSDK sharedInstance] initializeEyuGameSDKWithAppID:@&quot;999&quot; andAppKey:@&quot;8ae9fb6ca6d439bbb00b8552472e5038&quot;];
+/*--------------向QQ注册--------------------------*/
+//QQ
+[EyuLogin_QQ regitserQQToTencent];
+/*--------------向微信注册---------------------*/
+//weixin
+[EyuLogin_WeChat WeChatRegister];
+return YES;
+}
+</code></pre><ul>
+<li>处理连接回调保证唤起第三方APP时候保证能接受到信息<pre><code>-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+NSLog(@&quot;--------url = %@-----&quot;,url);
+NSString * urlstring = url.absoluteString;
+NSLog(@&quot;urlstring = %@&quot;,urlstring);
+if ([urlstring containsString:@&quot;tencent&quot;]) {
+//QQ
+return [TencentOAuth HandleOpenURL:url];
+}
+else if ([urlstring containsString:@&quot;wx&quot;]){
+[EyuLogin_WeChat WeChatHandleOpenURL:url];
+return YES;
+}else{
+return YES;
+}
+}
+</code></pre></li>
+<li>在需要登录窗的控制器 viewdidload 方法加入带登录视图的代码</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[EyuGameSDK sharedInstance]LoginWithView];</div></pre></td></tr></table></figure>
-<p><strong>🚀 成功</strong></p>
+<pre><code>[[EyuGameSDK sharedInstance]LoginWithView];
+</code></pre><p><strong>🚀 成功</strong></p>
 <p>Copyright © 2017广州易娱游戏科技有限公司 Copyright Holder All Rights Reserved.</p>
 <hr>
 <ul>
