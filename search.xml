@@ -727,35 +727,90 @@ request<span class="token punctuation">.</span>supportProgressive <span class="t
 <li>LKImageDecoderManger</li>
 <li><p>lkimagedecoder 解码类中只有一个方法就是</p>
 </li>
-<li><p>(UIImage <em> _Nullable )imageFromData:(NSData </em> _Nullable)data request:(LKImageRequest <em> _Nullable)request error:(NSError *</em> _Nullable)error;<br>```ruby<br>该方法是首先判断传入的data是否存在,如果不存在即不用处理,直接return nil;<br>如果data存在即进行下一步的解析,将request进行解析.</p>
+<li><p>(UIImage <em> _Nullable )imageFromData:(NSData </em> _Nullable)data request:(LKImageRequest <em> _Nullable)request error:(NSError *</em> _Nullable)error;</p>
 </li>
-<li>image/io的知识补充<br>//测试imageio支持的图片格式<br>CFArrayRef mysourceType = CGImageSourceCopyTypeIdentifiers();<br>CFShow(mysourceType);<br>//打印结果<br>“public.jpeg”,<br>“public.png”,<br>“com.compuserve.gif”,<br>“com.canon.tif-raw-image”,<br>“com.adobe.raw-image”,<br>“com.dxo.raw-image”,<br>“com.canon.cr2-raw-image”,<br>“com.leafamerica.raw-image”,<br>“com.hasselblad.fff-raw-image”,<br>“com.hasselblad.3fr-raw-image”,<br>“com.nikon.raw-image”,<br>“com.nikon.nrw-raw-image”,<br>“com.pentax.raw-image”,<br>“com.samsung.raw-image”,<br>“com.sony.raw-image”,<br>“com.sony.sr2-raw-image”,<br>“com.sony.arw-raw-image”,<br>“com.epson.raw-image”,<br>“com.kodak.raw-image”,<br>“public.tiff”,<br>“public.jpeg-2000”,<br>“com.apple.atx”,<br>“org.khronos.astc”,<br>“org.khronos.ktx”,<br>“com.canon.crw-raw-image”,<br>“com.fuji.raw-image”,<br>“com.panasonic.raw-image”,<br>“com.panasonic.rw2-raw-image”,<br>“com.leica.raw-image”,<br>“com.leica.rwl-raw-image”,<br>“com.konicaminolta.raw-image”,<br>“com.olympus.sr-raw-image”,<br>“com.olympus.or-raw-image”,<br>“com.olympus.raw-image”,<br>“com.phaseone.raw-image”,<br>“com.microsoft.ico”,<br>“com.microsoft.bmp”,<br>“com.apple.icns”,<br>“com.adobe.photoshop-image”,<br>“com.microsoft.cur”,<br>“com.truevision.tga-image”,<br>“com.ilm.openexr-image”,<br>“public.radiance”,<br>“public.pbm”,<br>“public.mpo-image”,<br>“public.pvr”<br>//创建和使用imageSources<br>//从Image Sources中创建一个图像<br>当从Image Sources中创建图片时，可以提供一个index和dictionary（利用键值对）来创建一个缩略图或者是允许缓存。<br>在创建图片的时候，也需提供一个index值来索引图片，因为Image Sources中可能是多张图片，如果参数时0，那么只有一个图片。<pre><code>创建一个方法 传入url返回cgimage
-```swift
-CGImageRef myCreateCGimageFromFile(NSString *path){
-NSURL *url = [NSURL URLWithString:path];
-CGImageRef image;
-CGImageSourceRef imageSource;
-CFDictionaryRef imageOptions;
-CFStringRef imageKeys[2];
-CFTypeRef imageValues[2];
-//缓存键值对
-imageKeys[0] = kCGImageSourceShouldCache;
-imageValues[0] = (CFTypeRef) kCFBooleanFalse;
-//float-point键值对
-imageKeys[1] = kCGImageSourceShouldAllowFloat;
-imageValues[1] = (CFTypeRef)kCFBooleanTrue;
-//获取dictionary
-imageOptions = CFDictionaryCreate(NULL, (const void **)imageKeys, (const void **)imageValues, 2, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);
-imageSource = CGImageSourceCreateWithURL((CFURLRef)url, imageOptions);
-CFRelease(imageOptions);
-if (imageSource == NULL) {
-return NULL;
-}
-image = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
-return image;
-}
-</code></pre>然后接着处理,就是一些业务逻辑任务,例如需要遮罩图层与否,需要缓存,或者<br>一些demo业务逻辑不做更多说明</li>
 </ul>
+<pre class=" language-swift"><code class="language-swift">该方法是首先判断传入的data是否存在<span class="token punctuation">,</span>如果不存在即不用处理<span class="token punctuation">,</span>直接<span class="token keyword">return</span> <span class="token constant">nil</span><span class="token punctuation">;</span>
+如果data存在即进行下一步的解析<span class="token punctuation">,</span>将request进行解析<span class="token punctuation">.</span>
+<span class="token operator">-</span> image<span class="token operator">/</span>io的知识补充
+<span class="token comment" spellcheck="true">//测试imageio支持的图片格式</span>
+<span class="token builtin">CFArrayRef</span> mysourceType <span class="token operator">=</span> <span class="token function">CGImageSourceCopyTypeIdentifiers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">CFShow</span><span class="token punctuation">(</span>mysourceType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token string">"public.jpeg"</span><span class="token punctuation">,</span>
+<span class="token string">"public.png"</span><span class="token punctuation">,</span>
+<span class="token string">"com.compuserve.gif"</span><span class="token punctuation">,</span>
+<span class="token string">"com.canon.tif-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.adobe.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.dxo.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.canon.cr2-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.leafamerica.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.hasselblad.fff-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.hasselblad.3fr-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.nikon.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.nikon.nrw-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.pentax.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.samsung.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.sony.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.sony.sr2-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.sony.arw-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.epson.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.kodak.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"public.tiff"</span><span class="token punctuation">,</span>
+<span class="token string">"public.jpeg-2000"</span><span class="token punctuation">,</span>
+<span class="token string">"com.apple.atx"</span><span class="token punctuation">,</span>
+<span class="token string">"org.khronos.astc"</span><span class="token punctuation">,</span>
+<span class="token string">"org.khronos.ktx"</span><span class="token punctuation">,</span>
+<span class="token string">"com.canon.crw-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.fuji.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.panasonic.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.panasonic.rw2-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.leica.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.leica.rwl-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.konicaminolta.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.olympus.sr-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.olympus.or-raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.olympus.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.phaseone.raw-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.microsoft.ico"</span><span class="token punctuation">,</span>
+<span class="token string">"com.microsoft.bmp"</span><span class="token punctuation">,</span>
+<span class="token string">"com.apple.icns"</span><span class="token punctuation">,</span>
+<span class="token string">"com.adobe.photoshop-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.microsoft.cur"</span><span class="token punctuation">,</span>
+<span class="token string">"com.truevision.tga-image"</span><span class="token punctuation">,</span>
+<span class="token string">"com.ilm.openexr-image"</span><span class="token punctuation">,</span>
+<span class="token string">"public.radiance"</span><span class="token punctuation">,</span>
+<span class="token string">"public.pbm"</span><span class="token punctuation">,</span>
+<span class="token string">"public.mpo-image"</span><span class="token punctuation">,</span>
+<span class="token string">"public.pvr"</span>
+</code></pre>
+<p>//创建和使用imageSources<br>//从Image Sources中创建一个图像<br>当从Image Sources中创建图片时，可以提供一个index和dictionary（利用键值对）来创建一个缩略图或者是允许缓存。<br>在创建图片的时候，也需提供一个index值来索引图片，因为Image Sources中可能是多张图片，如果参数时0，那么只有一个图片。</p>
+<p>创建一个方法 传入url返回cgimage</p>
+<pre class=" language-swift"><code class="language-swift"><span class="token builtin">CGImageRef</span> <span class="token function">myCreateCGimageFromFile</span><span class="token punctuation">(</span><span class="token builtin">NSString</span> <span class="token operator">*</span>path<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token constant">NSURL</span> <span class="token operator">*</span>url <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">NSURL</span> <span class="token builtin">URLWithString</span><span class="token punctuation">:</span>path<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">CGImageRef</span> image<span class="token punctuation">;</span>
+<span class="token builtin">CGImageSourceRef</span> imageSource<span class="token punctuation">;</span>
+<span class="token builtin">CFDictionaryRef</span> imageOptions<span class="token punctuation">;</span>
+<span class="token builtin">CFStringRef</span> imageKeys<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">CFTypeRef</span> imageValues<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//缓存键值对</span>
+imageKeys<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">kCGImageSourceShouldCache</span><span class="token punctuation">;</span>
+imageValues<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">CFTypeRef</span><span class="token punctuation">)</span> <span class="token constant">kCFBooleanFalse</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//float-point键值对</span>
+imageKeys<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">kCGImageSourceShouldAllowFloat</span><span class="token punctuation">;</span>
+imageValues<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">CFTypeRef</span><span class="token punctuation">)</span><span class="token constant">kCFBooleanTrue</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//获取dictionary</span>
+imageOptions <span class="token operator">=</span> <span class="token function">CFDictionaryCreate</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>const void <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>imageKeys<span class="token punctuation">,</span> <span class="token punctuation">(</span>const void <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>imageValues<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token constant">kCFTypeDictionaryKeyCallBacks</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token constant">kCFTypeDictionaryValueCallBacks</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+imageSource <span class="token operator">=</span> <span class="token function">CGImageSourceCreateWithURL</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">CFURLRef</span><span class="token punctuation">)</span>url<span class="token punctuation">,</span> imageOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">CFRelease</span><span class="token punctuation">(</span>imageOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>imageSource <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+image <span class="token operator">=</span> <span class="token function">CGImageSourceCreateImageAtIndex</span><span class="token punctuation">(</span>imageSource<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> image<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>然后接着处理,就是一些业务逻辑任务,例如需要遮罩图层与否,需要缓存,或者<br>一些demo业务逻辑不做更多说明</p>
 <hr>
 <p><strong>LoaderManager</strong><br>LKimageKit的核心业务就是在LoaderManager中因为在sdk的readme中是如下说明:</p>
 <ul>
