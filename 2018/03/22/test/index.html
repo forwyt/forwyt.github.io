@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="jasonPHD">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="test"/>
+  <meta property="og:description" content="Apple/易娱科技" />
+  <meta property="og:site_name" content="Developer JasonPhd"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Developer JasonPhd" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Developer JasonPhd</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+<link rel="stylesheet" href="/css/prism-duotone-dark.css" type="text/css"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">test</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/forwyt">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:465379032@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By jasonPHD</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-03-22</span>
+            <span class="time">11:55:43</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <pre class=" language-Objc"><code class="language-Objc">- (void)viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+  CGRect b = self.view.bounds;
+  CGSize buttonSize = [self.button1 sizeThatFits:b.size];
+  buttonSize.width += 20;
+  buttonSize.height += 20;
+  self.button1.bounds = CGRectMake(0, 0, buttonSize.width, buttonSize.height);
+  self.button1.center = self.view.center;
+
+
+  CGSize closeSize = [self.closeButton sizeThatFits:b.size];
+  closeSize.width += 20;
+  closeSize.height += 20;
+
+  self.closeButton.bounds = CGRectMake(0, 0, closeSize.width, closeSize.height);
+  self.closeButton.center = CGPointMake(self.button1.center.x, CGRectGetMaxY(b) - closeSize.height);
+}
+
+- (void)_showTransitionA {
+  ToAnimationViewController *vc = [[ToAnimationViewController alloc] init];
+  vc.transitioningDelegate = self;
+  [self presentViewController:vc animated:YES completion:NULL];
+}
+</code></pre>
+<pre class=" language-swift"><code class="language-swift"><span class="token operator">-</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span>viewWillLayoutSubviews <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span><span class="token keyword">super</span> viewWillLayoutSubviews<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token builtin">CGRect</span> b <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>bounds<span class="token punctuation">;</span>
+  <span class="token builtin">CGSize</span> buttonSize <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>button1 sizeThatFits<span class="token punctuation">:</span>b<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>width <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>height <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token keyword">self</span><span class="token punctuation">.</span>button1<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">self</span><span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>center<span class="token punctuation">;</span>
+
+
+  <span class="token builtin">CGSize</span> closeSize <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>closeButton sizeThatFits<span class="token punctuation">:</span>b<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>width <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>height <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">self</span><span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">self</span><span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>center <span class="token operator">=</span> <span class="token function">CGPointMake</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center<span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token function">CGRectGetMaxY</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">-</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span>_showTransitionA <span class="token punctuation">{</span>
+  <span class="token builtin">ToAnimationViewController</span> <span class="token operator">*</span>vc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token builtin">ToAnimationViewController</span> alloc<span class="token punctuation">]</span> <span class="token keyword">init</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  vc<span class="token punctuation">.</span>transitioningDelegate <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">;</span>
+  <span class="token punctuation">[</span><span class="token keyword">self</span> presentViewController<span class="token punctuation">:</span>vc animated<span class="token punctuation">:</span><span class="token constant">YES</span> completion<span class="token punctuation">:</span><span class="token constant">NULL</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript"> <span class="token keyword">let</span> dom<span class="token operator">=</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.d_table_body .title_inline>div'</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+                    <span class="token keyword">let</span> tdom<span class="token operator">=</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.d_table_total .title_inline dd'</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+                    <span class="token keyword">let</span> twidth<span class="token operator">=</span>j<span class="token operator">?</span>j<span class="token punctuation">.</span>clientWidth<span class="token punctuation">:</span><span class="token number">0</span>
+                    <span class="token keyword">let</span> bwidth<span class="token operator">=</span>dom<span class="token operator">?</span>dom<span class="token punctuation">.</span>clientWidth<span class="token punctuation">:</span><span class="token number">0</span>
+                    <span class="token keyword">let</span> total_width<span class="token operator">=</span>tdom<span class="token operator">?</span>tdom<span class="token punctuation">.</span>clientWidth<span class="token punctuation">:</span><span class="token number">0</span>
+                    <span class="token keyword">let</span> arr<span class="token operator">=</span><span class="token punctuation">[</span>twidth<span class="token punctuation">,</span>bwidth<span class="token punctuation">,</span>total_width<span class="token punctuation">]</span>
+
+                    <span class="token keyword">let</span> rwidth<span class="token operator">=</span>arr<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> o<span class="token operator">&lt;</span>n<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+                    j<span class="token punctuation">.</span>style<span class="token punctuation">.</span>width<span class="token operator">=</span>rwidth<span class="token operator">+</span><span class="token string">'px'</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>dom<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                      dom<span class="token punctuation">.</span>style<span class="token punctuation">.</span>width<span class="token operator">=</span>rwidth<span class="token operator">+</span><span class="token string">'px'</span>
+                      tdom<span class="token punctuation">.</span>style<span class="token punctuation">.</span>width<span class="token operator">=</span>rwidth<span class="token operator">+</span><span class="token string">'px'</span>
+                    <span class="token punctuation">}</span>
+                      width<span class="token operator">+</span><span class="token operator">=</span>rwidth
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>viewWillLayoutSubviews <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span><span class="token keyword">super</span> viewWillLayoutSubviews<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  CGRect b <span class="token operator">=</span> self<span class="token punctuation">.</span>view<span class="token punctuation">.</span>bounds<span class="token punctuation">;</span>
+  CGSize buttonSize <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>button1 sizeThatFits<span class="token operator">:</span>b<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>width <span class="token operator">+=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>height <span class="token operator">+=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  self<span class="token punctuation">.</span>button1<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  self<span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center <span class="token operator">=</span> self<span class="token punctuation">.</span>view<span class="token punctuation">.</span>center<span class="token punctuation">;</span>
+
+
+  CGSize closeSize <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>closeButton sizeThatFits<span class="token operator">:</span>b<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>width <span class="token operator">+=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>height <span class="token operator">+=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+
+  self<span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  self<span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>center <span class="token operator">=</span> <span class="token function">CGPointMake</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center<span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token function">CGRectGetMaxY</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">-</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>_showTransitionA <span class="token punctuation">{</span>
+  ToAnimationViewController <span class="token operator">*</span>vc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>ToAnimationViewController alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  vc<span class="token punctuation">.</span>transitioningDelegate <span class="token operator">=</span> self<span class="token punctuation">;</span>
+  <span class="token punctuation">[</span>self presentViewController<span class="token operator">:</span>vc animated<span class="token operator">:</span>YES completion<span class="token operator">:</span>NULL<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-ruby"><code class="language-ruby"><span class="token operator">-</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span>viewWillLayoutSubviews <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span><span class="token keyword">super</span> viewWillLayoutSubviews<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token constant">CGRect</span> b <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>bounds<span class="token punctuation">;</span>
+  <span class="token constant">CGSize</span> buttonSize <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>button1 sizeThatFits<span class="token symbol">:b</span><span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>width <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>height <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token keyword">self</span><span class="token punctuation">.</span>button1<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">self</span><span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>center<span class="token punctuation">;</span>
+
+
+  <span class="token constant">CGSize</span> closeSize <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>closeButton sizeThatFits<span class="token symbol">:b</span><span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>width <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>height <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">self</span><span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">self</span><span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>center <span class="token operator">=</span> <span class="token function">CGPointMake</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center<span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token function">CGRectGetMaxY</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">-</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span>_showTransitionA <span class="token punctuation">{</span>
+  <span class="token constant">ToAnimationViewController</span> <span class="token operator">*</span>vc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">ToAnimationViewController</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  vc<span class="token punctuation">.</span>transitioningDelegate <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">;</span>
+  <span class="token punctuation">[</span><span class="token keyword">self</span> presentViewController<span class="token symbol">:vc</span> animated<span class="token symbol">:YES</span> completion<span class="token symbol">:NULL</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>viewWillLayoutSubviews <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>super viewWillLayoutSubviews<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  CGRect b <span class="token operator">=</span> self<span class="token punctuation">.</span>view<span class="token punctuation">.</span>bounds<span class="token punctuation">;</span>
+  CGSize buttonSize <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>button1 sizeThatFits<span class="token punctuation">:</span>b<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>width <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  buttonSize<span class="token punctuation">.</span>height <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  self<span class="token punctuation">.</span>button1<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> buttonSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  self<span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center <span class="token operator">=</span> self<span class="token punctuation">.</span>view<span class="token punctuation">.</span>center<span class="token punctuation">;</span>
+
+
+  CGSize closeSize <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>closeButton sizeThatFits<span class="token punctuation">:</span>b<span class="token punctuation">.</span>size<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>width <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  closeSize<span class="token punctuation">.</span>height <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+
+  self<span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>bounds <span class="token operator">=</span> <span class="token function">CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>width<span class="token punctuation">,</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  self<span class="token punctuation">.</span>closeButton<span class="token punctuation">.</span>center <span class="token operator">=</span> <span class="token function">CGPointMake</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>button1<span class="token punctuation">.</span>center<span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token function">CGRectGetMaxY</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">-</span> closeSize<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>_showTransitionA <span class="token punctuation">{</span>
+  ToAnimationViewController <span class="token operator">*</span>vc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>ToAnimationViewController alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  vc<span class="token punctuation">.</span>transitioningDelegate <span class="token operator">=</span> self<span class="token punctuation">;</span>
+  <span class="token punctuation">[</span>self presentViewController<span class="token punctuation">:</span>vc animated<span class="token punctuation">:</span>YES completion<span class="token punctuation">:</span><span class="token constant">NULL</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" style = "width:70%;margin:0 auto"  data-uid="MTAyMC8zMTEwNS83NjU0">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
