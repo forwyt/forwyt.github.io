@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-03-14</span>
-            <span class="time">15:05:49</span>
+            <span class="time">15:07:12</span>
           </span>
           
         </div>
@@ -156,7 +156,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>有限状态自动机</strong><br>  <img src="/2018/03/14/学习编译原理-1/1.png" alt="1"></p>
+<li><p><strong>有限状态自动机</strong><br>  <img src="/2018/03/14/编译原理1/1.png" alt="1"></p>
 <ul>
 <li>单向箭头表示的是起始点,西格玛 是可接受字母表,S是状态的集合,q0是起始状态,F是有两个圆圈的一个终结状态集合,德尔塔 是转义函数他是一个集合</li>
 <li>NFA<ul>
@@ -164,14 +164,14 @@
 </ul>
 </li>
 <li>DFA<ul>
-<li>确定的有限状态自动机<br><img src="/2018/03/14/学习编译原理-1/2.png" alt="2"></li>
+<li>确定的有限状态自动机<br><img src="/2018/03/14/编译原理1/2.png" alt="2"></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li><p><strong>自动生成流程</strong><br><strong>从正则(Thompson算法)–&gt;NFA(子集结构算法)–&gt;DFA(Hopcroft算法)–&gt;词法分析器</strong></p>
 <ul>
-<li>汤姆逊/黑客/算法 唯一没有博士学位的人拿到的图灵计算机大奖<img src="/2018/03/14/学习编译原理-1/3.png" alt="3"><br><img src="/assets/WX20180313-164347.png" alt=""></li>
+<li>汤姆逊/黑客/算法 唯一没有博士学位的人拿到的图灵计算机大奖<img src="/2018/03/14/编译原理1/3.png" alt="3"><br><img src="/assets/WX20180313-164347.png" alt=""></li>
 <li>NFA转为DFA(子集结构算法)<ul>
 <li><a href="http://blog.csdn.net/qq_23100787/article/details/50402643" target="_blank" rel="external">这里有一篇详细的讲解</a>关于是如何将NFA转化为DFA而且在此基础之上 结构算法的解析也有说明!    </li>
 </ul>
@@ -184,7 +184,7 @@
 <ul>
 <li>称为等价类思想  <ul>
 <li>第一步 将状态分为 普通和接受状态 A/N </li>
-<li>通过任意一个元素将这个 A或者 N 切割为不能再细分的子集 最后确定统一状态及是 专为一个DNA 的最小化<br><img src="/2018/03/14/学习编译原理-1/4.png" alt="4"></li>
+<li>通过任意一个元素将这个 A或者 N 切割为不能再细分的子集 最后确定统一状态及是 专为一个DNA 的最小化<br><img src="/2018/03/14/编译原理1/4.png" alt="4"></li>
 </ul>
 </li>
 </ul>
@@ -208,7 +208,7 @@
 </ul>
 </li>
 <li><strong>跳转表</strong><ul>
-<li>注释: 跳转表将每一个状态转为代码<br><img src="/2018/03/14/学习编译原理-1/5.png" alt="5"><br>表现效率很高 当读取uinicode的时候 可以分段执行 加载起来也减少内存消耗</li>
+<li>注释: 跳转表将每一个状态转为代码<br><img src="/2018/03/14/编译原理1/5.png" alt="5"><br>表现效率很高 当读取uinicode的时候 可以分段执行 加载起来也减少内存消耗</li>
 </ul>
 </li>
 </ul>
@@ -234,7 +234,7 @@
 <li>形式化<ul>
 <li>非终结符</li>
 <li>终结符</li>
-<li>开始符号<img src="/2018/03/14/学习编译原理-1/6.png" alt="6"></li>
+<li>开始符号<img src="/2018/03/14/编译原理1/6.png" alt="6"></li>
 </ul>
 </li>
 <li>推倒<ul>
@@ -244,7 +244,7 @@
 </ul>
 </li>
 <li><strong>分析树二义性</strong><ul>
-<li>分析树 passtree <img src="/2018/03/14/学习编译原理-1/7.png" alt="7"></li>
+<li>分析树 passtree <img src="/2018/03/14/编译原理1/7.png" alt="7"></li>
 <li>二义性文法 给定文法G将句子可以推出S有两颗不同的树</li>
 </ul>
 </li>
