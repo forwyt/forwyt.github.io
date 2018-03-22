@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-03-19</span>
-            <span class="time">14:41:13</span>
+            <span class="time">14:47:45</span>
           </span>
           
         </div>
@@ -128,58 +128,65 @@
 <p>接下来就是详细描述一下podfile文件(这一个开发之中非常重要而且规则很多的地方</p>
 <p><img src="/2018/03/19/Cocoapods制作framework全解析/WX20180319-163133.png" alt="WX20180319-163133"></p>
 <p>把podspec文件打开成为一个ruby语言描述的,这样就可以语法高亮方便查看</p>
-<pre><code>Pod::Spec.new do |s|
-#项目名称
-  s.name             = &#39;TestSDK&#39;
-#项目版本号
-  s.version          = &#39;0.1.0&#39;
-#项目摘要
-  s.summary          = &#39;A short description of TestSDK.&#39;
-#项目简短描述
-  s.description      = &#39;这里填写您的项目描述建议这个要比summary长,听说是有人出错在这里(⊙﹏⊙)b&#39;
-#项目的主页
-  s.homepage         = &#39;https://github.com/XXX/TestSDK&#39;
-#sdk的图片 为了美可以设置, 
-# s.screenshots     = &#39;www.example.com/screenshots_1&#39;, &#39;www.example.com/screenshots_2&#39;
-#项目开源的许可证类型
-s.license          = { :type =&gt; &#39;MIT&#39;, :file =&gt; &#39;LICENSE&#39; }
-#项目的作者
-s.author           = { &#39;XXX&#39; =&gt; &#39;XX@qq.com&#39; }
-#源代码
-s.source           = { :git =&gt; &#39;https://github.com/forwyt/TestSDK.git&#39;, :tag =&gt; s.version.to_s }
-#设交媒体
-# s.social_media_url = &#39;https://twitter.com/&lt;TWITTER_USERNAME&gt;&#39;
----------------------------------------------------------
-#下面比较重要
-#项目的最低支持版本
-  s.ios.deployment_target = &#39;8.0&#39;
-#项目的目录结构(总体上说我们将所有的文件都放在这里)
-  s.source_files = &#39;TestSDK/Classes/**/*&#39;
-#如果你需要用到 图片 或者很少人提到的 xib文件打包之后成为nib都是需要一个bundle指定路径
-  # s.resource_bundles = {
-  #   &#39;TestSDK&#39; =&gt; [&#39;TestSDK/Assets/*.png&#39;]
-  # }
-#公共头文件在这里
-s.public_header_files = &#39;Pod/Classes/**/*.h&#39;
-#如果你项目中自己使用到的系统库需要在这里添加
-  s.frameworks = &#39;UIKit&#39;, &#39;MapKit&#39;
-#依赖的第三方框架需要在这里添加
-  s.dependency &#39;AFNetworking&#39;, &#39;~&gt; 2.3&#39;
--------------------------------------------------------------
-</code></pre><h2 id="验证以及git相关知识"><a href="#验证以及git相关知识" class="headerlink" title="验证以及git相关知识"></a>验证以及git相关知识</h2><p>当你开发完成之后,你需要在git的服务器上(这里以github说明,建立起你的开源库地址)</p>
-<pre><code>git add remote xxx
-</code></pre><pre><code>cd 项目层
-</code></pre><pre><code>git add .
-</code></pre><pre><code>git commit -m&quot;xxx&quot;
-</code></pre><pre><code>git tag v0.1.0 (这里强烈建议大家一定按照步骤来 因为podspec里面如果是指定了0.1.0那么大家就0.1.0 一句话相互对应即可)
+<pre class=" language-ruby"><code class="language-ruby"><span class="token constant">Pod</span><span class="token punctuation">:</span><span class="token symbol">:Spec</span><span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">do</span> <span class="token operator">|</span>s<span class="token operator">|</span>
+<span class="token comment" spellcheck="true">#项目名称</span>
+  s<span class="token punctuation">.</span>name             <span class="token operator">=</span> <span class="token string">'TestSDK'</span>
+<span class="token comment" spellcheck="true">#项目版本号</span>
+  s<span class="token punctuation">.</span>version          <span class="token operator">=</span> <span class="token string">'0.1.0'</span>
+<span class="token comment" spellcheck="true">#项目摘要</span>
+  s<span class="token punctuation">.</span>summary          <span class="token operator">=</span> <span class="token string">'A short description of TestSDK.'</span>
+<span class="token comment" spellcheck="true">#项目简短描述</span>
+  s<span class="token punctuation">.</span>description      <span class="token operator">=</span> <span class="token string">'这里填写您的项目描述建议这个要比summary长,听说是有人出错在这里(⊙﹏⊙)b'</span>
+<span class="token comment" spellcheck="true">#项目的主页</span>
+  s<span class="token punctuation">.</span>homepage         <span class="token operator">=</span> <span class="token string">'https://github.com/XXX/TestSDK'</span>
+<span class="token comment" spellcheck="true">#sdk的图片 为了美可以设置, </span>
+<span class="token comment" spellcheck="true"># s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'</span>
+<span class="token comment" spellcheck="true">#项目开源的许可证类型</span>
+s<span class="token punctuation">.</span>license          <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token symbol">:type</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'MIT'</span><span class="token punctuation">,</span> <span class="token symbol">:file</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'LICENSE'</span> <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">#项目的作者</span>
+s<span class="token punctuation">.</span>author           <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">'XXX'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'XX@qq.com'</span> <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">#源代码</span>
+s<span class="token punctuation">.</span>source           <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token symbol">:git</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'https://github.com/forwyt/TestSDK.git'</span><span class="token punctuation">,</span> <span class="token symbol">:tag</span> <span class="token operator">=</span><span class="token operator">></span> s<span class="token punctuation">.</span>version<span class="token punctuation">.</span>to_s <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">#设交媒体</span>
+<span class="token comment" spellcheck="true"># s.social_media_url = 'https://twitter.com/&lt;TWITTER_USERNAME>'</span>
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+<span class="token comment" spellcheck="true">#下面比较重要</span>
+<span class="token comment" spellcheck="true">#项目的最低支持版本</span>
+  s<span class="token punctuation">.</span>ios<span class="token punctuation">.</span>deployment_target <span class="token operator">=</span> <span class="token string">'8.0'</span>
+<span class="token comment" spellcheck="true">#项目的目录结构(总体上说我们将所有的文件都放在这里)</span>
+  s<span class="token punctuation">.</span>source_files <span class="token operator">=</span> <span class="token string">'TestSDK/Classes/**/*'</span>
+<span class="token comment" spellcheck="true">#如果你需要用到 图片 或者很少人提到的 xib文件打包之后成为nib都是需要一个bundle指定路径</span>
+  <span class="token comment" spellcheck="true"># s.resource_bundles = {</span>
+  <span class="token comment" spellcheck="true">#   'TestSDK' => ['TestSDK/Assets/*.png']</span>
+  <span class="token comment" spellcheck="true"># }</span>
+<span class="token comment" spellcheck="true">#公共头文件在这里</span>
+s<span class="token punctuation">.</span>public_header_files <span class="token operator">=</span> <span class="token string">'Pod/Classes/**/*.h'</span>
+<span class="token comment" spellcheck="true">#如果你项目中自己使用到的系统库需要在这里添加</span>
+  s<span class="token punctuation">.</span>frameworks <span class="token operator">=</span> <span class="token string">'UIKit'</span><span class="token punctuation">,</span> <span class="token string">'MapKit'</span>
+<span class="token comment" spellcheck="true">#依赖的第三方框架需要在这里添加</span>
+  s<span class="token punctuation">.</span>dependency <span class="token string">'AFNetworking'</span><span class="token punctuation">,</span> <span class="token string">'~> 2.3'</span>
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+</code></pre>
+<h2 id="验证以及git相关知识"><a href="#验证以及git相关知识" class="headerlink" title="验证以及git相关知识"></a>验证以及git相关知识</h2><p>当你开发完成之后,你需要在git的服务器上(这里以github说明,建立起你的开源库地址)</p>
+<pre class=" language-shell"><code class="language-shell">git add remote xxx
+</code></pre>
+<pre class=" language-ruby"><code class="language-ruby">cd 项目层
+</code></pre>
+<pre class=" language-ruby"><code class="language-ruby">git add <span class="token punctuation">.</span>
+</code></pre>
+<pre class=" language-ruby"><code class="language-ruby">git commit <span class="token operator">-</span>m<span class="token string">"xxx"</span>
+</code></pre>
+<pre class=" language-ruby"><code class="language-ruby">git tag v0<span class="token number">.1</span><span class="token punctuation">.</span><span class="token function">0</span> <span class="token punctuation">(</span>这里强烈建议大家一定按照步骤来 因为podspec里面如果是指定了<span class="token number">0.1</span><span class="token punctuation">.</span><span class="token number">0</span>那么大家就<span class="token number">0.1</span><span class="token punctuation">.</span><span class="token number">0</span> 一句话相互对应即可<span class="token punctuation">)</span>
 
 git push 
 
 git push tags 需要将tags也都上传到服务器上
-</code></pre><p>假如一切顺利 这个时候你的 项目源码和tag应该都是子github里面的</p>
+</code></pre>
+<p>假如一切顺利 这个时候你的 项目源码和tag应该都是子github里面的</p>
 <p>最后我们需要验证有没有错误</p>
-<pre><code>pod lib lint xxx.podspec --allow warings(允许有黄色警告)如果不需要刻意不带
-</code></pre><h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>一般来说如果你不打算开源项目 sdk开发程序员会将自己的库封装好,头文件暴露出来,并且FQA写好这样就算是一个大体合格的framewoke</p>
+<pre class=" language-ruby"><code class="language-ruby">pod lib lint xxx<span class="token punctuation">.</span>podspec <span class="token operator">--</span>allow <span class="token function">warings</span><span class="token punctuation">(</span>允许有黄色警告<span class="token punctuation">)</span>如果不需要刻意不带
+</code></pre>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>一般来说如果你不打算开源项目 sdk开发程序员会将自己的库封装好,头文件暴露出来,并且FQA写好这样就算是一个大体合格的framewoke</p>
 <ul>
 <li>手动打包<ul>
 <li>手动打包的过程是非常机械且繁琐的,不仅你需要给开发人员真机库,还要有模拟器库,所以网上有非常多的教程教你先打第一个真机再打一个模拟器最后合并.这种机械化操作此处不细说</li>
@@ -202,14 +209,15 @@ git push tags 需要将tags也都上传到服务器上
 <p><img src="/2018/03/19/Cocoapods制作framework全解析/WX20180319-171902.png" alt="WX20180319-171902"></p>
 <p>自己定义一个module将里面的umbrella header指向这个自定义的WechatSDK.h,并且在pods- target -buid setting中 packing里 nodulemap未你自定的这个module这样导出的freamework就是非常规范的</p>
 <h4 id="2-如果我想将-a-或者-framework-这种静态库直接打包进去那么我又该怎么做"><a href="#2-如果我想将-a-或者-framework-这种静态库直接打包进去那么我又该怎么做" class="headerlink" title="==2.如果我想将.a 或者,framework 这种静态库直接打包进去那么我又该怎么做?=="></a>==2.如果我想将.a 或者,framework 这种静态库直接打包进去那么我又该怎么做?==</h4><p>关于这个问题 可能是报错最多的在sdk开发中</p>
-<pre><code>#这两个是我在实际开发中打包微信的.a 和 QQ 的framework
+<pre class=" language-swift"><code class="language-swift">#这两个是我在实际开发中打包微信的<span class="token punctuation">.</span>a 和 <span class="token constant">QQ</span> 的framework
 #首先就需要在podsepc里面指明路径
- s.ios.vendored_libraries = &#39;Example/Pods/WechatSDK/libWeChatSDK.a&#39;
- s.ios.vendored_frameworks =&#39;Example/Pods/TencentOpenAPI.framework&#39;
-#其次是需要把微信和QQ所需要的系统库全部写明上去不需要带后缀不然会报错
- s.frameworks =  &#39;Security&#39;,&#39;SystemConfiguration&#39;,&#39;CoreTelephony&#39;
- s.libraries  = &#39;z&#39;,&#39;sqlite3.0&#39;,&#39;c++&#39;
-</code></pre><p>可能会涉及到无法导入头文件,那么你可以在public header 一栏指出即可</p>
+ s<span class="token punctuation">.</span>ios<span class="token punctuation">.</span>vendored_libraries <span class="token operator">=</span> <span class="token string">'Example/Pods/WechatSDK/libWeChatSDK.a'</span>
+ s<span class="token punctuation">.</span>ios<span class="token punctuation">.</span>vendored_frameworks <span class="token operator">=</span><span class="token string">'Example/Pods/TencentOpenAPI.framework'</span>
+#其次是需要把微信和<span class="token constant">QQ</span>所需要的系统库全部写明上去不需要带后缀不然会报错
+ s<span class="token punctuation">.</span>frameworks <span class="token operator">=</span>  <span class="token string">'Security'</span><span class="token punctuation">,</span><span class="token string">'SystemConfiguration'</span><span class="token punctuation">,</span><span class="token string">'CoreTelephony'</span>
+ s<span class="token punctuation">.</span>libraries  <span class="token operator">=</span> <span class="token string">'z'</span><span class="token punctuation">,</span><span class="token string">'sqlite3.0'</span><span class="token punctuation">,</span><span class="token string">'c++'</span>
+</code></pre>
+<p>可能会涉及到无法导入头文件,那么你可以在public header 一栏指出即可</p>
 <h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>关于发布的详细步骤网上很多 一句最后命令</p>
 <p>pod trunk 便可以发布到cocoapods源</p>
 <p><img src="/2018/03/19/Cocoapods制作framework全解析/WechatIMG30327.png" alt="WechatIMG30327"></p>
