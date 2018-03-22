@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[test]]></title>
       <url>/2018/03/22/test/</url>
-      <content type="html"><![CDATA[<pre class=" language-Objc"><code class="language-Objc">- (void)viewWillLayoutSubviews {
+      <content type="html"><![CDATA[<pre class=" language-objc"><code class="language-objc">- (void)viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
   CGRect b = self.view.bounds;
   CGSize buttonSize = [self.button1 sizeThatFits:b.size];
