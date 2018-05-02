@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="jasonPHD">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Android&amp;iOS权限总结"/>
+  <meta property="og:description" content="Apple/易娱科技" />
+  <meta property="og:site_name" content="Developer JasonPhd"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Developer JasonPhd" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Developer JasonPhd</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Android&amp;iOS权限总结</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/forwyt">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:465379032@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By jasonPHD</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-05-02</span>
+            <span class="time">15:15:36</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="android-manifest-xml中的权限列表"><a href="#android-manifest-xml中的权限列表" class="headerlink" title="android manifest.xml中的权限列表"></a>android manifest.xml中的权限列表</h1><p>android.permission.ACCESS_CHECKIN_PROPERTIES<br>//允许读写访问”properties”表在checkin<a href="http://lib.csdn.net/base/mysql" target="_blank" rel="external">数据库</a>中，改值可以修改上传<br>android.permission.ACCESS_COARSE_LOCATION<br>//允许一个程序访问CellID或WiFi热点来获取粗略的位置<br>android.permission.ACCESS_FINE_LOCATION<br>//允许一个程序访问精良位置(如GPS)<br>android.permission.ACCESS_LOCATION_EXTRA_COMMANDS<br>//允许应用程序访问额外的位置提供命令<br>android.permission.ACCESS_MOCK_LOCATION<br>//允许程序创建模拟位置提供用于<a href="http://lib.csdn.net/base/softwaretest" target="_blank" rel="external">测试</a><br>android.permission.ACCESS_NETWORK_STATE<br>//允许程序访问有关GSM网络信息<br>android.permission.ACCESS_SURFACE_FLINGER<br>//允许程序使用SurfaceFlinger底层特性<br>android.permission.ACCESS_WIFI_STATE<br>//允许程序访问Wi-Fi网络状态信息<br>android.permission.ADD_SYSTEM_SERVICE<br>//允许程序发布系统级服务<br>android.permission.BATTERY_STATS<br>//允许程序更新手机电池统计信息<br>android.permission.BLUETOOTH<br>//允许程序连接到已配对的蓝牙设备<br>android.permission.BLUETOOTH_ADMIN<br>//允许程序发现和配对蓝牙设备<br>android.permission.BRICK<br>//请求能够禁用设备(非常危险<br>android.permission.BROADCAST_PACKAGE_REMOVED<br>//允许程序广播一个提示消息在一个应用程序包已经移除后<br>android.permission.BROADCAST_STICKY<br>//允许一个程序广播常用intents<br>android.permission.CALL_PHONE<br>//允许一个程序初始化一个电话拨号不需通过拨号用户界面需要用户确认<br>android.permission.CALL_PRIVILEGED<br>//允许一个程序拨打任何号码，包含紧急号码无需通过拨号用户界面需要用户确认<br>android.permission.CAMERA<br>//请求访问使用照相设备<br>android.permission.CHANGE_COMPONENT_ENABLED_STATE<br>//允许一个程序是否改变一个组件或其他的启用或禁用<br>android.permission.CHANGE_CONFIGURATION<br>//允许一个程序修改当前设置，如本地化<br>android.permission.CHANGE_NETWORK_STATE<br>//允许程序改变网络连接状态<br>android.permission.CHANGE_WIFI_STATE<br>//允许程序改变Wi-Fi连接状态<br>android.permission.CLEAR_APP_CACHE<br>//允许一个程序清楚缓存从所有安装的程序在设备中<br>android.permission.CLEAR_APP_USER_DATA<br>//允许一个程序清除用户设置<br>android.permission.CONTROL_LOCATION_UPDATES<br>//允许启用禁止位置更新提示从无线模块<br>android.permission.DELETE_CACHE_FILES<br>//允许程序删除缓存文件<br>android.permission.DELETE_PACKAGES<br>//允许一个程序删除包<br>android.permission.DEVICE_POWER<br>//允许访问底层电源管理<br>android.permission.DIAGNOSTIC<br>//允许程序RW诊断资源<br>android.permission.DISABLE_KEYGUARD<br>//允许程序禁用键盘锁<br>android.permission.DUMP<br>//允许程序返回状态抓取信息从系统服务<br>android.permission.EXPAND_STATUS_BAR<br>//允许一个程序扩展收缩在状态栏,android开发网提示应该是一个类似Windows Mobile中的托盘程序<br>android.permission.FACTORY_TEST<br>//作为一个工厂测试程序，运行在root用户<br>android.permission.FLASHLIGHT<br>//访问闪光灯,android开发网提示HTC Dream不包含闪光灯<br>android.permission.FORCE_BACK<br>//允许程序强行一个后退操作是否在顶层activities<br>android.permission.FOTA_UPDATE<br>//暂时不了解这是做什么使用的，android开发网分析可能是一个预留权限.<br>android.permission.GET_ACCOUNTS<br>//访问一个帐户列表在Accounts Service中<br>android.permission.GET_PACKAGE_SIZE<br>//允许一个程序获取任何package占用空间容量<br>android.permission.GET_TASKS<br>//允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等<br>android.permission.HARDWARE_TEST<br>//允许访问硬件<br>android.permission.INJECT_EVENTS<br>//允许一个程序截获用户事件如按键、触摸、轨迹球等等到一个时间流，android开发网提醒算是hook技术吧<br>android.permission.INSTALL_PACKAGES<br>//允许一个程序安装packages<br>android.permission.INTERNAL_SYSTEM_WINDOW<br>//允许打开窗口使用系统用户界面<br>android.permission.INTERNET<br>//允许程序打开网络套接字<br>android.permission.MANAGE_APP_TOKENS<br>//允许程序管理(创建、催后、 z- order默认向z轴推移)程序引用在窗口管理器中<br>android.permission.MASTER_CLEAR<br>//目前还没有明确的解释，android开发网分析可能是清除一切数据，类似硬格机<br>android.permission.MODIFY_AUDIO_SETTINGS<br>//允许程序修改全局音频设置<br>android.permission.MODIFY_PHONE_STATE<br>//允许修改话机状态，如电源，人机接口等<br>android.permission.MOUNT_UNMOUNT_FILESYSTEMS<br>//允许挂载和反挂载文件系统可移动存储<br>android.permission.PERSISTENT_ACTIVITY<br>//允许一个程序设置他的activities显示<br>android.permission.PROCESS_OUTGOING_CALLS<br>//允许程序监视、修改有关播出电话<br>android.permission.READ_CALENDAR<br>//允许程序读取用户日历数据<br>android.permission.READ_CONTACTS<br>//允许程序读取用户联系人数据<br>android.permission.READ_FRAME_BUFFER<br>//允许程序屏幕波或和更多常规的访问帧缓冲数据<br>android.permission.READ_INPUT_STATE<br>//允许程序返回当前按键状态<br>android.permission.READ_LOGS<br>//允许程序读取底层系统日志文件<br>android.permission.READ_OWNER_DATA<br>//允许程序读取所有者数据<br>android.permission.READ_SMS<br>//允许程序读取短信息<br>android.permission.READ_SYNC_SETTINGS<br>//允许程序读取同步设置<br>android.permission.READ_SYNC_STATS<br>//允许程序读取同步状态<br>android.permission.REBOOT<br>//请求能够重新启动设备<br>android.permission.RECEIVE_BOOT_COMPLETED<br>//允许一个程序接收到<br>android.permission.RECEIVE_MMS<br>//允许一个程序监控将收到MMS彩信,记录或处理<br>android.permission.RECEIVE_SMS<br>//允许程序监控一个将收到短信息，记录或处理<br>android.permission.RECEIVE_WAP_PUSH<br>//允许程序监控将收到WAP PUSH信息<br>android.permission.RECORD_AUDIO<br>//允许程序录制音频<br>android.permission.REORDER_TASKS<br>//允许程序改变Z轴排列任务<br>android.permission.RESTART_PACKAGES<br>//允许程序重新启动其他程序<br>android.permission.SEND_SMS<br>//允许程序发送SMS短信<br>android.permission.SET_ACTIVITY_WATCHER<br>//允许程序监控或控制activities已经启动全局系统中<br>android.permission.SET_ALWAYS_FINISH<br>//允许程序控制是否活动间接完成在处于后台时<br>android.permission.SET_ANIMATION_SCALE<br>//修改全局信息比例<br>android.permission.SET_DEBUG_APP<br>//配置一个程序用于调试<br>android.permission.SET_ORIENTATION<br>//允许底层访问设置屏幕方向和实际旋转<br>android.permission.SET_PREFERRED_APPLICATIONS<br>//允许一个程序修改列表参数PackageManager.addPackageToPreferred()和PackageManager.removePackageFromPreferred()方法<br>android.permission.SET_PROCESS_FOREGROUND<br>//允许程序当前运行程序强行到前台<br>android.permission.SET_PROCESS_LIMIT<br>//允许设置最大的运行进程数量<br>android.permission.SET_TIME_ZONE<br>//允许程序设置时间区域<br>android.permission.SET_WALLPAPER<br>//允许程序设置壁纸<br>android.permission.SET_WALLPAPER_HINTS<br>//允许程序设置壁纸hits<br>android.permission.SIGNAL_PERSISTENT_PROCESSES<br>//允许程序请求发送信号到所有显示的进程中<br>android.permission.STATUS_BAR<br>//允许程序打开、关闭或禁用状态栏及图标Allows an application to open, close, or disable the status bar and its icons.<br>android.permission.SUBSCRIBED_FEEDS_READ<br>//允许一个程序访问订阅RSS Feed内容提供<br>android.permission.SUBSCRIBED_FEEDS_WRITE<br>//系统暂时保留改设置,android开发网认为未来版本会加入该功能。<br>android.permission.SYSTEM_ALERT_WINDOW<br>//允许一个程序打开窗口使用 TYPE_SYSTEM_ALERT，显示在其他所有程序的顶层(Allows an application to open windows using the type TYPE_SYSTEM_ALERT, shown on top of all other applications. )<br>android.permission.VIBRATE<br>//允许访问振动设备<br>android.permission.WAKE_LOCK<br>//允许使用PowerManager的 WakeLocks保持进程在休眠时从屏幕消失<br>android.permission.WRITE_APN_SETTINGS<br>//允许程序写入APN设置<br>android.permission.WRITE_CALENDAR<br>//允许一个程序写入但不读取用户日历数据<br>android.permission.WRITE_CONTACTS<br>//允许程序写入但不读取用户联系人数据<br>android.permission.WRITE_GSERVICES<br>//允许程序修改Google服务地图<br>android.permission.WRITE_OWNER_DATA<br>//允许一个程序写入但不读取所有者数据<br>android.permission.WRITE_SETTINGS<br>//允许程序读取或写入系统设置<br>android.permission.WRITE_SMS<br>//允许程序写短信<br>android.permission.WRITE_SYNC_SETTINGS<br>//允许程序写入同步设置</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DashboardActivity</span> <span class="token keyword">extends</span> <span class="token class-name">Activity</span> <span class="token punctuation">{</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+String details <span class="token operator">=</span> <span class="token string">"VERSION.RELEASE : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>VERSION<span class="token punctuation">.</span>RELEASE
+<span class="token operator">+</span><span class="token string">"\nVERSION.INCREMENTAL : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>VERSION<span class="token punctuation">.</span>INCREMENTAL
+<span class="token operator">+</span><span class="token string">"\nVERSION.SDK.NUMBER : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>VERSION<span class="token punctuation">.</span>SDK_INT
+<span class="token operator">+</span><span class="token string">"\nBOARD : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>BOARD
+<span class="token operator">+</span><span class="token string">"\nBOOTLOADER : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>BOOTLOADER
+<span class="token operator">+</span><span class="token string">"\nBRAND : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>BRAND
+<span class="token operator">+</span><span class="token string">"\nCPU_ABI : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>CPU_ABI
+<span class="token operator">+</span><span class="token string">"\nCPU_ABI2 : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>CPU_ABI2
+<span class="token operator">+</span><span class="token string">"\nDISPLAY : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>DISPLAY
+<span class="token operator">+</span><span class="token string">"\nFINGERPRINT : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>FINGERPRINT
+<span class="token operator">+</span><span class="token string">"\nHARDWARE : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>HARDWARE
+<span class="token operator">+</span><span class="token string">"\nHOST : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>HOST
+<span class="token operator">+</span><span class="token string">"\nID : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>ID
+<span class="token operator">+</span><span class="token string">"\nMANUFACTURER : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>MANUFACTURER
+<span class="token operator">+</span><span class="token string">"\nMODEL : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>MODEL
+<span class="token operator">+</span><span class="token string">"\nPRODUCT : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>PRODUCT
+<span class="token operator">+</span><span class="token string">"\nSERIAL : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>SERIAL
+<span class="token operator">+</span><span class="token string">"\nTAGS : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>TAGS
+<span class="token operator">+</span><span class="token string">"\nTIME : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>TIME
+<span class="token operator">+</span><span class="token string">"\nTYPE : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>TYPE
+<span class="token operator">+</span><span class="token string">"\nUNKNOWN : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>UNKNOWN
+<span class="token operator">+</span><span class="token string">"\nUSER : "</span><span class="token operator">+</span>Build<span class="token punctuation">.</span>USER<span class="token punctuation">;</span>
+TextView textView <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+textView<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>details<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setContentView</span><span class="token punctuation">(</span>textView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+获取信息来自build
+</code></pre>
+<h1 id="android获取唯一标志符的正确做法请参考官方指导"><a href="#android获取唯一标志符的正确做法请参考官方指导" class="headerlink" title="android获取唯一标志符的正确做法请参考官方指导"></a><a href="https://developer.android.google.cn/training/articles/user-data-ids?hl=zh-cn" target="_blank" rel="external">android获取唯一标志符的正确做法请参考官方指导</a></h1><h2 id="iOS中-info-plist权限"><a href="#iOS中-info-plist权限" class="headerlink" title="iOS中 info.plist权限"></a>iOS中 info.plist权限</h2><h3 id="一、相册"><a href="#一、相册" class="headerlink" title="一、相册"></a>一、相册</h3><p>&lt;key&gt;NSPhotoLibraryUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问相册&lt;/string&gt;</p>
+<h3 id="二、相机"><a href="#二、相机" class="headerlink" title="二、相机"></a>二、相机</h3><p>&lt;key&gt;NSCameraUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问相机&lt;/string&gt;</p>
+<h3 id="三、麦克风"><a href="#三、麦克风" class="headerlink" title="三、麦克风"></a>三、麦克风</h3><p>&lt;key&gt;NSMicrophoneUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问麦克风&lt;/string&gt;</p>
+<h3 id="四、位置"><a href="#四、位置" class="headerlink" title="四、位置"></a>四、位置</h3><p>&lt;key&gt;NSLocationUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问位置&lt;/string&gt;</p>
+<h3 id="五、在使用期间访问位置"><a href="#五、在使用期间访问位置" class="headerlink" title="五、在使用期间访问位置"></a>五、在使用期间访问位置</h3><p>&lt;key&gt;NSLocationWhenInUseUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能在使用期间访问位置&lt;/string&gt;</p>
+<h3 id="六、始终访问位置"><a href="#六、始终访问位置" class="headerlink" title="六、始终访问位置"></a>六、始终访问位置</h3><p>&lt;key&gt;NSLocationAlwaysUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能始终访问位置&lt;/string&gt;</p>
+<h3 id="七、日历"><a href="#七、日历" class="headerlink" title="七、日历"></a>七、日历</h3><p>&lt;key&gt;NSCalendarsUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问日历&lt;/string&gt;</p>
+<h3 id="八、提醒事项"><a href="#八、提醒事项" class="headerlink" title="八、提醒事项"></a>八、提醒事项</h3><p>&lt;key&gt;NSRemindersUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问提醒事项&lt;/string&gt;</p>
+<h3 id="九、运动与健身"><a href="#九、运动与健身" class="headerlink" title="九、运动与健身"></a>九、运动与健身</h3><p>&lt;key&gt;NSMotionUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问运动与健身&lt;/string&gt;</p>
+<h3 id="十、健康更新"><a href="#十、健康更新" class="headerlink" title="十、健康更新"></a>十、健康更新</h3><p>&lt;key&gt;NSHealthUpdateUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问健康更新&lt;/string&gt;</p>
+<h3 id="十一、健康分享"><a href="#十一、健康分享" class="headerlink" title="十一、健康分享"></a>十一、健康分享</h3><p>&lt;key&gt;NSHealthShareUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问健康分享&lt;/string&gt;</p>
+<h3 id="十二、蓝牙"><a href="#十二、蓝牙" class="headerlink" title="十二、蓝牙"></a>十二、蓝牙</h3><p>&lt;key&gt;NSBluetoothPeripheralUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问蓝牙&lt;/string&gt;</p>
+<h3 id="十三、媒体资料库"><a href="#十三、媒体资料库" class="headerlink" title="十三、媒体资料库"></a>十三、媒体资料库</h3><p>&lt;key&gt;NSAppleMusicUsageDescriptionApp&lt;/key&gt;</p>
+<p>&lt;string&gt;需要您的同意,才能访问媒体资料库&lt;/string&gt;</p>
+<h2 id="获取手机信息"><a href="#获取手机信息" class="headerlink" title="获取手机信息"></a><strong>获取手机信息</strong></h2><p><strong>1.手机系统：iPhone OS</strong></p>
+<p>NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];</p>
+<p><strong>2.手机类型：iPhone 6</strong></p>
+<p>NSString* phoneModel = [self iphoneType];</p>
+<p><strong>3.手机系统版本：9.1</strong></p>
+<p>NSString * iponeM = [[UIDevice currentDevice] systemName];</p>
+<p><strong>4.电池电量</strong></p>
+<p>CGFloat batteryLevel=[[UIDevicecurrentDevice]batteryLevel];</p>
+<p><strong>5.获取IDFA</strong></p>
+<p>获取idfa的方法：</p>
+<p>#import &lt;AdSupport/AdSupport.h&gt;</p>
+<p>NSString *idfa = [[[ASIdentifierManagersharedManager] advertisingIdentifier] UUIDString];</p>
+<p>(ios10 之后最好加一个判断 [[ASIdentifierManagersharedManager] isAdvertisingTrackingEnabled]  返回值是BOOL值   如果返回的YES说明没有 “开启限制广告跟踪”，可以获取到正确的idfa  如果返回的是NO，说明等待你的就是一串00000000000)</p>
+<blockquote>
+<p>The value in this property remains the same while the app (or another app from the same vendor) is installed on the iOS device. The value changes when the user deletes all of that vendor’s apps from the device and subsequently reinstalls one or more of them. The value can also change when installing test builds using Xcode or when installing an app on a device using ad-hoc distribution. Therefore, if your app stores the value of this property anywhere, you should gracefully handle situations where the identifier changes.</p>
+<p>翻译：在iOS设备上安装应用程序（或同一供应商的其他应用程序）时，此属性中的值保持不变。 当用户从设备中删除该供应商的所有应用程序，然后重新安装一个或多个应用程序时，该值会更改。 使用Xcode安装测试版本时或使用ad-hoc分发在设备上安装应用程序时，该值也可能更改。 因此，如果您的应用程序要在任何位置存储此属性的值，您应该适当地处理标识符会改变的情况。</p>
+<p>现在主流方法是可以存keychain里面来持久化,如果升级系统或者刷机 那就没有了</p>
+</blockquote>
+<p><strong>6.获取运营商信息</strong></p>
+<ul>
+<li>需要先导入头文件</li>
+</ul>
+<pre><code>#import
+&lt;
+CoreTelephony/CTCarrier.h
+&gt;
+#import
+&lt;
+CoreTelephony/CTTelephonyNetworkInfo.h
+&gt;
+</code></pre><ul>
+<li>创建对象</li>
+</ul>
+<pre><code>CCTelephonyNetworkInfo *info = [[
+CTTelephonyNetworkInfo
+alloc] init];
+</code></pre><ul>
+<li>获取运行商的名称</li>
+</ul>
+<pre><code>CTCarrier
+*carrier = [info subscriberCellularProvider];
+
+NSString
+*mCarrier = [
+NSString
+stringWithFormat:
+@&quot;%@&quot;
+,[carrier carrierName]];
+</code></pre><p><strong>7. 获取当前信号强弱</strong></p>
+<p>这个貌似没有给出官方的api，但是网上有人说可以用私有的api实现，但是通不过appStore的审核，方法如下：<br>利用linux下动态库显式调用api的函数。先包含头文件 <code>#import &lt;dlfcn.h&gt;</code></p>
+<pre><code>(
+int
+) getSignalLevel {
+
+//获取库句柄
+
+voidvoid *libHandle = dlopen(
+&quot;/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony&quot;
+,RTLD_LAZY);
+
+//定义一个与将要获取的函数匹配的函数指针
+int
+(*
+CTGetSignalStrength
+)();
+
+//获取指定名称的函数
+CTGetSignalStrength
+= (
+int
+(*)())dlsym(libHandle,
+&quot;CTGetSignalStrength&quot;
+);
+
+if
+(
+CTGetSignalStrength
+==
+NULL
+)
+return
+-1
+;
+
+else
+{
+int
+level =
+CTGetSignalStrength
+();
+dlclose(libHandle);
+//切记关闭库
+return
+level
+}
+}
+</code></pre><p><strong>8.时区 </strong></p>
+<p>// 获取所有已知的时区名称</p>
+<p>NSArray * zoneNames = [NSTimeZone knownTimeZoneNames];</p>
+<p>NSTimeZone *zone = [NSTimeZone localTimeZone];</p>
+<p>// 获取指定时区的名称</p>
+<p>NSString *strZoneName = [zone name];</p>
+<p><strong>9.network 网络</strong></p>
+<p>Reachability头文件中我们可以看到无网络，wifi和蜂窝网三个网络状态的枚举值</p>
+<p><code>typedef enum : NSInteger {</code></p>
+<p><code>NotReachable =</code></p>
+<p><code>0</code></p>
+<p><code>,</code></p>
+<p><code>ReachableViaWiFi,</code></p>
+<p><code>ReachableViaWWAN</code></p>
+<p><code>} NetworkStatus;</code></p>
+<p><strong>10.总内存/占用内存</strong></p>
+<pre class=" language-java"><code class="language-java">获取当前设备可用内存及所占内存的头文件
+
+#<span class="token keyword">import</span> <span class="token operator">&lt;</span>sys<span class="token operator">/</span>sysctl<span class="token punctuation">.</span>h<span class="token operator">></span>
+
+#<span class="token keyword">import</span> <span class="token operator">&lt;</span>mach<span class="token operator">/</span>mach<span class="token punctuation">.</span>h<span class="token comment" spellcheck="true">// 获取当前设备可用内存(单位：MB）</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>availableMemory
+
+<span class="token punctuation">{</span>
+
+vm_statistics_data_t vmStats<span class="token punctuation">;</span>
+
+mach_msg_type_number_t infoCount <span class="token operator">=</span> HOST_VM_INFO_COUNT<span class="token punctuation">;</span>
+
+kern_return_t kernReturn <span class="token operator">=</span> <span class="token function">host_statistics</span><span class="token punctuation">(</span><span class="token function">mach_host_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+HOST_VM_INFO<span class="token punctuation">,</span>
+
+<span class="token punctuation">(</span>host_info_t<span class="token punctuation">)</span><span class="token operator">&amp;</span>vmStats<span class="token punctuation">,</span>
+
+<span class="token operator">&amp;</span>infoCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>kernReturn <span class="token operator">!=</span> KERN_SUCCESS<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> NSNotFound<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>vm_page_size <span class="token operator">*</span>vmStats<span class="token punctuation">.</span>free_count<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1024.0</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1024.0</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+
+
+<span class="token comment" spellcheck="true">// 获取当前任务所占用的内存（单位：MB）</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span>usedMemory
+
+<span class="token punctuation">{</span>
+
+task_basic_info_data_t taskInfo<span class="token punctuation">;</span>
+
+mach_msg_type_number_t infoCount <span class="token operator">=</span> TASK_BASIC_INFO_COUNT<span class="token punctuation">;</span>
+
+kern_return_t kernReturn <span class="token operator">=</span> <span class="token function">task_info</span><span class="token punctuation">(</span><span class="token function">mach_task_self</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+TASK_BASIC_INFO<span class="token punctuation">,</span>
+
+<span class="token punctuation">(</span>task_info_t<span class="token punctuation">)</span><span class="token operator">&amp;</span>taskInfo<span class="token punctuation">,</span>
+
+<span class="token operator">&amp;</span>infoCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>kernReturn <span class="token operator">!=</span> KERN_SUCCESS
+
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token keyword">return</span> NSNotFound<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">return</span> taskInfo<span class="token punctuation">.</span>resident_size <span class="token operator">/</span> <span class="token number">1024.0</span> <span class="token operator">/</span> <span class="token number">1024.0</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>11.mac地址(iOS7 之前可以)/imei /imsi 同理</p>
+<blockquote>
+<p>获得手机的mac地址，但是有个限制，是在iOS7以下才可以获得。iOS7以后</p>
+<p>苹果对于sysctl和ioctl进行了技术处理，MAC地址返回的都是02:00:00:00:00:00。</p>
+<p>官方文档上这样写的“Twolow-level networking APIs that used to return a MAC address now return thefixed value 02:00:00:00:00:00. The APIs in question are sysctl(NET_RT_IFLIST) and ioctl(SIOCGIFCONF). Developers using the value of the MAC address should migrate toidentifiers such as -[UIDevice identifierForVendor].This change affects all apps running on iOS</p>
+</blockquote>
+<p><strong>12.获取设置的语言</strong></p>
+<p>NSString *nsLang  = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];</p>
+<p>传说中获取语言设置最准确的方法：</p>
+<p>NSString *nsLang = [[[NSUserDefaults standardUserDefaults] objectForKey:@”AppleLanguages”]  objectAtIndex:0];</p>
+<p><strong>13.获取设置的国家</strong></p>
+<p>NSString *nsCount  = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" style = "width:70%;margin:0 auto"  data-uid="MTAyMC8zMTEwNS83NjU0">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
